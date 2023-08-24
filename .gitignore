@@ -1,0 +1,38 @@
+# Diretórios
+node_modules/
+dist/
+build/
+
+# Arquivos de configuração
+*.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# Arquivos gerados
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências
+/.pnp
+.pnp.js
+
+# Tipos de arquivo
+*.tsbuildinfo
+
+# Arquivos de desenvolvimento
+.vscode/
+.idea/
+*.swp
+
+# Arquivos de compilação
+*.js
+*.js.map
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
