@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2017",                                  
-    "lib": ["ES6"],                                        
-    "experimentalDecorators": true,                   
-    "emitDecoratorMetadata": true,                         
-    "module": "commonjs",                                
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types",
-    ],                                  
+    "target": "es2017",
+    "lib": ["ES6"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "resolveJsonModule": true,
-    "allowJs": true,                                  
-    "removeComments": true,                           
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,            
-    "strict": true,                                      
+    "allowJs": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@entities": ["/src/domain/entities/*"]
-    }                                 
-  }
+    },
+    "noImplicitAny": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
