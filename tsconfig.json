@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "lib": ["ES6"],
+    "target": "es2018",
+    "lib": [
+      "ES6"
+    ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
     "resolveJsonModule": true,
     "allowJs": true,
     "removeComments": true,
@@ -13,12 +18,21 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@entities": ["/src/domain/entities/*"]
+      "@entities": [
+        "/src/domain/entities/*"
+      ]
     },
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "sourceMap": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "tests/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
