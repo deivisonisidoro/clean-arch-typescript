@@ -37,9 +37,9 @@
   },
   "lint-staged": {
     "*.ts": [
-      "yarn format",
-      "yarn lint --fix",
-      "yarn test",
+      "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+      "eslint --ignore-path .eslintignore --ext .js,.ts .",
+      "jest",
       "git add"
     ]
   }
