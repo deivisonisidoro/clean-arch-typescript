@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@rocketseat/eslint-config": "^2.1.0",
     "@types/jest": "^29.5.4",
     "@types/node": "^20.5.4",
