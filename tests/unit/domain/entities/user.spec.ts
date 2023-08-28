@@ -25,4 +25,8 @@ describe('User Class', () => {
     )
     expect(user.id).toBeUndefined()
   })
+  it('should create a user instance without a createAt', () => {
+    const user = new User('Jane Doe', 'jane@example.com', 'securepass')
+    expect(user.createdAt).toBeUndefined()
+  })
 })
