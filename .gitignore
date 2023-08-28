@@ -2,6 +2,7 @@
 node_modules/
 dist/
 build/
+coverage/
 
 # Arquivos de configuração
 *.env
@@ -36,5 +37,3 @@ yarn-error.log*
 # Arquivos de sistema
 .DS_Store
 Thumbs.db
-
-coverage
