@@ -19,6 +19,7 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "dist",
+    "rootDirs": ["src", "tests"],
     "baseUrl": ".",
     "paths": {
       "@entities": [
