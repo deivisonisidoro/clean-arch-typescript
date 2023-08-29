@@ -1,5 +1,5 @@
 import { CreateUserUseCase } from '../../../../src/application/useCases/User/CreateUser'
-import { ICreateUserRequestDTO } from '../../../../src/application/dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../../src/domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
 import { UsersRepositoryInMemory } from '../../../../src/infra/repositories/InMemory/User'
 

@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs'
 import { IUsersRepository } from '../../../domain/repositories/User'
-import { ICreateUserRequestDTO } from '../../dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
 
 export class CreateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
