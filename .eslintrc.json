@@ -1,6 +1,11 @@
 {
   "extends": "@rocketseat/eslint-config/node",
   "rules":{
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "space-before-function-paren": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

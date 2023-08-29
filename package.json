@@ -7,8 +7,10 @@
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@rocketseat/eslint-config": "^2.1.0",
+    "@types/bcryptjs": "^2.4.2",
     "@types/jest": "^29.5.4",
     "@types/node": "^20.5.4",
+    "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
     "eslint": "^8.48.0",
@@ -33,5 +35,9 @@
     "dev": "tsc --watch",
     "lint": "eslint  --fix --ignore-path .eslintignore --ext .js,.ts .",
     "prepare": "husky install"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "uuid": "^9.0.0"
   }
 }
