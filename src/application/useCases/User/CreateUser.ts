@@ -7,7 +7,11 @@ import { User } from '../../../domain/entities/User'
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
 
-  async execute({ email, name, password }: ICreateUserRequestDTO):  Promise<User | unknown> {
+  async execute({
+    email,
+    name,
+    password,
+  }: ICreateUserRequestDTO): Promise<User | unknown> {
     const userAlreadyExists = await this.userRepository.findByEmail(email)
 
     if (userAlreadyExists) {
