@@ -1,9 +1,10 @@
 import { GetAllUserUseCase } from '../../../../src/application/useCases/User/GetAllUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
+import { IGetAllUserUseCase } from '../../../../src/domain/useCases/User/GetAllUser'
 import { User } from '../../../domain/entities/User'
 
 describe('GetAllUserUseCase', () => {
-  let getAllUserUseCase: GetAllUserUseCase
+  let getAllUserUseCase: IGetAllUserUseCase
   let userRepository: IUsersRepository
 
   beforeEach(() => {

@@ -1,8 +1,9 @@
+import { IDeleteUserUseCase } from '../../../../src/domain/useCases/User/DeleteUser'
 import { DeleteUserUseCase } from '../../../../src/application/useCases/User/DeleteUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
 
 describe('DeleteUser', () => {
-  let deleteUserUseCase: DeleteUserUseCase
+  let deleteUserUseCase: IDeleteUserUseCase
   let userRepository: IUsersRepository
 
   beforeEach(() => {

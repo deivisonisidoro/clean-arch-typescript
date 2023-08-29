@@ -1,9 +1,10 @@
+import { ICreateUserUseCase } from '../../../../src/domain/useCases/User/CreateUser'
 import { CreateUserUseCase } from '../../../../src/application/useCases/User/CreateUser'
 import { ICreateUserRequestDTO } from '../../../../src/domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
 
 describe('CreateUserUseCase', () => {
-  let createUserUseCase: CreateUserUseCase
+  let createUserUseCase: ICreateUserUseCase
   let userRepository: IUsersRepository
 
   beforeEach(() => {
