@@ -1,4 +1,4 @@
-import { hash } from 'bcryptjs'
+// import { hash } from 'bcryptjs'
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
 import { ICreateUserUseCase } from '../../../domain/useCases/User/CreateUser'
@@ -18,11 +18,11 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       throw new Error('User already exists!')
     }
 
-    const passwordHash = await hash(password, 8)
+    // const passwordHash = await hash(password, 8)
     const user = await this.userRepository.create({
       email,
       name,
-      password: passwordHash,
+      password,
     })
 
     await this.userRepository.save(user)

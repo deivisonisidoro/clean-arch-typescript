@@ -8,6 +8,7 @@ describe('DeleteUser', () => {
 
   beforeEach(() => {
     userRepository = {
+      update: jest.fn(),
       findByEmail: jest.fn(),
       create: jest.fn(),
       save: jest.fn(),
