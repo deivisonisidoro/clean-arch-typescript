@@ -2,7 +2,7 @@
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
 import { ICreateUserUseCase } from '../../../domain/useCases/User/CreateUser'
-import { User } from '../../../domain/entities/User'
+import { ResponseDTO } from '../../../domain/dtos/Response'
 
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
@@ -11,11 +11,11 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     email,
     name,
     password,
-  }: ICreateUserRequestDTO): Promise<User | unknown> {
+  }: ICreateUserRequestDTO): Promise<ResponseDTO> {
     const userAlreadyExists = await this.userRepository.findByEmail(email)
 
     if (userAlreadyExists) {
-      throw new Error('User already exists!')
+      return { data: 'User already exists!', success: false }
     }
 
     // const passwordHash = await hash(password, 8)
@@ -26,6 +26,6 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     })
 
     await this.userRepository.save(user)
-    return user
+    return { data: user, success: true }
   }
 }

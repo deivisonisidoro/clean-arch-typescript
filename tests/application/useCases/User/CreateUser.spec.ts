@@ -46,7 +46,7 @@ describe('CreateUserUseCase', () => {
       id: '123',
       ...createUserRequestDTO,
     })
-    expect(result).toEqual({
+    expect(result.data).toEqual({
       id: '123',
       ...createUserRequestDTO,
     })
@@ -62,9 +62,7 @@ describe('CreateUserUseCase', () => {
     ;(userRepository.findByEmail as jest.Mock).mockResolvedValueOnce(
       createUserRequestDTO,
     )
-
-    await expect(
-      createUserUseCase.execute(createUserRequestDTO),
-    ).rejects.toThrowError('User already exists!')
+    const result = await createUserUseCase.execute(createUserRequestDTO)
+    expect(result.data).toEqual('User already exists!')
   })
 })
