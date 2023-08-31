@@ -8,7 +8,7 @@ import { ResponseDTO } from '../../domain/dtos/Response'
 import { HttpSuccess } from '../../helpers/implementations/HttpSuccess'
 import { IHttpSuccess } from '../../helpers/IHttpSuccess'
 import { IController } from '../../domain/controller'
-import { IHttpRequest } from 'src/helpers/IHttpRequest'
+import { IHttpRequest } from '../../helpers/IHttpRequest'
 
 export class CreateUserController implements IController {
   constructor(
