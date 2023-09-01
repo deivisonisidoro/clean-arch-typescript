@@ -17,7 +17,7 @@ export class CreateUserController implements IController {
     private httpSuccess: IHttpSuccess = new HttpSuccess(),
   ) {}
 
-  async route(httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO
     if (httpRequest.body) {

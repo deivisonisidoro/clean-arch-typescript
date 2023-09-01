@@ -36,7 +36,7 @@ describe('CreateUserController', () => {
       success: true,
     })
 
-    const httpResponse = await createUserController.route(httpRequest)
+    const httpResponse = await createUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpSuccess.success_201().statusCode)
     expect(httpResponse.body).toEqual({
@@ -53,7 +53,7 @@ describe('CreateUserController', () => {
       body: createUserRequestDTO,
     }
     const httpError = new HttpErrors()
-    const httpResponse = await createUserController.route(httpRequest)
+    const httpResponse = await createUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_422().statusCode)
     expect(httpResponse.body).toEqual(httpError.error_422().body)
@@ -74,14 +74,14 @@ describe('CreateUserController', () => {
       success: false,
     })
 
-    const httpResponse = await createUserController.route(httpRequest)
+    const httpResponse = await createUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
     expect(httpResponse.body).toEqual('User already exists!')
   })
   it('should return 500 response if body is missing', async () => {
     const httpError = new HttpErrors()
-    const httpResponse = await createUserController.route({})
+    const httpResponse = await createUserController.handle({})
 
     expect(httpResponse.statusCode).toBe(httpError.error_500().statusCode)
     expect(httpResponse.body).toEqual(httpError.error_500().body)
