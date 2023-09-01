@@ -1,5 +1,5 @@
 export interface ResponseDTO {
   success: boolean
-  data: unknown
+  data: any
   statusCode?: number
 }

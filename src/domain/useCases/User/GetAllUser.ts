@@ -1,3 +1,5 @@
+import { ResponseDTO } from '../../dtos/Response'
+
 export interface IGetAllUserUseCase {
-  execute(page: number): Promise<object>
+  execute(page: number): Promise<ResponseDTO>
 }

@@ -1,3 +1,4 @@
+import { PaginationDTO } from '../../../../src/domain/dtos/Pagination'
 import { GetAllUserUseCase } from '../../../../src/application/useCases/User/GetAllUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
 import { IGetAllUserUseCase } from '../../../../src/domain/useCases/User/GetAllUser'
@@ -6,6 +7,9 @@ import { User } from '../../../domain/entities/User'
 describe('GetAllUserUseCase', () => {
   let getAllUserUseCase: IGetAllUserUseCase
   let userRepository: IUsersRepository
+  const pageNumber = 1
+  const page = pageNumber || 1
+  const perPage = 4
 
   beforeEach(() => {
     userRepository = {
@@ -20,8 +24,7 @@ describe('GetAllUserUseCase', () => {
     getAllUserUseCase = new GetAllUserUseCase(userRepository)
   })
 
-  it('should return all users', async () => {
-    const page = 1
+  it('should return all users paginated', async () => {
     const users: User[] = [
       {
         id: '1',
@@ -36,12 +39,36 @@ describe('GetAllUserUseCase', () => {
         password: 'password',
       },
     ]
+    const total = users.length
+    const pagination: PaginationDTO = {
+      body: users,
+      total,
+      page,
+      last_page: Math.ceil(total / perPage),
+    }
 
-    ;(userRepository.findAll as jest.Mock).mockResolvedValueOnce(users)
+    ;(userRepository.findAll as jest.Mock).mockResolvedValueOnce(pagination)
 
-    const result = await getAllUserUseCase.execute(page)
+    const result = await getAllUserUseCase.execute(pageNumber)
 
-    expect(userRepository.findAll).toHaveBeenCalledWith(page)
-    expect(result).toEqual(users)
+    expect(userRepository.findAll).toHaveBeenCalledWith(pageNumber)
+    expect(result.data).toEqual(pagination)
+  })
+  it('should return a error message', async () => {
+    const users: User[] = []
+    const total = users.length
+    const pagination: PaginationDTO = {
+      body: users,
+      total,
+      page,
+      last_page: Math.ceil(total / perPage),
+    }
+
+    ;(userRepository.findAll as jest.Mock).mockResolvedValueOnce(pagination)
+
+    const result = await getAllUserUseCase.execute(pageNumber)
+
+    expect(userRepository.findAll).toHaveBeenCalledWith(pageNumber)
+    expect(result.data).toEqual('Users not found')
   })
 })
