@@ -2,9 +2,9 @@ import { ICreateUserUseCase } from '../../../src/domain/useCases/User/CreateUser
 import { CreateUserController } from '../../../src/controllers/User/CreateUser'
 import { ICreateUserRequestDTO } from '../../../src/domain/dtos/User/CreateUser'
 import { IController } from '../../../src/domain/controller'
-import { IHttpRequest } from '../../../src/helpers/IHttpRequest'
-import { HttpErrors } from '../../../src/helpers/implementations/HttpErrors'
-import { HttpSuccess } from '../../../src/helpers/implementations/HttpSuccess'
+import { IHttpRequest } from '../../../src/helpers/http/IHttpRequest'
+import { HttpErrors } from '../../../src/helpers/http/implementations/HttpErrors'
+import { HttpSuccess } from '../../../src/helpers/http/implementations/HttpSuccess'
 
 describe('CreateUserController', () => {
   let createUserUseCase: ICreateUserUseCase

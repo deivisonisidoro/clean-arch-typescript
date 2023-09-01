@@ -1,9 +1,9 @@
 import { IGetAllUserUseCase } from '../../../src/domain/useCases/User/GetAllUser'
 import { GetUserController } from '../../../src/controllers/User/GetUser'
 import { IController } from '../../../src/domain/controller'
-import { IHttpRequest } from '../../../src/helpers/IHttpRequest'
-import { HttpErrors } from '../../../src/helpers/implementations/HttpErrors'
-import { HttpSuccess } from '../../../src/helpers/implementations/HttpSuccess'
+import { IHttpRequest } from '../../../src/helpers/http/IHttpRequest'
+import { HttpErrors } from '../../../src/helpers/http/implementations/HttpErrors'
+import { HttpSuccess } from '../../../src/helpers/http/implementations/HttpSuccess'
 import { PaginationDTO } from '../../../src/domain/dtos/Pagination'
 import { User } from '../../../src/domain/entities/User'
 
