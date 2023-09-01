@@ -33,7 +33,7 @@ describe('UpdateUserController', () => {
     }
     const httpRequest: IHttpRequest = {
       path: { id: existingUser.id },
-      body: updateUserRequestDTO
+      body: updateUserRequestDTO,
     }
     const httpSuccess = new HttpSuccess()
     ;(updateUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
@@ -49,7 +49,7 @@ describe('UpdateUserController', () => {
   it('should return 422 response if body, and path parameters are missing', async () => {
     const httpRequest: IHttpRequest = {
       path: { test: 'Testing' },
-      body: {test: 'Testing'}
+      body: { test: 'Testing' },
     }
     const httpError = new HttpErrors()
     const httpResponse = await updateUserController.handle(httpRequest)
@@ -73,7 +73,7 @@ describe('UpdateUserController', () => {
     }
     const httpRequest: IHttpRequest = {
       path: { id: existingUser.id },
-      body: updateUserRequestDTO
+      body: updateUserRequestDTO,
     }
     const httpError = new HttpErrors()
     ;(updateUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
