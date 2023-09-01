@@ -1,6 +1,6 @@
+import { ResponseDTO } from '../../dtos/Response'
 import { IUpdateUserRequestDTO } from '../../dtos/User/UpdateUser'
-import { User } from '../../entities/User'
 
 export interface IUpdateUserUseCase {
-  execute({ id, name, email, password }: IUpdateUserRequestDTO): Promise<User>
+  execute({ id, name, email, password }: IUpdateUserRequestDTO): Promise<ResponseDTO>
 }

@@ -60,7 +60,7 @@ describe('GetUserController', () => {
     expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
     expect(httpResponse.body).toEqual(pagination)
   })
-  it('should return 422 response if body parameters are missing', async () => {
+  it('should return 422 response if path parameters are missing', async () => {
     const httpRequest: IHttpRequest = {
       path: { test: 'Testing' },
     }
@@ -86,7 +86,7 @@ describe('GetUserController', () => {
     expect(httpResponse.statusCode).toBe(httpError.error_404().statusCode)
     expect(httpResponse.body).toEqual('Users not found')
   })
-  it('should return 500 response if body is missing', async () => {
+  it('should return 500 response if path is missing', async () => {
     const httpError = new HttpErrors()
     const httpResponse = await getUserController.handle({})
 

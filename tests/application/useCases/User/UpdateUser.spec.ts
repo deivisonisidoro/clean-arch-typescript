@@ -49,7 +49,7 @@ describe('UpdateUserUseCase', () => {
       email: existingUser.email,
       password: existingUser.password,
     })
-    expect(result).toEqual(updateUserRequestDTO)
+    expect(result.data).toEqual(updateUserRequestDTO)
   })
 
   it('should throw an error if user does not exists', async () => {
@@ -62,8 +62,7 @@ describe('UpdateUserUseCase', () => {
 
     ;(userRepository.findById as jest.Mock).mockResolvedValueOnce(null)
 
-    await expect(
-      updateUserUseCase.execute(updateUserRequestDTO),
-    ).rejects.toThrowError('User does not exits!')
+    const result = await updateUserUseCase.execute(updateUserRequestDTO)
+    expect(result.data).toEqual('User does not exits!')
   })
 })
