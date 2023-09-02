@@ -23,7 +23,9 @@ describe('GetAllUserUseCase', () => {
     }
     getAllUserUseCase = new GetAllUserUseCase(userRepository)
   })
-
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
   it('should return all users paginated', async () => {
     const users: User[] = [
       {

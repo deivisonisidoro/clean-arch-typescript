@@ -18,6 +18,9 @@ describe('UpdateUserUseCase', () => {
     }
     updateUserUseCase = new UpdateUserUseCase(userRepository)
   })
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
   it('should update a new user', async () => {
     const existingUser = {
       id: '123',

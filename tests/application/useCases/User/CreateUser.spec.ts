@@ -19,7 +19,9 @@ describe('CreateUserUseCase', () => {
     }
     createUserUseCase = new CreateUserUseCase(userRepository)
   })
-
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
   it('should create a new user', async () => {
     const createUserRequestDTO: ICreateUserRequestDTO = {
       email: 'test@example.com',
