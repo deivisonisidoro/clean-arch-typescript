@@ -1,3 +1,5 @@
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
+
 import { IGetAllUserUseCase } from '../../../src/domain/useCases/User/GetAllUser'
 import { GetUserController } from '../../../src/controllers/User/GetUser'
 import { IController } from '../../../src/domain/controller'
@@ -16,12 +18,12 @@ describe('GetUserController', () => {
 
   beforeEach(() => {
     getAllUserUseCase = {
-      execute: jest.fn(),
+      execute: vi.fn(),
     }
     getUserController = new GetUserController(getAllUserUseCase)
   })
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
   it('should return all users paginated', async () => {
     const users: User[] = [
@@ -50,7 +52,7 @@ describe('GetUserController', () => {
       path: { page: String(page) },
     }
     const httpSuccess = new HttpSuccess()
-    ;(getAllUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
+    getAllUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: pagination,
       success: true,
     })
@@ -76,7 +78,7 @@ describe('GetUserController', () => {
       path: { page: String(page) },
     }
     const httpError = new HttpErrors()
-    ;(getAllUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
+    getAllUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: 'Users not found',
       success: false,
     })

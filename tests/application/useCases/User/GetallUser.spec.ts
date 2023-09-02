@@ -1,3 +1,5 @@
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
+
 import { PaginationDTO } from '../../../../src/domain/dtos/Pagination'
 import { GetAllUserUseCase } from '../../../../src/application/useCases/User/GetAllUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
@@ -13,18 +15,18 @@ describe('GetAllUserUseCase', () => {
 
   beforeEach(() => {
     userRepository = {
-      update: jest.fn(),
-      findByEmail: jest.fn(),
-      create: jest.fn(),
-      save: jest.fn(),
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      delete: jest.fn(),
+      update: vi.fn(),
+      findByEmail: vi.fn(),
+      create: vi.fn(),
+      save: vi.fn(),
+      findById: vi.fn(),
+      findAll: vi.fn(),
+      delete: vi.fn(),
     }
     getAllUserUseCase = new GetAllUserUseCase(userRepository)
   })
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
   it('should return all users paginated', async () => {
     const users: User[] = [
@@ -49,7 +51,7 @@ describe('GetAllUserUseCase', () => {
       last_page: Math.ceil(total / perPage),
     }
 
-    ;(userRepository.findAll as jest.Mock).mockResolvedValueOnce(pagination)
+    userRepository.findAll = vi.fn().mockResolvedValueOnce(pagination)
 
     const result = await getAllUserUseCase.execute(pageNumber)
 
@@ -66,7 +68,7 @@ describe('GetAllUserUseCase', () => {
       last_page: Math.ceil(total / perPage),
     }
 
-    ;(userRepository.findAll as jest.Mock).mockResolvedValueOnce(pagination)
+    userRepository.findAll = vi.fn().mockResolvedValueOnce(pagination)
 
     const result = await getAllUserUseCase.execute(pageNumber)
 

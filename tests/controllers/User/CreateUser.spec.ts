@@ -1,3 +1,5 @@
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
+
 import { ICreateUserUseCase } from '../../../src/domain/useCases/User/CreateUser'
 import { CreateUserController } from '../../../src/controllers/User/CreateUser'
 import { ICreateUserRequestDTO } from '../../../src/domain/dtos/User/CreateUser'
@@ -11,12 +13,12 @@ describe('CreateUserController', () => {
   let createUserController: IController
   beforeEach(() => {
     createUserUseCase = {
-      execute: jest.fn(),
+      execute: vi.fn(),
     }
     createUserController = new CreateUserController(createUserUseCase)
   })
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
   it('should return 201 response on successful user creation', async () => {
     const createUserRequestDTO: ICreateUserRequestDTO = {
@@ -28,7 +30,7 @@ describe('CreateUserController', () => {
       body: createUserRequestDTO,
     }
     const httpSuccess = new HttpSuccess()
-    ;(createUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
+    createUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: {
         id: '123',
         ...createUserRequestDTO,
@@ -69,7 +71,7 @@ describe('CreateUserController', () => {
       body: createUserRequestDTO,
     }
     const httpError = new HttpErrors()
-    ;(createUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
+    createUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: 'User already exists!',
       success: false,
     })

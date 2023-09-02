@@ -1,3 +1,5 @@
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
+
 import { IUpdateUserUseCase } from '../../../src/domain/useCases/User/UpdateUser'
 import { UpdateUserController } from '../../../src/controllers/User/UpdateUser'
 import { IController } from '../../../src/domain/controller'
@@ -11,12 +13,12 @@ describe('UpdateUserController', () => {
 
   beforeEach(() => {
     updateUserUseCase = {
-      execute: jest.fn(),
+      execute: vi.fn(),
     }
     updateUserController = new UpdateUserController(updateUserUseCase)
   })
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
   it('should update the user selected', async () => {
     const existingUser = {
@@ -36,7 +38,7 @@ describe('UpdateUserController', () => {
       body: updateUserRequestDTO,
     }
     const httpSuccess = new HttpSuccess()
-    ;(updateUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
+    updateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: updateUserRequestDTO,
       success: true,
     })
@@ -76,7 +78,7 @@ describe('UpdateUserController', () => {
       body: updateUserRequestDTO,
     }
     const httpError = new HttpErrors()
-    ;(updateUserUseCase.execute as jest.Mock).mockResolvedValueOnce({
+    updateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: 'User does not exits!',
       success: false,
     })

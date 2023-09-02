@@ -1,3 +1,5 @@
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
+
 import { ICreateUserUseCase } from '../../../../src/domain/useCases/User/CreateUser'
 import { CreateUserUseCase } from '../../../../src/application/useCases/User/CreateUser'
 import { ICreateUserRequestDTO } from '../../../../src/domain/dtos/User/CreateUser'
@@ -9,18 +11,18 @@ describe('CreateUserUseCase', () => {
 
   beforeEach(() => {
     userRepository = {
-      update: jest.fn(),
-      findByEmail: jest.fn(),
-      create: jest.fn(),
-      save: jest.fn(),
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      delete: jest.fn(),
+      update: vi.fn(),
+      findByEmail: vi.fn(),
+      create: vi.fn(),
+      save: vi.fn(),
+      findById: vi.fn(),
+      findAll: vi.fn(),
+      delete: vi.fn(),
     }
     createUserUseCase = new CreateUserUseCase(userRepository)
   })
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
   it('should create a new user', async () => {
     const createUserRequestDTO: ICreateUserRequestDTO = {
@@ -29,8 +31,8 @@ describe('CreateUserUseCase', () => {
       password: 'password',
     }
 
-    ;(userRepository.findByEmail as jest.Mock).mockResolvedValueOnce(null)
-    ;(userRepository.create as jest.Mock).mockResolvedValueOnce({
+    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(null)
+    userRepository.create = vi.fn().mockResolvedValueOnce({
       id: '123',
       ...createUserRequestDTO,
     })
@@ -61,9 +63,9 @@ describe('CreateUserUseCase', () => {
       password: 'password',
     }
 
-    ;(userRepository.findByEmail as jest.Mock).mockResolvedValueOnce(
-      createUserRequestDTO,
-    )
+    userRepository.findByEmail = vi
+      .fn()
+      .mockResolvedValueOnce(createUserRequestDTO)
     const result = await createUserUseCase.execute(createUserRequestDTO)
     expect(result.data).toEqual('User already exists!')
   })

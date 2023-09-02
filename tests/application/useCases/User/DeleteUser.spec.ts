@@ -1,3 +1,5 @@
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
+
 import { IDeleteUserUseCase } from '../../../../src/domain/useCases/User/DeleteUser'
 import { DeleteUserUseCase } from '../../../../src/application/useCases/User/DeleteUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
@@ -8,18 +10,18 @@ describe('DeleteUser', () => {
 
   beforeEach(() => {
     userRepository = {
-      update: jest.fn(),
-      findByEmail: jest.fn(),
-      create: jest.fn(),
-      save: jest.fn(),
-      findById: jest.fn(),
-      findAll: jest.fn(),
-      delete: jest.fn(),
+      update: vi.fn(),
+      findByEmail: vi.fn(),
+      create: vi.fn(),
+      save: vi.fn(),
+      findById: vi.fn(),
+      findAll: vi.fn(),
+      delete: vi.fn(),
     }
     deleteUserUseCase = new DeleteUserUseCase(userRepository)
   })
   afterEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('should delete a new user', async () => {
@@ -31,8 +33,8 @@ describe('DeleteUser', () => {
       password: 'password',
     }
 
-    ;(userRepository.findById as jest.Mock).mockResolvedValueOnce(userData)
-    ;(userRepository.delete as jest.Mock).mockResolvedValueOnce(null)
+    userRepository.findById = vi.fn().mockResolvedValueOnce(userData)
+    userRepository.delete = vi.fn().mockResolvedValueOnce(null)
 
     const result = await deleteUserUseCase.execute(userId)
 
@@ -43,7 +45,7 @@ describe('DeleteUser', () => {
   it('should throw an error if user does not exists', async () => {
     const userId = '123'
 
-    ;(userRepository.findById as jest.Mock).mockResolvedValueOnce(null)
+    userRepository.findById = vi.fn().mockResolvedValueOnce(null)
 
     const result = await deleteUserUseCase.execute(userId)
     expect(result.data).toEqual('User does not exits!')
