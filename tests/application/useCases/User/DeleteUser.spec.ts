@@ -18,6 +18,9 @@ describe('DeleteUser', () => {
     }
     deleteUserUseCase = new DeleteUserUseCase(userRepository)
   })
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
 
   it('should delete a new user', async () => {
     const userId = '123'
@@ -34,7 +37,7 @@ describe('DeleteUser', () => {
     const result = await deleteUserUseCase.execute(userId)
 
     expect(userRepository.delete).toHaveBeenCalledWith(userId)
-    expect(result).toEqual(undefined)
+    expect(result.data).toEqual(`User deleted with success!`)
   })
 
   it('should throw an error if user does not exists', async () => {
@@ -42,8 +45,7 @@ describe('DeleteUser', () => {
 
     ;(userRepository.findById as jest.Mock).mockResolvedValueOnce(null)
 
-    await expect(deleteUserUseCase.execute(userId)).rejects.toThrowError(
-      'User does not exits!',
-    )
+    const result = await deleteUserUseCase.execute(userId)
+    expect(result.data).toEqual('User does not exits!')
   })
 })

@@ -8,8 +8,9 @@ export class DeleteUserUseCase implements IDeleteUserUseCase {
     const userAlreadyExists = await this.userRepository.findById(userId)
 
     if (!userAlreadyExists) {
-      throw new Error('User does not exits!')
+      return { data: 'User does not exits!', success: false }
     }
     await this.userRepository.delete(userId)
+    return { data: 'User deleted with success!', success: true }
   }
 }
