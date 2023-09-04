@@ -25,7 +25,9 @@ describe('User Class', () => {
       createdAt: new Date(),
     })
     expect(user).toHaveProperty('id')
+    expect(user.id).toHaveLength(36)
   })
+
   it('should create a user instance without a createAt', () => {
     const user = new User({
       name: 'Jane Doe',
@@ -33,5 +35,20 @@ describe('User Class', () => {
       password: 'securepass',
     })
     expect(user).toHaveProperty('createdAt')
+    expect(user.createdAt).toBeInstanceOf(Date)
+  })
+
+  it('should update the name, email and password of the user', () => {
+    const user = new User({
+      name: 'Old Name',
+      email: 'old@example.com',
+      password: 'oldpass',
+    })
+    user.name = 'New Name'
+    user.email = 'new@example.com'
+    user.password = 'newpass'
+    expect(user.name).toBe('New Name')
+    expect(user.email).toBe('new@example.com')
+    expect(user.password).toBe('newpass')
   })
 })
