@@ -14,7 +14,6 @@ describe('CreateUserUseCase', () => {
       update: vi.fn(),
       findByEmail: vi.fn(),
       create: vi.fn(),
-      save: vi.fn(),
       findById: vi.fn(),
       findAll: vi.fn(),
       delete: vi.fn(),
@@ -45,10 +44,6 @@ describe('CreateUserUseCase', () => {
     expect(userRepository.create).toHaveBeenCalledWith({
       ...createUserRequestDTO,
       password: expect.any(String),
-    })
-    expect(userRepository.save).toHaveBeenCalledWith({
-      id: '123',
-      ...createUserRequestDTO,
     })
     expect(result.data).toEqual({
       id: '123',

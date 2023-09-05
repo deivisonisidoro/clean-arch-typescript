@@ -13,7 +13,6 @@ describe('UpdateUserUseCase', () => {
       update: vi.fn(),
       findByEmail: vi.fn(),
       create: vi.fn(),
-      save: vi.fn(),
       findById: vi.fn(),
       findAll: vi.fn(),
       delete: vi.fn(),
@@ -24,6 +23,7 @@ describe('UpdateUserUseCase', () => {
     vi.clearAllMocks()
   })
   it('should update a new user', async () => {
+    const userId = '123'
     const existingUser = {
       id: '123',
       email: 'existing@example.com',
@@ -40,11 +40,9 @@ describe('UpdateUserUseCase', () => {
       .fn()
       .mockResolvedValueOnce(updateUserRequestDTO)
     userRepository.update = vi.fn().mockResolvedValueOnce(updateUserRequestDTO)
-    userRepository.save = vi.fn().mockResolvedValueOnce(updateUserRequestDTO)
 
-    const result = await updateUserUseCase.execute(existingUser)
+    const result = await updateUserUseCase.execute(userId, existingUser)
 
-    expect(userRepository.save).toHaveBeenCalledWith(updateUserRequestDTO)
     expect(userRepository.update).toHaveBeenCalledWith(updateUserRequestDTO, {
       name: existingUser.name,
       email: existingUser.email,
@@ -54,6 +52,7 @@ describe('UpdateUserUseCase', () => {
   })
 
   it('should throw an error if user does not exists', async () => {
+    const userId = '123'
     const updateUserRequestDTO: IUpdateUserRequestDTO = {
       id: '123',
       email: 'test@example.com',
@@ -63,7 +62,7 @@ describe('UpdateUserUseCase', () => {
 
     userRepository.findById = vi.fn().mockResolvedValueOnce(null)
 
-    const result = await updateUserUseCase.execute(updateUserRequestDTO)
+    const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
     expect(result.data).toEqual('User does not exits!')
   })
 })

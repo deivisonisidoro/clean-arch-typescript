@@ -4,7 +4,7 @@ import { PaginationDTO } from '../../../../src/domain/dtos/Pagination'
 import { GetAllUserUseCase } from '../../../../src/application/useCases/User/GetAllUser'
 import { IUsersRepository } from '../../../../src/domain/repositories/User'
 import { IGetAllUserUseCase } from '../../../../src/domain/useCases/User/GetAllUser'
-import { User } from '../../../domain/entities/User'
+import { UserInterface } from '../../../domain/entities/User'
 
 describe('GetAllUserUseCase', () => {
   let getAllUserUseCase: IGetAllUserUseCase
@@ -18,7 +18,6 @@ describe('GetAllUserUseCase', () => {
       update: vi.fn(),
       findByEmail: vi.fn(),
       create: vi.fn(),
-      save: vi.fn(),
       findById: vi.fn(),
       findAll: vi.fn(),
       delete: vi.fn(),
@@ -29,7 +28,7 @@ describe('GetAllUserUseCase', () => {
     vi.clearAllMocks()
   })
   it('should return all users paginated', async () => {
-    const users: User[] = [
+    const users: UserInterface[] = [
       {
         id: '1',
         name: 'John Doe',
@@ -59,7 +58,7 @@ describe('GetAllUserUseCase', () => {
     expect(result.data).toEqual(pagination)
   })
   it('should return a error message', async () => {
-    const users: User[] = []
+    const users: UserInterface[] = []
     const total = users.length
     const pagination: PaginationDTO = {
       body: users,

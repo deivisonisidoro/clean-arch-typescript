@@ -13,7 +13,6 @@ describe('DeleteUser', () => {
       update: vi.fn(),
       findByEmail: vi.fn(),
       create: vi.fn(),
-      save: vi.fn(),
       findById: vi.fn(),
       findAll: vi.fn(),
       delete: vi.fn(),

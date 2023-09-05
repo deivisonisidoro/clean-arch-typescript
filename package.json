@@ -37,8 +37,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "vitest",
-    "coverage": "vitest run --coverage",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "dev": "tsc --watch",
     "lint": "eslint  --fix --ignore-path .eslintignore --ext .js,.ts .",
     "prepare": "husky install",
