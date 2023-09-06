@@ -4,12 +4,11 @@ import { PrismaClient } from '@prisma/client'
 import { UserInterface } from '../../domain/entities/User'
 import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../domain/repositories/User'
-import { prismaClient } from '../database/prisma/connection'
 import { PaginationDTO } from '../../domain/dtos/Pagination'
 import { IUpdateUserRequestDTO } from '../../domain/dtos/User/UpdateUser'
 
 export class PrismaUserRepository implements IUsersRepository {
-  constructor(private prisma: PrismaClient = prismaClient) {}
+  constructor(private prisma: PrismaClient) {}
   async create({
     email,
     name,
