@@ -1,4 +1,5 @@
 import { hash } from 'bcryptjs'
+import { PrismaClient } from '@prisma/client'
 
 import { UserInterface } from '../../domain/entities/User'
 import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
@@ -8,15 +9,14 @@ import { PaginationDTO } from '../../domain/dtos/Pagination'
 import { IUpdateUserRequestDTO } from '../../domain/dtos/User/UpdateUser'
 
 export class PrismaUserRepository implements IUsersRepository {
+  constructor(private prisma: PrismaClient = prismaClient) {}
   async create({
     email,
     name,
     password,
   }: ICreateUserRequestDTO): Promise<UserInterface> {
-    if (password) {
-      password = await hash(password, 8)
-    }
-    const user = await prismaClient.user.create({
+    password = await hash(password, 8)
+    const user = this.prisma.user.create({
       data: {
         email,
         name,
@@ -27,14 +27,14 @@ export class PrismaUserRepository implements IUsersRepository {
   }
 
   async findByEmail(email: string): Promise<UserInterface | null> {
-    const user = await prismaClient.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { email },
     })
     return user
   }
 
   async findById(id: string): Promise<UserInterface | null> {
-    const user = await prismaClient.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: { id },
     })
     return user
@@ -42,13 +42,13 @@ export class PrismaUserRepository implements IUsersRepository {
 
   async findAll(pageNumber: number): Promise<PaginationDTO> {
     const perPage = 4
-    const user = await prismaClient.user.findMany({
+    const user = await this.prisma.user.findMany({
       take: perPage,
       orderBy: {
         name: 'asc',
       },
     })
-    const page = pageNumber || 1
+    const page = pageNumber
     const total = user.length
     return { body: user, total, page, last_page: Math.ceil(total / perPage) }
   }
@@ -60,7 +60,7 @@ export class PrismaUserRepository implements IUsersRepository {
     if (password) {
       password = await hash(password, 8)
     }
-    const userUpdated = await prismaClient.user.update({
+    const userUpdated = await this.prisma.user.update({
       where: {
         id: user.id,
       },
@@ -74,7 +74,7 @@ export class PrismaUserRepository implements IUsersRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await prismaClient.user.delete({
+    await this.prisma.user.delete({
       where: {
         id,
       },

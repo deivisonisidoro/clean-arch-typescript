@@ -5,7 +5,7 @@ import { UserInterface } from '../entities/User'
 
 export interface IUsersRepository {
   create(data: ICreateUserRequestDTO): Promise<UserInterface>
-  findByEmail(email: string): Promise<UserInterface | null>
+  findByEmail(email: string): Promise<UserInterface | unknown>
   findById(id: string): Promise<UserInterface | null>
   findAll(pageNumber: number): Promise<PaginationDTO>
   update(

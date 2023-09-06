@@ -1,11 +1,9 @@
-import { v4 as uuid } from 'uuid'
-
 export interface UserInterface {
-  id?: string
+  id: string
   name: string
   email: string
   password: string
-  createdAt?: Date
+  createdAt: Date
 }
 
 export class User {
@@ -47,15 +45,11 @@ export class User {
     this._password = newPassword
   }
 
-  set createdAt(newDate: Date) {
-    this._createdAt = newDate
-  }
-
   constructor(props: UserInterface) {
     this._name = props.name
     this._password = props.password
     this._email = props.email
-    this._createdAt = props.createdAt || new Date()
-    this._id = props.id || uuid()
+    this._createdAt = props.createdAt
+    this._id = props.id
   }
 }
