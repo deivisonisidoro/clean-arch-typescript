@@ -1,10 +1,10 @@
 import { IHttpRequest } from '../IHttpRequest'
 
 export class HttpRequest implements IHttpRequest {
-  header?: Record<string, string>
-  body?: Record<string, any>
-  query?: Record<string, string | string[]>
-  path?: Record<string, string>
+  header?: unknown
+  body?: unknown
+  query?: unknown
+  path?: unknown
 
   constructor(init?: HttpRequest) {
     Object.assign(this, init)
