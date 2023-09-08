@@ -21,10 +21,10 @@ describe('DeleteUserController', () => {
     vi.clearAllMocks()
   })
   it('should return 200 response, and success message', async () => {
-    const userId = '123'
+    const id = '123'
 
     const httpRequest: IHttpRequest = {
-      path: { userId },
+      path: { id },
     }
     const httpSuccess = new HttpSuccess()
     deleteUserUseCase.execute = vi.fn().mockResolvedValueOnce({
@@ -49,9 +49,9 @@ describe('DeleteUserController', () => {
   })
 
   it('should return 400 response if users not was found', async () => {
-    const userId = '123'
+    const id = '123'
     const httpRequest: IHttpRequest = {
-      path: { userId },
+      path: { id },
     }
     const httpError = new HttpErrors()
     deleteUserUseCase.execute = vi.fn().mockResolvedValueOnce({
