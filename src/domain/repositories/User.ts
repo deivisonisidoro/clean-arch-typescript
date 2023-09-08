@@ -1,16 +1,16 @@
 import { PaginationDTO } from '../dtos/Pagination'
 import { ICreateUserRequestDTO } from '../dtos/User/CreateUser'
 import { IUpdateUserRequestDTO } from '../dtos/User/UpdateUser'
-import { UserInterface } from '../entities/User'
+import { IUserOutRequestDTO } from '../dtos/User/UserOut'
 
 export interface IUsersRepository {
-  create(data: ICreateUserRequestDTO): Promise<UserInterface>
-  findByEmail(email: string): Promise<UserInterface | unknown>
-  findById(id: string): Promise<UserInterface | null>
+  create(data: ICreateUserRequestDTO): Promise<IUserOutRequestDTO>
+  findByEmail(email: string): Promise<IUserOutRequestDTO | unknown>
+  findById(id: string): Promise<IUserOutRequestDTO | null>
   findAll(pageNumber: number): Promise<PaginationDTO>
   update(
-    user: UserInterface,
+    user: IUserOutRequestDTO,
     data: IUpdateUserRequestDTO,
-  ): Promise<UserInterface>
+  ): Promise<IUserOutRequestDTO>
   delete(id: string): Promise<void>
 }

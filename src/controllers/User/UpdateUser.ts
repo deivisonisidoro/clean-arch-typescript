@@ -28,8 +28,7 @@ export class UpdateUserController implements IController {
         bodyParams.includes('email') &&
         bodyParams.includes('password')
       ) {
-        response = await this.updateUserUseCase.execute({
-          id: httpRequest.path.id,
+        response = await this.updateUserUseCase.execute(httpRequest.path.id, {
           name: httpRequest.body.name,
           email: httpRequest.body.email,
           password: httpRequest.body.password,

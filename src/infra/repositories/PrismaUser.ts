@@ -1,7 +1,7 @@
 import { hash } from 'bcryptjs'
 import { PrismaClient } from '@prisma/client'
 
-import { UserInterface } from '../../domain/entities/User'
+import { IUserOutRequestDTO } from '../../domain/dtos/User/UserOut'
 import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../domain/repositories/User'
 import { PaginationDTO } from '../../domain/dtos/Pagination'
@@ -13,7 +13,7 @@ export class PrismaUserRepository implements IUsersRepository {
     email,
     name,
     password,
-  }: ICreateUserRequestDTO): Promise<UserInterface> {
+  }: ICreateUserRequestDTO): Promise<IUserOutRequestDTO> {
     password = await hash(password, 8)
     const user = this.prisma.user.create({
       data: {
@@ -21,41 +21,70 @@ export class PrismaUserRepository implements IUsersRepository {
         name,
         password,
       },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        createdAt: true,
+      },
     })
     return user
   }
 
-  async findByEmail(email: string): Promise<UserInterface | null> {
+  async findByEmail(email: string): Promise<IUserOutRequestDTO | null> {
     const user = await this.prisma.user.findUnique({
       where: { email },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        createdAt: true,
+      },
     })
     return user
   }
 
-  async findById(id: string): Promise<UserInterface | null> {
+  async findById(id: string): Promise<IUserOutRequestDTO | null> {
     const user = await this.prisma.user.findUnique({
       where: { id },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        createdAt: true,
+      },
     })
     return user
   }
 
   async findAll(pageNumber: number): Promise<PaginationDTO> {
     const perPage = 4
-    const user = await this.prisma.user.findMany({
+    const user: IUserOutRequestDTO[] = await this.prisma.user.findMany({
       take: perPage,
+      skip: Math.ceil((pageNumber - 1) * perPage),
       orderBy: {
         name: 'asc',
       },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        createdAt: true,
+      },
     })
-    const page = pageNumber
-    const total = user.length
-    return { body: user, total, page, last_page: Math.ceil(total / perPage) }
+    const total = await this.prisma.user.count()
+    return {
+      body: user,
+      total,
+      page: pageNumber,
+      last_page: Math.ceil(total / perPage),
+    }
   }
 
   async update(
-    user: UserInterface,
+    user: IUserOutRequestDTO,
     { email, name, password }: IUpdateUserRequestDTO,
-  ): Promise<UserInterface> {
+  ): Promise<IUserOutRequestDTO> {
     if (password) {
       password = await hash(password, 8)
     }
