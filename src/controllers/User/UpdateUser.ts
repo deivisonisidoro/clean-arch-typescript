@@ -28,11 +28,13 @@ export class UpdateUserController implements IController {
         bodyParams.includes('email') &&
         bodyParams.includes('password')
       ) {
-        response = await this.updateUserUseCase.execute(httpRequest.path.id, {
-          name: httpRequest.body.name,
-          email: httpRequest.body.email,
-          password: httpRequest.body.password,
-        })
+        const id = (httpRequest.path as { id: string }).id
+        const data = httpRequest.body as {
+          name: string
+          email: string
+          password: string
+        }
+        response = await this.updateUserUseCase.execute(id, data)
       } else {
         error = this.httpErrors.error_422()
         return new HttpResponse(error.statusCode, error.body)

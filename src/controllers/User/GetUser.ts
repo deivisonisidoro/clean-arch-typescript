@@ -22,9 +22,8 @@ export class GetUserController implements IController {
     if (httpRequest.path) {
       const pathStringParams = Object.keys(httpRequest.path)
       if (pathStringParams.includes('page')) {
-        response = await this.getAllUserUseCase.execute(
-          Number(httpRequest.path.page),
-        )
+        const page = (httpRequest.path as { page: string }).page
+        response = await this.getAllUserUseCase.execute(Number(page))
       } else {
         error = this.httpErrors.error_422()
         return new HttpResponse(error.statusCode, error.body)

@@ -22,7 +22,8 @@ export class DeleteUserController implements IController {
     if (httpRequest.path) {
       const pathStringParams = Object.keys(httpRequest.path)
       if (pathStringParams.includes('id')) {
-        response = await this.deleteUserUseCase.execute(httpRequest.path.id)
+        const id = (httpRequest.path as { id: string }).id
+        response = await this.deleteUserUseCase.execute(id)
       } else {
         error = this.httpErrors.error_422()
         return new HttpResponse(error.statusCode, error.body)
