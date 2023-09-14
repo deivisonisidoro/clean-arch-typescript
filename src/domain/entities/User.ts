@@ -1,4 +1,4 @@
-import { Email } from '../valueObjects/Email'
+import { Email } from '../entities/Email'
 
 export interface UserInterface {
   id: string
