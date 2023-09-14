@@ -8,10 +8,6 @@ export class Email {
     return this._address
   }
 
-  set address(newAddress: string) {
-    this._address = newAddress
-  }
-
   constructor(props: EmailProps) {
     if (
       props.address == null ||

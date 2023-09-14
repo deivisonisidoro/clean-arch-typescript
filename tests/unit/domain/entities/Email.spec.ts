@@ -13,9 +13,4 @@ describe('EmailClass', () => {
     )
   })
 
-  it('should update the address of the email', () => {
-    const email = new Email({ address: 'test@example.com' })
-    email.address = 'new@example.com'
-    expect(email.address).toBe('new@example.com')
-  })
 })
