@@ -12,28 +12,30 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     name,
     password,
   }: ICreateUserRequestDTO): Promise<ResponseDTO> {
-   try {
-    const userEntity = User.create({
-      email,
-      name,
-      password,
-    })
+    try {
+      const userEntity = User.create({
+        email,
+        name,
+        password,
+      })
 
-    const userAlreadyExists = await this.userRepository.findByEmail(userEntity.email.address)
+      const userAlreadyExists = await this.userRepository.findByEmail(
+        userEntity.email.address,
+      )
 
-    if (userAlreadyExists) {
-      return { data: {error: 'User already exists!'}, success: false }
+      if (userAlreadyExists) {
+        return { data: { error: 'User already exists!' }, success: false }
+      }
+
+      const user = await this.userRepository.create({
+        email: userEntity.email.address,
+        name: userEntity.name,
+        password: userEntity.password,
+      })
+
+      return { data: user, success: true }
+    } catch (error: any) {
+      return { data: { error: error.message }, success: false }
     }
-
-    const user = await this.userRepository.create({
-      email: userEntity.email.address,
-      name: userEntity.name,
-      password: userEntity.password,
-    })
-
-    return { data: user, success: true }
-   } catch (error: any) {
-      return { data: {error: error.message}, success: false }
-   }
   }
 }
