@@ -30,6 +30,16 @@ describe('CreateUserRouter', () => {
 
     expect(response.status).toBe(400)
   })
+  it("should not be able to create an user with an invalid email", async () => {
+    const response = await request(app).post('/users').send({
+      password: '123456',
+      email: 'Invalid email',
+      name: 'Test Integration Exist User',
+    })
+
+    expect(response.status).toBe(400)
+  })
+
   it('should return 422 response if body parameters are invalid', async () => {
     const response = await request(app).post('/users').send({
       invalidKey: 'invalidValue',
