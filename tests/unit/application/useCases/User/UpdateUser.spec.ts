@@ -65,4 +65,24 @@ describe('UpdateUserUseCase', () => {
     const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
     expect(result.data).toEqual('User does not exits!')
   })
+  it('should throw an error if email is invalid', async () => {
+    const userId = '123'
+    const existingUser = {
+      id: '123',
+      email: 'existing@example.com',
+      name: 'Existing User',
+      password: 'existingpassword',
+    }
+    const updateUserRequestDTO: IUpdateUserRequestDTO = {
+      id: '123',
+      email: 'invalid email',
+      name: 'Test User',
+      password: 'password',
+    }
+
+    userRepository.findById = vi.fn().mockResolvedValueOnce(existingUser)
+
+    const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
+    expect(result.data).toEqual({error: 'Invalid Email Address'})
+  })
 })

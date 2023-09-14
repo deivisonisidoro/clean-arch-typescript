@@ -62,6 +62,19 @@ describe('CreateUserUseCase', () => {
       .fn()
       .mockResolvedValueOnce(createUserRequestDTO)
     const result = await createUserUseCase.execute(createUserRequestDTO)
-    expect(result.data).toEqual('User already exists!')
+    expect(result.data).toEqual({error: 'User already exists!'})
+  })
+  it('should throw an error if email is invalid', async () => {
+    const createUserRequestDTO: ICreateUserRequestDTO = {
+      email: 'invalid email',
+      name: 'Test User',
+      password: 'password',
+    }
+
+    userRepository.findByEmail = vi
+      .fn()
+      .mockResolvedValueOnce(createUserRequestDTO)
+    const result = await createUserUseCase.execute(createUserRequestDTO)
+    expect(result.data).toEqual({error: 'Invalid Email Address'})
   })
 })
