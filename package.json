@@ -43,7 +43,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test:unit": "vitest run -c ./vitest.config.unit.ts",
+    "test:unit": "vitest run -c ./vitest.config.unit.ts --coverage",
     "test:unit:ui": "vitest -c ./vitest.config.unit.ts --ui",
     "test:int": "./scripts/run-integration.sh",
     "test:int:ui": "./scripts/run-integration.sh --ui",
