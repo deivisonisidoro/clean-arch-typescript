@@ -1,11 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { IGetAllUserUseCase } from '../../../../src/domain/useCases/User/GetAllUser'
-import { GetUserController } from '../../../../src/controllers/User/GetUser'
+import { GetUserController } from '../../../../src/main/controllers/User/GetUser'
 import { IController } from '../../../../src/domain/controller'
-import { IHttpRequest } from '../../../../src/helpers/http/IHttpRequest'
-import { HttpErrors } from '../../../../src/helpers/http/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../src/helpers/http/implementations/HttpSuccess'
+import { IHttpRequest } from '../../../../src/main/helpers/http/IHttpRequest'
+import { HttpErrors } from '../../../../src/main/helpers/http/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../src/main/helpers/http/implementations/HttpSuccess'
 import { PaginationDTO } from '../../../../src/domain/dtos/Pagination'
 import { IUserOutRequestDTO } from '../../../../src/domain/dtos/User/UserOut'
 

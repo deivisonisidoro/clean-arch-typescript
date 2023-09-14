@@ -1,13 +1,13 @@
 import { HttpResponse } from '../../helpers/http/implementations/HttpResponse'
-import { ICreateUserUseCase } from '../../domain/useCases/User/CreateUser'
-import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
+import { ICreateUserUseCase } from '../../../domain/useCases/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
 import { HttpErrors } from '../../helpers/http/implementations/HttpErrors'
 import { IHttpErrors } from '../../helpers/http/IHttpErrors'
 import { IHttpResponse } from '../../helpers/http/IHttpResponse'
-import { ResponseDTO } from '../../domain/dtos/Response'
+import { ResponseDTO } from '../../../domain/dtos/Response'
 import { HttpSuccess } from '../../helpers/http/implementations/HttpSuccess'
 import { IHttpSuccess } from '../../helpers/http/IHttpSuccess'
-import { IController } from '../../domain/controller'
+import { IController } from '../../../domain/controller'
 import { IHttpRequest } from '../../helpers/http/IHttpRequest'
 
 export class CreateUserController implements IController {
