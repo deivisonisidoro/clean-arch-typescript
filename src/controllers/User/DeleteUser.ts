@@ -19,23 +19,13 @@ export class DeleteUserController implements IController {
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO
-    if (httpRequest.path) {
-      const pathStringParams = Object.keys(httpRequest.path)
-      if (pathStringParams.includes('id')) {
-        const id = (httpRequest.path as { id: string }).id
-        response = await this.deleteUserUseCase.execute(id)
-      } else {
-        error = this.httpErrors.error_422()
-        return new HttpResponse(error.statusCode, error.body)
-      }
-      if (!response.success) {
-        error = this.httpErrors.error_400()
-        return new HttpResponse(error.statusCode, response.data)
-      }
-      const success = this.httpSuccess.success_200(response.data)
-      return new HttpResponse(success.statusCode, success.body)
+    const id = (httpRequest.path as { id: string }).id
+    response = await this.deleteUserUseCase.execute(id)
+    if (!response.success) {
+      error = this.httpErrors.error_400()
+      return new HttpResponse(error.statusCode, response.data)
     }
-    error = this.httpErrors.error_500()
-    return new HttpResponse(error.statusCode, error.body)
+    const success = this.httpSuccess.success_200(response.data)
+    return new HttpResponse(success.statusCode, success.body)
   }
 }

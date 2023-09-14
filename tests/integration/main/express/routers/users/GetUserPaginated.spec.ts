@@ -13,13 +13,28 @@ describe('GetUserRouters', () => {
   }
   it('Should be able to get a list of users ', async () => {
     await prisma.user.create({ data: userData })
-    const response = await request(app).get('/users/1')
+    const response = await request(app).get('/users/?page=1')
 
     expect(response.status).toBe(200)
   })
 
   it('Should not be able to get a list of users ', async () => {
-    const response = await request(app).get('/users/1')
+    const response = await request(app).get('/users/?page=1')
+    expect(response.status).toBe(404)
+  })
+
+  it('should return 422 response if body parameters are invalid', async () => {
+    const response = await request(app).get('/users?test=1')
+    expect(response.status).toBe(422)
+  })
+
+  it('should return 500 response if an internal server error occurs', async () => {
+    const response = await request(app).get('/users');
+    expect(response.status).toBe(500);
+  });
+
+  it('Should not be able to get a list of users ', async () => {
+    const response = await request(app).get('/users/?page=1')
     expect(response.status).toBe(404)
   })
 })

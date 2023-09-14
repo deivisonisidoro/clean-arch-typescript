@@ -19,10 +19,10 @@ export class GetUserController implements IController {
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO
-    if (httpRequest.path) {
-      const pathStringParams = Object.keys(httpRequest.path)
-      if (pathStringParams.includes('page')) {
-        const page = (httpRequest.path as { page: string }).page
+    if (httpRequest.query  && Object.keys(httpRequest.query).length > 0) {
+      const queryStringParams = Object.keys(httpRequest.query)
+      if (queryStringParams.includes('page')) {
+        const page = (httpRequest.query as { page: string }).page
         response = await this.getAllUserUseCase.execute(Number(page))
       } else {
         error = this.httpErrors.error_422()

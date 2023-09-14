@@ -22,7 +22,7 @@ describe('DeleteUserRouter', () => {
   it('Should not be able to delete an existing user', async () => {
     await prisma.user.create({ data: userData })
 
-    const response = await request(app).delete('/users/:id')
+    const response = await request(app).delete('/users/testID')
 
     expect(response.status).toBe(400)
   })

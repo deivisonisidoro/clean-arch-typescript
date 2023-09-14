@@ -20,7 +20,8 @@ export class CreateUserController implements IController {
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO
-    if (httpRequest.body) {
+
+    if (httpRequest.body && Object.keys(httpRequest.body).length > 0) {
       const bodyParams = Object.keys(httpRequest.body)
       if (
         bodyParams.includes('name') &&

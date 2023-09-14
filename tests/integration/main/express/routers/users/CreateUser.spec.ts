@@ -30,4 +30,17 @@ describe('CreateUserRouter', () => {
 
     expect(response.status).toBe(400)
   })
+  it('should return 422 response if body parameters are invalid', async () => {
+
+    const response = await request(app).post('/users').send({
+      invalidKey: 'invalidValue',
+    })
+
+    expect(response.status).toBe(422)
+  })
+  it('should return 500 response if an internal server error occurs', async () => {
+    const response = await request(app).post('/users');
+
+    expect(response.status).toBe(500);
+  });
 })

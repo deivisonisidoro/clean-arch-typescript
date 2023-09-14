@@ -49,7 +49,7 @@ describe('GetUserController', () => {
     }
 
     const httpRequest: IHttpRequest = {
-      path: { page: String(page) },
+      query: { page: String(page) },
     }
     const httpSuccess = new HttpSuccess()
     getAllUserUseCase.execute = vi.fn().mockResolvedValueOnce({
@@ -62,9 +62,9 @@ describe('GetUserController', () => {
     expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
     expect(httpResponse.body).toEqual(pagination)
   })
-  it('should return 422 response if path parameters are missing', async () => {
+  it('should return 422 response if query parameters are missing', async () => {
     const httpRequest: IHttpRequest = {
-      path: { test: 'Testing' },
+      query: { test: 'Testing' },
     }
     const httpError = new HttpErrors()
     const httpResponse = await getUserController.handle(httpRequest)
@@ -75,7 +75,7 @@ describe('GetUserController', () => {
 
   it('should return 404 response if users not was found', async () => {
     const httpRequest: IHttpRequest = {
-      path: { page: String(page) },
+      query: { page: String(page) },
     }
     const httpError = new HttpErrors()
     getAllUserUseCase.execute = vi.fn().mockResolvedValueOnce({
@@ -88,7 +88,7 @@ describe('GetUserController', () => {
     expect(httpResponse.statusCode).toBe(httpError.error_404().statusCode)
     expect(httpResponse.body).toEqual('Users not found')
   })
-  it('should return 500 response if path is missing', async () => {
+  it('should return 500 response if query is missing', async () => {
     const httpError = new HttpErrors()
     const httpResponse = await getUserController.handle({})
 

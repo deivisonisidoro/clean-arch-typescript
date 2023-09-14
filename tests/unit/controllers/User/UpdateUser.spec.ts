@@ -10,6 +10,12 @@ import { HttpSuccess } from '../../../../src/helpers/http/implementations/HttpSu
 describe('UpdateUserController', () => {
   let updateUserUseCase: IUpdateUserUseCase
   let updateUserController: IController
+  const existingUser = {
+    id: '123',
+    email: 'existing@example.com',
+    name: 'Existing User',
+    password: 'existingpassword',
+  }
 
   beforeEach(() => {
     updateUserUseCase = {
@@ -20,17 +26,48 @@ describe('UpdateUserController', () => {
   afterEach(() => {
     vi.clearAllMocks()
   })
-  it('should update the user selected', async () => {
-    const existingUser = {
-      id: '123',
-      email: 'existing@example.com',
-      name: 'Existing User',
-      password: 'existingpassword',
-    }
 
+  it('should update the name of user selected', async () => {
+    const updateUserRequestDTO = {
+      name: 'New User',
+    }
+    const httpRequest: IHttpRequest = {
+      path: { id: existingUser.id },
+      body: updateUserRequestDTO,
+    }
+    const httpSuccess = new HttpSuccess()
+    updateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
+      data: updateUserRequestDTO,
+      success: true,
+    })
+
+    const httpResponse = await updateUserController.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
+    expect(httpResponse.body).toEqual(updateUserRequestDTO)
+  })
+  it('should update the email of user selected', async () => {
     const updateUserRequestDTO = {
       email: 'newuser@example.com',
-      name: 'New User',
+    }
+    const httpRequest: IHttpRequest = {
+      path: { id: existingUser.id },
+      body: updateUserRequestDTO,
+    }
+    const httpSuccess = new HttpSuccess()
+    updateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
+      data: updateUserRequestDTO,
+      success: true,
+    })
+
+    const httpResponse = await updateUserController.handle(httpRequest)
+
+    expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
+    expect(httpResponse.body).toEqual(updateUserRequestDTO)
+  })
+
+  it('should update the password of user selected', async () => {
+    const updateUserRequestDTO = {
       password: 'newpassword',
     }
     const httpRequest: IHttpRequest = {
@@ -48,6 +85,7 @@ describe('UpdateUserController', () => {
     expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
     expect(httpResponse.body).toEqual(updateUserRequestDTO)
   })
+
   it('should return 422 response if body, and path parameters are missing', async () => {
     const httpRequest: IHttpRequest = {
       path: { test: 'Testing' },
@@ -61,13 +99,6 @@ describe('UpdateUserController', () => {
   })
 
   it('should return 400 response if users not was found', async () => {
-    const existingUser = {
-      id: '123',
-      email: 'existing@example.com',
-      name: 'Existing User',
-      password: 'existingpassword',
-    }
-
     const updateUserRequestDTO = {
       email: 'newuser@example.com',
       name: 'New User',

@@ -37,17 +37,6 @@ describe('DeleteUserController', () => {
     expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
     expect(httpResponse.body).toEqual('User deleted with success!')
   })
-  it('should return 422 response if path parameters are missing', async () => {
-    const httpRequest: IHttpRequest = {
-      path: { test: 'Testing' },
-    }
-    const httpError = new HttpErrors()
-    const httpResponse = await getUserController.handle(httpRequest)
-
-    expect(httpResponse.statusCode).toBe(httpError.error_422().statusCode)
-    expect(httpResponse.body).toEqual(httpError.error_422().body)
-  })
-
   it('should return 400 response if users not was found', async () => {
     const id = '123'
     const httpRequest: IHttpRequest = {
@@ -63,12 +52,5 @@ describe('DeleteUserController', () => {
 
     expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
     expect(httpResponse.body).toEqual('Users not found')
-  })
-  it('should return 500 response if path is missing', async () => {
-    const httpError = new HttpErrors()
-    const httpResponse = await getUserController.handle({})
-
-    expect(httpResponse.statusCode).toBe(httpError.error_500().statusCode)
-    expect(httpResponse.body).toEqual(httpError.error_500().body)
   })
 })
