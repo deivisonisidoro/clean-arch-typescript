@@ -1,7 +1,9 @@
+import { Email } from '../valueObjects/Email'
+
 export interface UserInterface {
   id: string
   name: string
-  email: string
+  email: Email
   password: string
   createdAt: Date
 }
@@ -9,7 +11,7 @@ export interface UserInterface {
 export class User {
   private readonly _id: string
   private _name: string
-  private _email: string
+  private _email: Email
   private _password: string
   protected _createdAt: Date
 
@@ -21,7 +23,7 @@ export class User {
     return this._name
   }
 
-  get email(): string {
+  get email(): Email {
     return this._email
   }
 
@@ -37,7 +39,7 @@ export class User {
     this._name = newName
   }
 
-  set email(newEmail: string) {
+  set email(newEmail: Email) {
     this._email = newEmail
   }
 

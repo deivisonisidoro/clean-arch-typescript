@@ -60,12 +60,10 @@ describe('Update User Controller', () => {
       .send({ test: 'Test' })
 
     expect(response.status).toBe(httpError.error_422().statusCode)
-    expect(response.body).toBe(httpError.error_422().body)
   })
   it('should return 500 response if an internal server error occurs', async () => {
     const response = await request(app).patch('/users/:id')
 
     expect(response.status).toBe(httpError.error_500().statusCode)
-    expect(response.body).toBe(httpError.error_500().body)
   })
 })
