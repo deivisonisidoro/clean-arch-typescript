@@ -6,7 +6,7 @@ describe('User Class', () => {
   it('should create a user instance with provided data', () => {
     const user = new User({
       name: 'John Doe',
-      email: new Email({address: 'john@example.com'}),
+      email: new Email({ address: 'john@example.com' }),
       password: 'password123',
       createdAt: new Date(),
       id: 'uuid',
@@ -21,13 +21,13 @@ describe('User Class', () => {
   it('should update the name, email and password of the user', () => {
     const user = new User({
       name: 'John Doe',
-      email: new Email({address: 'john@example.com'}),
+      email: new Email({ address: 'john@example.com' }),
       password: 'password123',
       createdAt: new Date(),
       id: 'uuid',
     })
     user.name = 'New Name'
-    user.email = new Email({address: 'new@example.com'})
+    user.email = new Email({ address: 'new@example.com' })
     user.password = 'newpass'
 
     expect(user.name).toBe('New Name')
