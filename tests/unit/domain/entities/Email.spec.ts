@@ -12,5 +12,4 @@ describe('EmailClass', () => {
       'Invalid Email Address',
     )
   })
-
 })
