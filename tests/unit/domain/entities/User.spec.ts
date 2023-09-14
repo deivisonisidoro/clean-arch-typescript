@@ -35,17 +35,17 @@ describe('User Class', () => {
     expect(user.password).toBe('newpass')
   })
 
-  it("should create a new user with the create method", () => {
+  it('should create a new user with the create method', () => {
     const user = User.create({
-      name: "Jane Doe",
-      email: "jane.doe@example.com",
-      password: "654321",
-    });
+      name: 'Jane Doe',
+      email: 'jane.doe@example.com',
+      password: '654321',
+    })
 
-    expect(user.id).toBe("");
-    expect(user.name).toBe("Jane Doe");
-    expect(user.email.address).toBe("jane.doe@example.com");
-    expect(user.password).toBe("654321");
-    expect(user.createdAt).toBeInstanceOf(Date);
-  });
+    expect(user.id).toBe('')
+    expect(user.name).toBe('Jane Doe')
+    expect(user.email.address).toBe('jane.doe@example.com')
+    expect(user.password).toBe('654321')
+    expect(user.createdAt).toBeInstanceOf(Date)
+  })
 })

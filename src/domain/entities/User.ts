@@ -1,4 +1,4 @@
-import { ICreateUserRequestDTO } from "../dtos/User/CreateUser";
+import { ICreateUserRequestDTO } from '../dtos/User/CreateUser'
 import { Email } from '../entities/Email'
 
 export interface UserInterface {
@@ -16,13 +16,9 @@ export class User {
   private _password: string
   protected _createdAt: Date
 
-  static create({
-    email,
-    name,
-    password,
-  }: ICreateUserRequestDTO): User{
-    const newEmail = new Email({address: email})
-    return new User({name, email: newEmail, password})
+  static create({ email, name, password }: ICreateUserRequestDTO): User {
+    const newEmail = new Email({ address: email })
+    return new User({ name, email: newEmail, password })
   }
 
   get id(): string {
@@ -62,6 +58,6 @@ export class User {
     this._password = props.password
     this._email = props.email
     this._createdAt = props.createdAt || new Date()
-    this._id = props.id || ""
+    this._id = props.id || ''
   }
 }
