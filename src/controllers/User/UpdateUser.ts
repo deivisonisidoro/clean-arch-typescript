@@ -19,15 +19,18 @@ export class UpdateUserController implements IController {
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO
-    if ((httpRequest.path && httpRequest.body) && Object.keys(httpRequest.body).length > 0) {
+    if (
+      httpRequest.path &&
+      httpRequest.body &&
+      Object.keys(httpRequest.body).length > 0
+    ) {
       const pathStringParams = Object.keys(httpRequest.path)
       const bodyParams = Object.keys(httpRequest.body)
       if (
         pathStringParams.includes('id') &&
-       (
-        bodyParams.includes('name') ||
-        bodyParams.includes('email') ||
-        bodyParams.includes('password'))
+        (bodyParams.includes('name') ||
+          bodyParams.includes('email') ||
+          bodyParams.includes('password'))
       ) {
         const id = (httpRequest.path as { id: string }).id
         const data = httpRequest.body as {

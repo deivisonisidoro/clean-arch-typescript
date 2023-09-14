@@ -19,7 +19,7 @@ export class GetUserController implements IController {
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
     let response: ResponseDTO
-    if (httpRequest.query  && Object.keys(httpRequest.query).length > 0) {
+    if (httpRequest.query && Object.keys(httpRequest.query).length > 0) {
       const queryStringParams = Object.keys(httpRequest.query)
       if (queryStringParams.includes('page')) {
         const page = (httpRequest.query as { page: string }).page

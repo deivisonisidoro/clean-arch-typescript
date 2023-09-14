@@ -55,17 +55,17 @@ describe('Update User Controller', () => {
   })
 
   it('should return 422 response if body parameters are invalid', async () => {
+    const response = await request(app)
+      .patch('/users/:id')
+      .send({ test: 'Test' })
 
-    const response = await request(app).patch('/users/:id').send({test: "Test"})
-
-    expect(response.status).toBe(httpError.error_422().statusCode);
-    expect(response.body).toBe(httpError.error_422().body);
+    expect(response.status).toBe(httpError.error_422().statusCode)
+    expect(response.body).toBe(httpError.error_422().body)
   })
   it('should return 500 response if an internal server error occurs', async () => {
+    const response = await request(app).patch('/users/:id')
 
-    const response = await request(app).patch('/users/:id');
-
-    expect(response.status).toBe(httpError.error_500().statusCode);
-    expect(response.body).toBe(httpError.error_500().body);
-  });
+    expect(response.status).toBe(httpError.error_500().statusCode)
+    expect(response.body).toBe(httpError.error_500().body)
+  })
 })

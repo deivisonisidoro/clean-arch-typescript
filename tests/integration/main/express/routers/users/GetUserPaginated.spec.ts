@@ -29,9 +29,9 @@ describe('GetUserRouters', () => {
   })
 
   it('should return 500 response if an internal server error occurs', async () => {
-    const response = await request(app).get('/users');
-    expect(response.status).toBe(500);
-  });
+    const response = await request(app).get('/users')
+    expect(response.status).toBe(500)
+  })
 
   it('Should not be able to get a list of users ', async () => {
     const response = await request(app).get('/users/?page=1')
