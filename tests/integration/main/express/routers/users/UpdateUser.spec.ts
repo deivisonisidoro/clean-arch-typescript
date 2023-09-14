@@ -55,7 +55,9 @@ describe('Update User Controller', () => {
   })
 
   it('Should not be able to update an existing user with invalid email', async () => {
-    const response = await request(app).patch('/users/:id').send({
+    const user = await prisma.user.create({ data: userData })
+
+    const response = await request(app).patch(`/users/${user.id}`).send({
       email: 'invalid email',
     })
     expect(response.status).toBe(httpError.error_400().statusCode)
