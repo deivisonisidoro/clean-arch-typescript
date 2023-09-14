@@ -25,10 +25,10 @@ describe('User Class', () => {
       password: 'password123',
       createdAt: new Date(),
       id: 'uuid',
-    });
-    user.name = 'New Name';
-    user.email = new Email('new@example.com');
-    user.password = 'newpass';
+    })
+    user.name = 'New Name'
+    user.email = new Email('new@example.com')
+    user.password = 'newpass'
 
     expect(user.name).toBe('New Name')
     expect(user.email.address).toBe('new@example.com')
