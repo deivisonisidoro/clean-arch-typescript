@@ -83,6 +83,6 @@ describe('UpdateUserUseCase', () => {
     userRepository.findById = vi.fn().mockResolvedValueOnce(existingUser)
 
     const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
-    expect(result.data).toEqual({error: 'Invalid Email Address'})
+    expect(result.data).toEqual({ error: 'Invalid Email Address' })
   })
 })
