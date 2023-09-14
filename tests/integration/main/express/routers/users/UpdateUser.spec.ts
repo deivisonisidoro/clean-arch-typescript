@@ -46,11 +46,18 @@ describe('Update User Controller', () => {
     expect(response.body.name).toBe('Test Integration')
   })
 
-  it('Should not be able to update an existing user', async () => {
+  it('Should not be able to update an not existing user', async () => {
     const response = await request(app).patch('/users/:id').send({
       email: 'testUpdatedExisting@test.com.br',
     })
 
+    expect(response.status).toBe(httpError.error_400().statusCode)
+  })
+
+  it('Should not be able to update an existing user with invalid email', async () => {
+    const response = await request(app).patch('/users/:id').send({
+      email: 'invalid email',
+    })
     expect(response.status).toBe(httpError.error_400().statusCode)
   })
 
