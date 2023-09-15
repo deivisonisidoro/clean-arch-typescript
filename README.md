@@ -18,15 +18,21 @@ The project utilizes the following tools:
 
 6. **Clean Architecture Principles**: This project adheres to the principles of clean architecture, including separation of concerns, dependency inversion, and the use of interfaces and abstractions to promote modularity and maintainability.
 
+7- **Prisma**: Prisma is an open-source database toolkit that simplifies database access in your TypeScript projects. It provides a type-safe and auto-generated query builder that makes working with databases more efficient and less error-prone.
+
 ## Configuration and Usage
 
 To get started with this project, follow these steps:
 
 1. **Clone the Repository**: Clone this repository to your local machine using Git:
-`git clone <repository-url>`
+``` bash
+git clone <repository-url>
+```
 
 2. **Install Dependencies**: Use Yarn to install project dependencies:
-`yarn install`
+```bash
+yarn install
+```
 
 All dependencies, will be installed automatically.
 
@@ -34,5 +40,45 @@ All dependencies, will be installed automatically.
 
 The project is already configured to use Eslint for style and code quality checking.
 
-- To check the TypeScrypt code with Eslint, run the following command:
-` yarn lint`
+- To check and format the TypeScrypt code with Eslint, run the following command:
+```bash
+ yarn lint
+```
+
+### Running Express Server and Prisma Migrations
+To run the Express server and apply Prisma migrations, follow these steps:
+
+1. **Running the Express Server**: To start the Express server, use the following command:
+```bash
+yarn dev
+```
+This command will launch your Express server, allowing you to access your application.
+
+2. **Running Prisma Migrations**: Prisma simplifies database migrations. To create and apply migrations, use the following command:
+```bash
+yarn prisma migrate dev
+```
+This command will automatically generate and apply migrations to your database based on your Prisma schema.
+
+With these commands, you can easily run your Express server and manage your database schema using Prisma's migration capabilities.
+
+### Creating a New Schema
+
+To maintain a well-organized codebase, this project has a dedicated folder called "models" where all schemas are separated into individual files. If you need to create a new schema, follow these steps:
+
+1. **Create a New Schema File**:
+
+   - Inside the "models" folder, create a new file for your schema (e.g., `new-schema.prisma`).
+
+2. **Generate Prisma Artifacts**:
+
+   - After creating the new schema file, run the following command to generate Prisma artifacts:
+
+     ```bash
+     yarn generate
+     ```
+
+   - This command will update the "schema.prisma" file, incorporating your new schema definition.
+   - This command will create and apply migrations
+
+By following these steps, you can seamlessly add new schemas to your project while maintaining a clear and organized structure.

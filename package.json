@@ -51,7 +51,7 @@
     "lint": "eslint  --fix --ignore-path .eslintignore --ext .js,.ts .",
     "prepare": "husky install",
     "prisma-concat": "npx ts-node src/infra/database/prisma/concat-schemas.ts && npx prisma format",
-    "generate": "yarn prisma-concat && npx prisma generate"
+    "generate": "yarn prisma-concat && npx prisma migrate dev"
   },
   "prisma": {
     "schema": "src/infra/database/prisma/schema.prisma"
