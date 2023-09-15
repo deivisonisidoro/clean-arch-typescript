@@ -72,18 +72,18 @@ To maintain a well-organized codebase, this project has a dedicated folder calle
 
 1. **Create a New Schema File**:
 
-   - Inside the "models" folder, create a new file for your schema (e.g., `new-schema.prisma`).
+  - Inside the "models" folder, create a new file for your schema (e.g., `new-schema.prisma`).
 
 2. **Generate Prisma Artifacts**:
 
-   - After creating the new schema file, run the following command to generate Prisma artifacts:
+  - After creating the new schema file, run the following command to generate Prisma artifacts:
 
-     ```bash
-     yarn generate
-     ```
+  ```bash
+  yarn generate
+  ```
 
-   - This command will update the "schema.prisma" file, incorporating your new schema definition.
-   - This command will create and apply migrations
+  - This command will update the "schema.prisma" file, incorporating your new schema definition.
+  - This command will create and apply migrations
 
 By following these steps, you can seamlessly add new schemas to your project while maintaining a clear and organized structure.
 
@@ -93,23 +93,23 @@ This project is equipped with a comprehensive testing setup that includes both u
 
 - **Run Unit Tests**:
  - To run unit tests, use the following command:
-   ```bash
-   yarn test:unit
-   ```
+  ```bash
+  yarn test:unit
+  ```
  - You can also run unit tests in UI mode with the following command:
-   ```bash
-   yarn test:unit:ui
-   ```
+  ```bash
+  yarn test:unit:ui
+  ```
 
 - **Run Integration Tests**:
  - Integration tests are located in the "integration" folder. To run integration tests, use the following command:
-   ```bash
-   yarn test:int
-   ```
+  ```bash
+  yarn test:int
+  ```
  - You can run integration tests in UI mode with the following command:
-   ```bash
-   yarn test:int:ui
-   ```
+  ```bash
+  yarn test:int:ui
+  ```
 
  - Note: Integration tests include additional setup and can be executed using a custom script located at "./scripts/run-integration.sh." This script allows you to control the test environment and run tests in UI mode when needed.
 
