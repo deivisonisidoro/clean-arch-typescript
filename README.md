@@ -20,6 +20,10 @@ The project utilizes the following tools:
 
 7- **Prisma**: Prisma is an open-source database toolkit that simplifies database access in your TypeScript projects. It provides a type-safe and auto-generated query builder that makes working with databases more efficient and less error-prone.
 
+## Using Environment Variables
+
+This project relies on environment variables to be set in a .env file. To set up the necessary environment variables, create a copy of the `.env.example` file and rename it to `.env`. Then, fill in the values for each variable.
+
 ## Configuration and Usage
 
 To get started with this project, follow these steps:
