@@ -82,3 +82,31 @@ To maintain a well-organized codebase, this project has a dedicated folder calle
    - This command will create and apply migrations
 
 By following these steps, you can seamlessly add new schemas to your project while maintaining a clear and organized structure.
+
+### Running Tests
+
+This project is equipped with a comprehensive testing setup that includes both unit and integration tests. You can use the following commands to run different types of tests:
+
+- **Run Unit Tests**:
+ - To run unit tests, use the following command:
+   ```bash
+   yarn test:unit
+   ```
+ - You can also run unit tests in UI mode with the following command:
+   ```bash
+   yarn test:unit:ui
+   ```
+
+- **Run Integration Tests**:
+ - Integration tests are located in the "integration" folder. To run integration tests, use the following command:
+   ```bash
+   yarn test:int
+   ```
+ - You can run integration tests in UI mode with the following command:
+   ```bash
+   yarn test:int:ui
+   ```
+
+ - Note: Integration tests include additional setup and can be executed using a custom script located at "./scripts/run-integration.sh." This script allows you to control the test environment and run tests in UI mode when needed.
+
+With these commands, you can thoroughly test your application, ensuring its reliability and functionality.
