@@ -30,9 +30,6 @@ yarn-error.log*
 .idea/
 *.swp
 
-# Arquivos de compilação
-*.js
-*.js.map
 
 # Arquivos de sistema
 .DS_Store
