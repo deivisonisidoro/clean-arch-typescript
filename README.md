@@ -40,6 +40,16 @@ yarn install
 
 All dependencies, will be installed automatically.
 
+## Swagger Documentation
+
+This project provides Swagger documentation for the API. You can access it using the following endpoints:
+
+- **Swagger JSON**: [http://localhost:3000/swagger](http://localhost:3000/swagger)
+- **Swagger UI**: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+- **Swagger ReDoc**: [http://localhost:3000/](http://localhost:3000/)
+
+The Swagger JSON file (`swagger.json`) contains the API specification, the Swagger UI (`api-docs`) allows for interactive exploration of the API, and Swagger ReDoc (`/`) provides an alternative documentation view.
+
 ### Style and Quality Checking
 
 The project is already configured to use Eslint for style and code quality checking.
