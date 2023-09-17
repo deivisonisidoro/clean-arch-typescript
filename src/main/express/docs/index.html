@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redoc</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
+      rel="stylesheet"
+    />
+
+    <!--
+    Redoc doesn't change outer page styles
+    -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <body>
+      <div id="redoc-container"></div>
+      <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.55/bundles/redoc.standalone.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/wll8/redoc-try@1.4.1/dist/try.js"></script>
+      <script>
+        initTry({
+          openApi: `http://localhost:3000/swagger`,
+          redocOptions: {scrollYOffset: 50}
+        })
+      </script>
+    </body>
+</html>

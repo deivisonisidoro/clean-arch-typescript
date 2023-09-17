@@ -1,0 +1,283 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Clean Architecture API",
+    "description": "This api has as main objective show a simple example of a project using a clean architecture",
+    "contact": {
+      "email": "deivisonisidoro@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers":[
+    {
+      "url": "http://localhost:3000/",
+      "description": "API of test"
+    }
+  ],
+  "paths": {
+    "/users":{
+      "post": {
+        "summary": "Register user",
+        "description": "This route will responsible for registering the new user",
+        "tags": ["Users"],
+        "requestBody":{
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples":{
+                "user":{
+                  "value":{
+                    "name": "Deivison Isidoro",
+                    "email": "deivison@loldesigner.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "400": {
+            "description": {"error": "User already exists."},
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User already exists."
+                  }
+                }
+              }
+            }
+          },
+          "201":{
+            "description": "Created",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+           }
+        }
+      },
+      "get":{
+        "summary": "Get all users",
+        "description": "This route will be responsible for get  all registered users",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses":{
+          "400": {
+            "description": "No user found",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "No user found"
+                  }
+                }
+              }
+            }
+          },
+          "200":{
+            "description": "OK",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/Pagination"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "put": {
+        "summary": "Update user",
+        "description": "This route will responsible for to do the update a user",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User's id for update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples":{
+                "user":{
+                  "value":{
+                    "name": "Deivison Isidoro",
+                    "email": "deivison@loldesigner.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "400": {
+            "description": "User does not exits!",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User does not exits!"
+                  }
+                }
+              }
+            }
+          },
+          "200":{
+            "description": "Updated",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+           }
+        }
+      },
+      "delete":{
+        "summary": "Delete user",
+        "description": "This route will responsible for to do the delete a user",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User's id for delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses":{
+          "400": {
+            "description": "User does not exits!",
+            "content": {
+              "application/json":{
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User does not exits!"
+                  }
+                }
+              }
+            }
+          },
+          "204":{
+            "description": "Deleted"
+           }
+        }
+      }
+    }
+  },
+  "components":{
+    "securitySchemes":{
+      "BearerAuth":{
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas":{
+      "User":{
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "array"
+          },
+          "total": {
+            "type": "number",
+            "format": "integer"
+
+          },
+          "page": {
+            "type": "number",
+            "format": "integer"
+
+          },
+          "last_page": {
+            "type": "number",
+            "format": "integer"
+
+          }
+        }
+      }
+    }
+  }
+}
