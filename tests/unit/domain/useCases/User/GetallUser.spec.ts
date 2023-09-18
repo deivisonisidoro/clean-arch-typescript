@@ -1,7 +1,7 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { PaginationDTO } from '../../../../../src/domain/dtos/Pagination'
-import { GetAllUserUseCase } from '../../../../../src/application/useCases/User/GetAllUser'
+import { GetAllUserUseCase } from '../../../../../src/domain/useCases/User/implementations/GetAllUser'
 import { IUsersRepository } from '../../../../../src/domain/repositories/User'
 import { IGetAllUserUseCase } from '../../../../../src/domain/useCases/User/GetAllUser'
 import { IUserOutRequestDTO } from '../../../../../src/domain/dtos/User/UserOut'
