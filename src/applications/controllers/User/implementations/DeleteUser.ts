@@ -1,5 +1,5 @@
 import { IController } from '../../IController'
-import { ResponseDTO } from '../../../dtos/Response'
+import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IDeleteUserUseCase } from '../../../../useCases/User/DeleteUser'
 import { IHttpErrors } from '../../helpers/IHttpErrors'
 import { IHttpResponse } from '../../helpers/IHttpResponse'

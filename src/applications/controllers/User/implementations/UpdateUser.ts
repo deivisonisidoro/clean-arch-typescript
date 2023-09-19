@@ -1,5 +1,5 @@
 import { IController } from '../../IController'
-import { ResponseDTO } from '../../../dtos/Response'
+import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IUpdateUserUseCase } from '../../../../useCases/User/UpdateUser'
 import { IHttpErrors } from '../../helpers/IHttpErrors'
 import { IHttpResponse } from '../../helpers/IHttpResponse'
