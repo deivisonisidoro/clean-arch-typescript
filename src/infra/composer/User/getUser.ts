@@ -1,10 +1,10 @@
 import { PrismaUserRepository } from '../../repositories/PrismaUser'
 import { prismaClient } from '../../databases/prisma/connection'
-import { GetAllUserUseCase } from '../../../application/useCases/User/implementations/GetAllUser'
+import { GetAllUserUseCase } from '../../../useCases/User/implementations/GetAllUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
-import { IGetAllUserUseCase } from '../../../application/useCases/User/GetAllUser'
-import { GetUserController } from '../../http/controllers/User/GetUser'
-import { IController } from '../../../domain/controller'
+import { IGetAllUserUseCase } from '../../../useCases/User/GetAllUser'
+import { GetUserController } from '../../../application/controllers/User/implementations/GetUser'
+import { IController } from '../../../application/controllers/IController'
 
 export function getUserComposer() {
   const repository: IUsersRepository = new PrismaUserRepository(prismaClient)
