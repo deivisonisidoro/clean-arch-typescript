@@ -1,6 +1,5 @@
 import { HttpResponse } from '../../helpers/implementations/HttpResponse'
 import { ICreateUserUseCase } from '../../../../useCases/User/CreateUser'
-import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
 import { HttpErrors } from '../../helpers/implementations/HttpErrors'
 import { IHttpErrors } from '../../helpers/IHttpErrors'
 import { IHttpResponse } from '../../helpers/IHttpResponse'
@@ -28,7 +27,7 @@ export class CreateUserController implements IController {
         bodyParams.includes('email') &&
         bodyParams.includes('password')
       ) {
-        const createUserRequestDTO: ICreateUserRequestDTO =
+        const createUserRequestDTO =
           httpRequest.body as { name: string; email: string; password: string }
         response = await this.createUserCase.execute(createUserRequestDTO)
       } else {

@@ -1,5 +1,5 @@
 import { IController } from '../../IController'
-import { ResponseDTO } from '../../../../domain/dtos/Response'
+
 import { IUpdateUserUseCase } from '../../../../useCases/User/UpdateUser'
 import { IHttpErrors } from '../../helpers/IHttpErrors'
 import { IHttpResponse } from '../../helpers/IHttpResponse'
@@ -18,7 +18,7 @@ export class UpdateUserController implements IController {
 
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
-    let response: ResponseDTO
+    let response
     if (
       httpRequest.path &&
       httpRequest.body &&

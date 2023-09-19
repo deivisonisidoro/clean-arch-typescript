@@ -1,5 +1,4 @@
 import { IController } from '../../IController'
-import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IDeleteUserUseCase } from '../../../../useCases/User/DeleteUser'
 import { IHttpErrors } from '../../helpers/IHttpErrors'
 import { IHttpResponse } from '../../helpers/IHttpResponse'
@@ -19,7 +18,7 @@ export class DeleteUserController implements IController {
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
     const id = (httpRequest.path as { id: string }).id
-    const response: ResponseDTO = await this.deleteUserUseCase.execute(id)
+    const response = await this.deleteUserUseCase.execute(id)
     if (!response.success) {
       error = this.httpErrors.error_400()
       return new HttpResponse(error.statusCode, response.data)

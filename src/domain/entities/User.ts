@@ -1,6 +1,6 @@
 import { ICreateUserRequestDTO } from '../dtos/User/CreateUser'
 import { IUpdateUserRequestDTO } from '../dtos/User/UpdateUser'
-import { Email } from '../entities/Email'
+import { Email } from '../valueObjects/Email'
 
 export interface UserInterface {
   name: string

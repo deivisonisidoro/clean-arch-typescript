@@ -1,5 +1,4 @@
 import { IController } from '../../IController'
-import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IGetAllUserUseCase } from '../../../../useCases/User/GetAllUser'
 import { IHttpErrors } from '../../helpers/IHttpErrors'
 import { IHttpResponse } from '../../helpers/IHttpResponse'
@@ -18,7 +17,7 @@ export class GetUserController implements IController {
 
   async handle(httpRequest: HttpRequest): Promise<IHttpResponse> {
     let error
-    let response: ResponseDTO
+    let response
     if (httpRequest.query && Object.keys(httpRequest.query).length > 0) {
       const queryStringParams = Object.keys(httpRequest.query)
       if (queryStringParams.includes('page')) {
