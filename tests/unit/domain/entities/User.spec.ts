@@ -1,6 +1,6 @@
 import { it, describe, expect } from 'vitest'
 import { User } from '../../../../src/domain/entities/User'
-import { Email } from '../../../../src/domain/entities/Email'
+import { Email } from '../../../../src/domain/valueObjects/Email'
 
 describe('User Class', () => {
   it('should create a user instance with provided data', () => {

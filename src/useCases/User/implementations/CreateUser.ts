@@ -1,7 +1,7 @@
 import { IUsersRepository } from '../../../domain/repositories/User'
-import { ICreateUserRequestDTO } from '../../../applications/dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
 import { ICreateUserUseCase } from '../CreateUser'
-import { ResponseDTO } from '../../../applications/dtos/Response'
+import { ResponseDTO } from '../../../domain/dtos/Response'
 import { User } from '../../../domain/entities/User'
 
 export class CreateUserUseCase implements ICreateUserUseCase {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { Email } from '../../../../src/domain/entities/Email'
+import { Email } from '../../../../src/domain/valueObjects/Email'
 
 describe('EmailClass', () => {
   it('should create a email instance with provided email', () => {
