@@ -1,8 +1,8 @@
 import { Request } from 'express'
-import { HttpRequest } from '../controllers/helpers/implementations/HttpRequest'
-import { IHttpRequest } from '../controllers/helpers/IHttpRequest'
-import { IController } from '../controllers/IController'
-import { IHttpResponse } from '../controllers/helpers/IHttpResponse'
+import { HttpRequest } from '../../applications/controllers/helpers/implementations/HttpRequest'
+import { IHttpRequest } from '../../applications/controllers/helpers/IHttpRequest'
+import { IController } from '../../applications/controllers/IController'
+import { IHttpResponse } from '../../applications/controllers/helpers/IHttpResponse'
 
 export async function expressAdapter(
   request: Request,

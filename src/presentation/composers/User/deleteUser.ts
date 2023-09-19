@@ -1,5 +1,5 @@
-import { PrismaUserRepository } from '../../repositories/PrismaUser'
-import { prismaClient } from '../../databases/prisma/connection'
+import { PrismaUserRepository } from '../../../infra/repositories/PrismaUser'
+import { prismaClient } from '../../../infra/databases/prisma/connection'
 import { DeleteUserUseCase } from '../../../useCases/User/implementations/DeleteUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { IDeleteUserUseCase } from '../../../useCases/User/DeleteUser'
