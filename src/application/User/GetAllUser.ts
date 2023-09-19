@@ -1,6 +1,6 @@
-import { IGetAllUserUseCase } from '../../../useCases/User/GetAllUser'
-import { IUsersRepository } from '../../../repositories/User'
-import { ResponseDTO } from '../../../dtos/Response'
+import { IGetAllUserUseCase } from '../../domain/useCases/User/GetAllUser'
+import { IUsersRepository } from '../../domain/repositories/User'
+import { ResponseDTO } from '../../domain/dtos/Response'
 
 export class GetAllUserUseCase implements IGetAllUserUseCase {
   constructor(private userRepository: IUsersRepository) {}

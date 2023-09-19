@@ -1,7 +1,7 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { ICreateUserUseCase } from '../../../../../src/domain/useCases/User/CreateUser'
-import { CreateUserUseCase } from '../../../../../src/domain/useCases/User/implementations/CreateUser'
+import { CreateUserUseCase } from '../../../../../src/application/User/CreateUser'
 import { ICreateUserRequestDTO } from '../../../../../src/domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../../../src/domain/repositories/User'
 

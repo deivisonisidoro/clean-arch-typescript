@@ -2,7 +2,7 @@ import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { IUsersRepository } from '../../../../../src/domain/repositories/User'
 import { IUpdateUserUseCase } from '../../../../../src/domain/useCases/User/UpdateUser'
-import { UpdateUserUseCase } from '../../../../../src/domain/useCases/User/implementations/UpdateUser'
+import { UpdateUserUseCase } from '../../../../../src/application/User/UpdateUser'
 import { IUpdateUserRequestDTO } from '../../../../../src/domain/dtos/User/UpdateUser'
 
 describe('UpdateUserUseCase', () => {
