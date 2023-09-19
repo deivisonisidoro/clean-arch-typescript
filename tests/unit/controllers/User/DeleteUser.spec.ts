@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IDeleteUserUseCase } from '../../../../src/domain/useCases/User/DeleteUser'
+import { IDeleteUserUseCase } from '../../../../src/application/useCases/User/DeleteUser'
 import { IController } from '../../../../src/domain/controller'
 import { DeleteUserController } from '../../../../src/infra/http/controllers/User/DeleteUser'
 import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'

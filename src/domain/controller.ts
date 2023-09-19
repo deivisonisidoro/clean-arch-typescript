@@ -1,4 +1,4 @@
-import { IHttpResponse } from '../infra/http/helpers/http/IHttpResponse'
+import { IHttpResponse } from '../infra/http/helpers/IHttpResponse'
 import { HttpRequest } from '../infra/http/helpers/implementations/HttpRequest'
 
 export interface IController {

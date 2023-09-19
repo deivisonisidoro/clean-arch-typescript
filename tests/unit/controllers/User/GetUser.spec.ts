@@ -1,8 +1,8 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IGetAllUserUseCase } from '../../../../src/domain/useCases/User/GetAllUser'
-import { PaginationDTO } from '../../../../src/domain/dtos/Pagination'
-import { IUserOutRequestDTO } from '../../../../src/domain/dtos/User/UserOut'
+import { IGetAllUserUseCase } from '../../../../src/application/useCases/User/GetAllUser'
+import { PaginationDTO } from '../../../../src/application/dtos/Pagination'
+import { IUserOutRequestDTO } from '../../../../src/application/dtos/User/UserOut'
 import { IController } from '../../../../src/domain/controller'
 import { GetUserController } from '../../../../src/infra/http/controllers/User/GetUser'
 import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'

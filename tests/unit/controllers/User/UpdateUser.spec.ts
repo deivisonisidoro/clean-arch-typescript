@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUpdateUserUseCase } from '../../../../src/domain/useCases/User/UpdateUser'
+import { IUpdateUserUseCase } from '../../../../src/application/useCases/User/UpdateUser'
 import { UpdateUserController } from '../../../../src/infra/http/controllers/User/UpdateUser'
 import { IController } from '../../../../src/domain/controller'
 import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'

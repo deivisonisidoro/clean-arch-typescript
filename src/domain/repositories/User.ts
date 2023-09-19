@@ -1,7 +1,7 @@
-import { PaginationDTO } from '../dtos/Pagination'
-import { ICreateUserRequestDTO } from '../dtos/User/CreateUser'
-import { IUpdateUserRequestDTO } from '../dtos/User/UpdateUser'
-import { IUserOutRequestDTO } from '../dtos/User/UserOut'
+import { PaginationDTO } from '../../application/dtos/Pagination'
+import { ICreateUserRequestDTO } from '../../application/dtos/User/CreateUser'
+import { IUpdateUserRequestDTO } from '../../application/dtos/User/UpdateUser'
+import { IUserOutRequestDTO } from '../../application/dtos/User/UserOut'
 
 export interface IUsersRepository {
   create(data: ICreateUserRequestDTO): Promise<IUserOutRequestDTO>

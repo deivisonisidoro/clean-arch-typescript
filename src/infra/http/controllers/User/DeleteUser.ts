@@ -1,6 +1,6 @@
 import { IController } from '../../../../domain/controller'
-import { ResponseDTO } from '../../../../domain/dtos/Response'
-import { IDeleteUserUseCase } from '../../../../domain/useCases/User/DeleteUser'
+import { ResponseDTO } from '../../../../application/dtos/Response'
+import { IDeleteUserUseCase } from '../../../../application/useCases/User/DeleteUser'
 import { IHttpErrors } from '../../../http/helpers/IHttpErrors'
 import { IHttpResponse } from '../../../http/helpers/IHttpResponse'
 import { IHttpSuccess } from '../../../http/helpers/IHttpSuccess'

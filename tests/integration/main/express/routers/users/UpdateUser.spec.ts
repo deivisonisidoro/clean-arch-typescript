@@ -2,7 +2,7 @@ import request from 'supertest'
 import { describe, expect, it } from 'vitest'
 
 import { app } from '../../../../../../src/main/express/settings/app'
-import { ICreateUserRequestDTO } from '../../../../../../src/domain/dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../../../../src/application/dtos/User/CreateUser'
 import { prisma } from '../../../../../helpers/prisma'
 import { HttpErrors } from '../../../../../../src/infra/http/helpers/implementations/HttpErrors'
 

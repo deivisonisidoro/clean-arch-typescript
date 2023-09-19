@@ -1,5 +1,5 @@
-import { ICreateUserRequestDTO } from '../dtos/User/CreateUser'
-import { IUpdateUserRequestDTO } from '../dtos/User/UpdateUser'
+import { ICreateUserRequestDTO } from '../../application/dtos/User/CreateUser'
+import { IUpdateUserRequestDTO } from '../../application/dtos/User/UpdateUser'
 import { Email } from '../entities/Email'
 
 export interface UserInterface {

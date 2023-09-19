@@ -1,8 +1,8 @@
 import { PrismaUserRepository } from '../../repositories/PrismaUser'
 import { prismaClient } from '../../databases/prisma/connection'
-import { GetAllUserUseCase } from '../../../application/User/GetAllUser'
+import { GetAllUserUseCase } from '../../../application/useCases/User/implementations/GetAllUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
-import { IGetAllUserUseCase } from '../../../domain/useCases/User/GetAllUser'
+import { IGetAllUserUseCase } from '../../../application/useCases/User/GetAllUser'
 import { GetUserController } from '../../http/controllers/User/GetUser'
 import { IController } from '../../../domain/controller'
 

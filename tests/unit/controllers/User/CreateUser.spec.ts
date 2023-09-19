@@ -1,8 +1,8 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ICreateUserUseCase } from '../../../../src/domain/useCases/User/CreateUser'
+import { ICreateUserUseCase } from '../../../../src/application/useCases/User/CreateUser'
 import { CreateUserController } from '../../../../src/infra/http/controllers/User/CreateUser'
-import { ICreateUserRequestDTO } from '../../../../src/domain/dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../../src/application/dtos/User/CreateUser'
 import { IController } from '../../../../src/domain/controller'
 import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'
 import { HttpErrors } from '../../../../src/infra/http/helpers/implementations/HttpErrors'

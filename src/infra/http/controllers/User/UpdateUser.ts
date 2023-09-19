@@ -1,6 +1,6 @@
 import { IController } from '../../../../domain/controller'
-import { ResponseDTO } from '../../../../domain/dtos/Response'
-import { IUpdateUserUseCase } from '../../../../domain/useCases/User/UpdateUser'
+import { ResponseDTO } from '../../../../application/dtos/Response'
+import { IUpdateUserUseCase } from '../../../../application/useCases/User/UpdateUser'
 import { IHttpErrors } from '../../../http/helpers/IHttpErrors'
 import { IHttpResponse } from '../../../http/helpers/IHttpResponse'
 import { IHttpSuccess } from '../../../http/helpers/IHttpSuccess'
