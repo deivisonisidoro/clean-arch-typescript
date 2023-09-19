@@ -27,8 +27,11 @@ export class CreateUserController implements IController {
         bodyParams.includes('email') &&
         bodyParams.includes('password')
       ) {
-        const createUserRequestDTO =
-          httpRequest.body as { name: string; email: string; password: string }
+        const createUserRequestDTO = httpRequest.body as {
+          name: string
+          email: string
+          password: string
+        }
         response = await this.createUserCase.execute(createUserRequestDTO)
       } else {
         error = this.httpErrors.error_422()
