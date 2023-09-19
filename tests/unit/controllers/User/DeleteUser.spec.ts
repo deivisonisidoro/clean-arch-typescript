@@ -1,11 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { IDeleteUserUseCase } from '../../../../src/domain/useCases/User/DeleteUser'
-import { DeleteUserController } from '../../../../src/main/controllers/User/DeleteUser'
 import { IController } from '../../../../src/domain/controller'
-import { IHttpRequest } from '../../../../src/main/helpers/http/IHttpRequest'
-import { HttpErrors } from '../../../../src/main/helpers/http/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../src/main/helpers/http/implementations/HttpSuccess'
+import { DeleteUserController } from '../../../../src/infra/http/controllers/User/DeleteUser'
+import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../src/infra/http/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../src/infra/http/helpers/implementations/HttpSuccess'
 
 describe('DeleteUserController', () => {
   let deleteUserUseCase: IDeleteUserUseCase

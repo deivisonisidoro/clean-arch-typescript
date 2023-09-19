@@ -1,12 +1,12 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { ICreateUserUseCase } from '../../../../src/domain/useCases/User/CreateUser'
-import { CreateUserController } from '../../../../src/main/controllers/User/CreateUser'
+import { CreateUserController } from '../../../../src/infra/http/controllers/User/CreateUser'
 import { ICreateUserRequestDTO } from '../../../../src/domain/dtos/User/CreateUser'
 import { IController } from '../../../../src/domain/controller'
-import { IHttpRequest } from '../../../../src/main/helpers/http/IHttpRequest'
-import { HttpErrors } from '../../../../src/main/helpers/http/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../src/main/helpers/http/implementations/HttpSuccess'
+import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../src/infra/http/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../src/infra/http/helpers/implementations/HttpSuccess'
 
 describe('CreateUserController', () => {
   let createUserUseCase: ICreateUserUseCase

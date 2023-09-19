@@ -1,9 +1,9 @@
-import { PrismaUserRepository } from '../../../infra/repositories/PrismaUser'
-import { prismaClient } from '../../../infra/database/prisma/connection'
+import { PrismaUserRepository } from '../../repositories/PrismaUser'
+import { prismaClient } from '../../databases/prisma/connection'
 import { CreateUserUseCase } from '../../../application/User/CreateUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { ICreateUserUseCase } from '../../../domain/useCases/User/CreateUser'
-import { CreateUserController } from '../../controllers/User/CreateUser'
+import { CreateUserController } from '../../http/controllers/User/CreateUser'
 import { IController } from '../../../domain/controller'
 
 export function createUserComposer() {

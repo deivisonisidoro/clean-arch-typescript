@@ -57,6 +57,6 @@
     "generate": "yarn prisma-concat && npx prisma migrate dev"
   },
   "prisma": {
-    "schema": "src/infra/database/prisma/schema.prisma"
+    "schema": "src/infra/databases/prisma/schema.prisma"
   }
 }

@@ -1,11 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { IUpdateUserUseCase } from '../../../../src/domain/useCases/User/UpdateUser'
-import { UpdateUserController } from '../../../../src/main/controllers/User/UpdateUser'
+import { UpdateUserController } from '../../../../src/infra/http/controllers/User/UpdateUser'
 import { IController } from '../../../../src/domain/controller'
-import { IHttpRequest } from '../../../../src/main/helpers/http/IHttpRequest'
-import { HttpErrors } from '../../../../src/main/helpers/http/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../src/main/helpers/http/implementations/HttpSuccess'
+import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../src/infra/http/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../src/infra/http/helpers/implementations/HttpSuccess'
 
 describe('UpdateUserController', () => {
   let updateUserUseCase: IUpdateUserUseCase

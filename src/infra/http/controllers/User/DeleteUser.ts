@@ -1,13 +1,13 @@
-import { IController } from '../../../domain/controller'
-import { ResponseDTO } from '../../../domain/dtos/Response'
-import { IDeleteUserUseCase } from '../../../domain/useCases/User/DeleteUser'
-import { IHttpErrors } from '../../helpers/http/IHttpErrors'
-import { IHttpResponse } from '../../helpers/http/IHttpResponse'
-import { IHttpSuccess } from '../../helpers/http/IHttpSuccess'
-import { HttpErrors } from '../../helpers/http/implementations/HttpErrors'
-import { HttpRequest } from '../../helpers/http/implementations/HttpRequest'
-import { HttpResponse } from '../../helpers/http/implementations/HttpResponse'
-import { HttpSuccess } from '../../helpers/http/implementations/HttpSuccess'
+import { IController } from '../../../../domain/controller'
+import { ResponseDTO } from '../../../../domain/dtos/Response'
+import { IDeleteUserUseCase } from '../../../../domain/useCases/User/DeleteUser'
+import { IHttpErrors } from '../../../http/helpers/IHttpErrors'
+import { IHttpResponse } from '../../../http/helpers/IHttpResponse'
+import { IHttpSuccess } from '../../../http/helpers/IHttpSuccess'
+import { HttpErrors } from '../../helpers/implementations/HttpErrors'
+import { HttpRequest } from '../../helpers/implementations/HttpRequest'
+import { HttpResponse } from '../../helpers/implementations/HttpResponse'
+import { HttpSuccess } from '../../helpers/implementations/HttpSuccess'
 
 export class DeleteUserController implements IController {
   constructor(

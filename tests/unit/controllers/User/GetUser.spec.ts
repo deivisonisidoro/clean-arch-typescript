@@ -1,13 +1,13 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { IGetAllUserUseCase } from '../../../../src/domain/useCases/User/GetAllUser'
-import { GetUserController } from '../../../../src/main/controllers/User/GetUser'
-import { IController } from '../../../../src/domain/controller'
-import { IHttpRequest } from '../../../../src/main/helpers/http/IHttpRequest'
-import { HttpErrors } from '../../../../src/main/helpers/http/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../src/main/helpers/http/implementations/HttpSuccess'
 import { PaginationDTO } from '../../../../src/domain/dtos/Pagination'
 import { IUserOutRequestDTO } from '../../../../src/domain/dtos/User/UserOut'
+import { IController } from '../../../../src/domain/controller'
+import { GetUserController } from '../../../../src/infra/http/controllers/User/GetUser'
+import { IHttpRequest } from '../../../../src/infra/http/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../src/infra/http/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../src/infra/http/helpers/implementations/HttpSuccess'
 
 describe('GetUserController', () => {
   let getAllUserUseCase: IGetAllUserUseCase
