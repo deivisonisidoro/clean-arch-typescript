@@ -1,6 +1,6 @@
 import { Request } from 'express'
-import { HttpRequest } from '../../application/controllers/helpers/implementations/HttpRequest'
-import { IHttpRequest } from '../../application/controllers/helpers/IHttpRequest'
+import { HttpRequest } from '../controllers/helpers/implementations/HttpRequest'
+import { IHttpRequest } from '../controllers/helpers/IHttpRequest'
 import { IController } from '../controllers/IController'
 import { IHttpResponse } from '../controllers/helpers/IHttpResponse'
 

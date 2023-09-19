@@ -3,8 +3,8 @@ import { prismaClient } from '../../databases/prisma/connection'
 import { UpdateUserUseCase } from '../../../useCases/User/implementations/UpdateUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { IUpdateUserUseCase } from '../../../useCases/User/UpdateUser'
-import { UpdateUserController } from '../../../application/controllers/User/implementations/UpdateUser'
-import { IController } from '../../../application/controllers/IController'
+import { UpdateUserController } from '../../../applications/controllers/User/implementations/UpdateUser'
+import { IController } from '../../../applications/controllers/IController'
 
 export function updateUserComposer() {
   const repository: IUsersRepository = new PrismaUserRepository(prismaClient)

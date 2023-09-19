@@ -22,7 +22,7 @@
         "tags": ["Users"],
         "requestBody":{
           "content": {
-            "application/json":{
+            "applications/json":{
               "schema": {
                 "$ref": "#/components/schemas/User"
               },
@@ -42,7 +42,7 @@
           "400": {
             "description": {"error": "User already exists."},
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "properties": {
@@ -60,7 +60,7 @@
           "201":{
             "description": "Created",
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "$ref": "#/components/schemas/User"
@@ -90,7 +90,7 @@
           "400": {
             "description": "No user found",
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "properties": {
@@ -108,7 +108,7 @@
           "200":{
             "description": "OK",
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "$ref": "#/components/schemas/Pagination"
@@ -137,7 +137,7 @@
         ],
         "requestBody":{
           "content": {
-            "application/json":{
+            "applications/json":{
               "schema": {
                 "$ref": "#/components/schemas/User"
               },
@@ -157,7 +157,7 @@
           "400": {
             "description": "User does not exits!",
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "properties": {
@@ -175,7 +175,7 @@
           "200":{
             "description": "Updated",
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "$ref": "#/components/schemas/User"
@@ -204,7 +204,7 @@
           "400": {
             "description": "User does not exits!",
             "content": {
-              "application/json":{
+              "applications/json":{
                 "schema": {
                   "type":"object",
                   "properties": {

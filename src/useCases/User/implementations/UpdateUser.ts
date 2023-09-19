@@ -1,5 +1,5 @@
-import { IUpdateUserRequestDTO } from '../../../application/dtos/User/UpdateUser'
-import { ResponseDTO } from '../../../application/dtos/Response'
+import { IUpdateUserRequestDTO } from '../../../applications/dtos/User/UpdateUser'
+import { ResponseDTO } from '../../../applications/dtos/Response'
 import { IUpdateUserUseCase } from '../UpdateUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { User } from '../../../domain/entities/User'
