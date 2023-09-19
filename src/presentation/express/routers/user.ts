@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express'
-import { expressAdapter } from '../../../applications/adapter/express'
+import { expressAdapter } from '../../../applications/adapters/express'
 import { createUserComposer } from '../../../infra/composer/User/createUser'
 import { deleteUserComposer } from '../../../infra/composer/User/deleteUser'
 import { updateUserComposer } from '../../../infra/composer/User/updateUser'
