@@ -1,9 +1,9 @@
 import { Request, Response, Router } from 'express'
 import { expressAdapter } from '../../../applications/adapters/express'
-import { createUserComposer } from '../../../infra/composer/User/createUser'
-import { deleteUserComposer } from '../../../infra/composer/User/deleteUser'
-import { updateUserComposer } from '../../../infra/composer/User/updateUser'
-import { getUserComposer } from '../../../infra/composer/User/getUser'
+import { createUserComposer } from '../../../infra/composers/User/createUser'
+import { deleteUserComposer } from '../../../infra/composers/User/deleteUser'
+import { updateUserComposer } from '../../../infra/composers/User/updateUser'
+import { getUserComposer } from '../../../infra/composers/User/getUser'
 
 const userRoutes = Router()
 
