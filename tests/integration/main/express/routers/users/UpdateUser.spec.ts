@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { app } from '../../../../../../src/presentation/express/settings/app'
 import { ICreateUserRequestDTO } from '../../../../../../src/domain/dtos/User/CreateUser'
 import { prisma } from '../../../../../helpers/prisma'
-import { HttpErrors } from '../../../../../../src/applications/controllers/helpers/implementations/HttpErrors'
+import { HttpErrors } from '../../../../../../src/app/controllers/helpers/implementations/HttpErrors'
 
 describe('Update User Controller', () => {
   const userData: ICreateUserRequestDTO = {

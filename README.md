@@ -66,7 +66,7 @@ To run the Express server and apply Prisma migrations, follow these steps:
 ```bash
 yarn dev
 ```
-This command will launch your Express server, allowing you to access your application.
+This command will launch your Express server, allowing you to access your app.
 
 2. **Running Prisma Migrations**: Prisma simplifies database migrations. To create and apply migrations, use the following command:
 ```bash
@@ -123,4 +123,4 @@ This project is equipped with a comprehensive testing setup that includes both u
 
  - Note: Integration tests include additional setup and can be executed using a custom script located at "./scripts/run-integration.sh." This script allows you to control the test environment and run tests in UI mode when needed.
 
-With these commands, you can thoroughly test your application, ensuring its reliability and functionality.
+With these commands, you can thoroughly test your app, ensuring its reliability and functionality.

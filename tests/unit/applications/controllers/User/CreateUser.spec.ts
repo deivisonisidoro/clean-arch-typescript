@@ -1,12 +1,12 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { ICreateUserUseCase } from '../../../../../src/useCases/User/CreateUser'
-import { CreateUserController } from '../../../../../src/applications/controllers/User/implementations/CreateUser'
-import { ICreateUserRequestDTO } from '../../../../../src/applications/dtos/User/CreateUser'
-import { IController } from '../../../../../src/applications/controllers/IController'
-import { IHttpRequest } from '../../../../../src/applications/controllers/helpers/IHttpRequest'
-import { HttpErrors } from '../../../../../src/applications/controllers/helpers/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../../src/applications/controllers/helpers/implementations/HttpSuccess'
+import { CreateUserController } from '../../../../../src/app/controllers/User/implementations/CreateUser'
+import { ICreateUserRequestDTO } from '../../../../../src/domain/dtos/User/CreateUser'
+import { IController } from '../../../../../src/app/controllers/IController'
+import { IHttpRequest } from '../../../../../src/app/controllers/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../../src/app/controllers/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../../src/app/controllers/helpers/implementations/HttpSuccess'
 
 describe('CreateUserController', () => {
   let createUserUseCase: ICreateUserUseCase

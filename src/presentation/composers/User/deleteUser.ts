@@ -3,8 +3,8 @@ import { prismaClient } from '../../../infra/databases/prisma/connection'
 import { DeleteUserUseCase } from '../../../useCases/User/implementations/DeleteUser'
 import { IUsersRepository } from '../../../domain/repositories/User'
 import { IDeleteUserUseCase } from '../../../useCases/User/DeleteUser'
-import { DeleteUserController } from '../../../applications/controllers/User/implementations/DeleteUser'
-import { IController } from '../../../applications/controllers/IController'
+import { DeleteUserController } from '../../../app/controllers/User/implementations/DeleteUser'
+import { IController } from '../../../app/controllers/IController'
 
 export function deleteUserComposer() {
   const repository: IUsersRepository = new PrismaUserRepository(prismaClient)

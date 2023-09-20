@@ -1,11 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { IUpdateUserUseCase } from '../../../../../src/useCases/User/UpdateUser'
-import { UpdateUserController } from '../../../../../src/applications/controllers/User/implementations/UpdateUser'
-import { IController } from '../../../../../src/applications/controllers/IController'
-import { IHttpRequest } from '../../../../../src/applications/controllers/helpers/IHttpRequest'
-import { HttpErrors } from '../../../../../src/applications/controllers/helpers/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../../src/applications/controllers/helpers/implementations/HttpSuccess'
+import { UpdateUserController } from '../../../../../src/app/controllers/User/implementations/UpdateUser'
+import { IController } from '../../../../../src/app/controllers/IController'
+import { IHttpRequest } from '../../../../../src/app/controllers/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../../src/app/controllers/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../../src/app/controllers/helpers/implementations/HttpSuccess'
 
 describe('UpdateUserController', () => {
   let updateUserUseCase: IUpdateUserUseCase
