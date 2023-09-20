@@ -1,10 +1,10 @@
 import request from 'supertest'
 import { describe, expect, it } from 'vitest'
 
+import { ICreateUserRequestDTO } from '../../../../../../src/app/dtos/User/CreateUser'
 import { app } from '../../../../../../src/presentation/express/settings/app'
-import { ICreateUserRequestDTO } from '../../../../../../src/domain/dtos/User/CreateUser'
+import { HttpErrors } from '../../../../../../src/presentation/http/helpers/implementations/HttpErrors'
 import { prisma } from '../../../../../helpers/prisma'
-import { HttpErrors } from '../../../../../../src/app/controllers/helpers/implementations/HttpErrors'
 
 describe('Update User Controller', () => {
   const userData: ICreateUserRequestDTO = {

@@ -1,4 +1,4 @@
-import { ResponseDTO } from '../../domain/dtos/Response'
+import { ResponseDTO } from '../../dtos/Response'
 
 export interface IDeleteUserUseCase {
   execute(userId: string): Promise<ResponseDTO>

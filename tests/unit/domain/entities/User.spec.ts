@@ -1,4 +1,5 @@
 import { it, describe, expect } from 'vitest'
+
 import { User } from '../../../../src/domain/entities/User'
 import { Email } from '../../../../src/domain/valueObjects/Email'
 

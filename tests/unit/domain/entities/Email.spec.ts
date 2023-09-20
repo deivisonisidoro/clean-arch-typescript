@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { Email } from '../../../../src/domain/valueObjects/Email'
 
 describe('EmailClass', () => {

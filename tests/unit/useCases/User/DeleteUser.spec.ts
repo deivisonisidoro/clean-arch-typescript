@@ -1,8 +1,8 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IDeleteUserUseCase } from '../../../../src/useCases/User/DeleteUser'
-import { DeleteUserUseCase } from '../../../../src/useCases/User/implementations/DeleteUser'
-import { IUsersRepository } from '../../../../src/domain/repositories/User'
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { IDeleteUserUseCase } from '../../../../src/app/useCases/User/DeleteUser'
+import { DeleteUserUseCase } from '../../../../src/app/useCases/User/implementations/DeleteUser'
 
 describe('DeleteUser', () => {
   let deleteUserUseCase: IDeleteUserUseCase

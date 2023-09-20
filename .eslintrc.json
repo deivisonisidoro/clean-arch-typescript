@@ -1,6 +1,16 @@
 {
   "extends": "@rocketseat/eslint-config/node",
+  "plugins": ["eslint-plugin-import-helpers", "unused-imports"],
   "rules":{
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "unused-imports/no-unused-imports": "error",
     "no-useless-constructor": "off",
     "space-before-function-paren": "off",
     "@typescript-eslint/interface-name-prefix": "off",

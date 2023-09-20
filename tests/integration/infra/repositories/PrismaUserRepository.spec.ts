@@ -1,7 +1,8 @@
-import { prisma } from '../../../helpers/prisma'
-import { IUsersRepository } from '../../../../src/domain/repositories/User'
-import { PrismaUserRepository } from '../../../../src/infra/repositories/PrismaUser'
 import { beforeAll, describe, expect, it } from 'vitest'
+
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { PrismaUserRepository } from '../../../../src/infra/repositories/PrismaUser'
+import { prisma } from '../../../helpers/prisma'
 
 describe('PrismaUserRepository', () => {
   let userRepository: IUsersRepository

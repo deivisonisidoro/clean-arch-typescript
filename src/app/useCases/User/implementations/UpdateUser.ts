@@ -1,8 +1,8 @@
-import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
-import { ResponseDTO } from '../../../domain/dtos/Response'
+import { User } from '../../../../domain/entities/User'
+import { ResponseDTO } from '../../../dtos/Response'
+import { IUpdateUserRequestDTO } from '../../../dtos/User/UpdateUser'
+import { IUsersRepository } from '../../../repositories/User'
 import { IUpdateUserUseCase } from '../UpdateUser'
-import { IUsersRepository } from '../../../domain/repositories/User'
-import { User } from '../../../domain/entities/User'
 
 export class UpdateUserUseCase implements IUpdateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}

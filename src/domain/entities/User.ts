@@ -1,5 +1,3 @@
-import { ICreateUserRequestDTO } from '../dtos/User/CreateUser'
-import { IUpdateUserRequestDTO } from '../dtos/User/UpdateUser'
 import { Email } from '../valueObjects/Email'
 
 export interface UserInterface {
@@ -7,18 +5,19 @@ export interface UserInterface {
   email: Email
   password: string
 }
+type UserProps = { email: string; name: string; password: string }
 
 export class User {
   private _name: string
   private _email: Email
   private _password: string
 
-  static create({ email, name, password }: ICreateUserRequestDTO): User {
+  static create({ email, name, password }: UserProps) {
     const newEmail = new Email({ address: email })
     return new User({ name, email: newEmail, password })
   }
 
-  static update(updatedUser: IUpdateUserRequestDTO): IUpdateUserRequestDTO {
+  static update(updatedUser: UserProps) {
     if (updatedUser.email) {
       updatedUser.email = new Email({ address: updatedUser.email }).address
     }

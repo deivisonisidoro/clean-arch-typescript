@@ -1,13 +1,13 @@
-import { HttpResponse } from '../../helpers/implementations/HttpResponse'
-import { ICreateUserUseCase } from '../../../../useCases/User/CreateUser'
-import { HttpErrors } from '../../helpers/implementations/HttpErrors'
-import { IHttpErrors } from '../../helpers/IHttpErrors'
-import { IHttpResponse } from '../../helpers/IHttpResponse'
-import { ResponseDTO } from '../../../../domain/dtos/Response'
-import { HttpSuccess } from '../../helpers/implementations/HttpSuccess'
-import { IHttpSuccess } from '../../helpers/IHttpSuccess'
+import { ResponseDTO } from '../../../../../app/dtos/Response'
+import { ICreateUserUseCase } from '../../../../../app/useCases/User/CreateUser'
+import { IHttpErrors } from '../../../helpers/IHttpErrors'
+import { IHttpRequest } from '../../../helpers/IHttpRequest'
+import { IHttpResponse } from '../../../helpers/IHttpResponse'
+import { IHttpSuccess } from '../../../helpers/IHttpSuccess'
+import { HttpErrors } from '../../../helpers/implementations/HttpErrors'
+import { HttpResponse } from '../../../helpers/implementations/HttpResponse'
+import { HttpSuccess } from '../../../helpers/implementations/HttpSuccess'
 import { IController } from '../../IController'
-import { IHttpRequest } from '../../helpers/IHttpRequest'
 
 export class CreateUserController implements IController {
   constructor(

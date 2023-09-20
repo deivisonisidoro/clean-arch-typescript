@@ -1,9 +1,9 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUsersRepository } from '../../../../src/domain/repositories/User'
-import { IUpdateUserUseCase } from '../../../../src/useCases/User/UpdateUser'
-import { UpdateUserUseCase } from '../../../../src/useCases/User/implementations/UpdateUser'
 import { IUpdateUserRequestDTO } from '../../../../src/app/dtos/User/UpdateUser'
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { UpdateUserUseCase } from '../../../../src/app/useCases/User/implementations/UpdateUser'
+import { IUpdateUserUseCase } from '../../../../src/app/useCases/User/UpdateUser'
 
 describe('UpdateUserUseCase', () => {
   let updateUserUseCase: IUpdateUserUseCase

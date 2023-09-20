@@ -1,12 +1,12 @@
+import { IGetAllUserUseCase } from '../../../../../app/useCases/User/GetAllUser'
+import { IHttpErrors } from '../../../helpers/IHttpErrors'
+import { IHttpResponse } from '../../../helpers/IHttpResponse'
+import { IHttpSuccess } from '../../../helpers/IHttpSuccess'
+import { HttpErrors } from '../../../helpers/implementations/HttpErrors'
+import { HttpRequest } from '../../../helpers/implementations/HttpRequest'
+import { HttpResponse } from '../../../helpers/implementations/HttpResponse'
+import { HttpSuccess } from '../../../helpers/implementations/HttpSuccess'
 import { IController } from '../../IController'
-import { IGetAllUserUseCase } from '../../../../useCases/User/GetAllUser'
-import { IHttpErrors } from '../../helpers/IHttpErrors'
-import { IHttpResponse } from '../../helpers/IHttpResponse'
-import { IHttpSuccess } from '../../helpers/IHttpSuccess'
-import { HttpErrors } from '../../helpers/implementations/HttpErrors'
-import { HttpRequest } from '../../helpers/implementations/HttpRequest'
-import { HttpResponse } from '../../helpers/implementations/HttpResponse'
-import { HttpSuccess } from '../../helpers/implementations/HttpSuccess'
 
 export class GetUserController implements IController {
   constructor(

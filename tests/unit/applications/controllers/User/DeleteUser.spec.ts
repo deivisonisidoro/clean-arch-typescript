@@ -1,11 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IDeleteUserUseCase } from '../../../../../src/useCases/User/DeleteUser'
-import { IController } from '../../../../../src/app/controllers/IController'
-import { DeleteUserController } from '../../../../../src/app/controllers/User/implementations/DeleteUser'
-import { IHttpRequest } from '../../../../../src/app/controllers/helpers/IHttpRequest'
-import { HttpErrors } from '../../../../../src/app/controllers/helpers/implementations/HttpErrors'
-import { HttpSuccess } from '../../../../../src/app/controllers/helpers/implementations/HttpSuccess'
+import { IDeleteUserUseCase } from '../../../../../src/app/useCases/User/DeleteUser'
+import { IController } from '../../../../../src/presentation/http/controllers/IController'
+import { DeleteUserController } from '../../../../../src/presentation/http/controllers/User/implementations/DeleteUser'
+import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
 
 describe('DeleteUserController', () => {
   let deleteUserUseCase: IDeleteUserUseCase

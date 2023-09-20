@@ -1,10 +1,10 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import { PaginationDTO } from '../../../../src/app/dtos/Pagination'
-import { GetAllUserUseCase } from '../../../../src/useCases/User/implementations/GetAllUser'
-import { IUsersRepository } from '../../../../src/domain/repositories/User'
-import { IGetAllUserUseCase } from '../../../../src/useCases/User/GetAllUser'
 import { IUserOutRequestDTO } from '../../../../src/app/dtos/User/UserOut'
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { IGetAllUserUseCase } from '../../../../src/app/useCases/User/GetAllUser'
+import { GetAllUserUseCase } from '../../../../src/app/useCases/User/implementations/GetAllUser'
 
 describe('GetAllUserUseCase', () => {
   let getAllUserUseCase: IGetAllUserUseCase

@@ -1,9 +1,9 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ICreateUserUseCase } from '../../../../src/useCases/User/CreateUser'
-import { CreateUserUseCase } from '../../../../src/useCases/User/implementations/CreateUser'
 import { ICreateUserRequestDTO } from '../../../../src/app/dtos/User/CreateUser'
-import { IUsersRepository } from '../../../../src/domain/repositories/User'
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { ICreateUserUseCase } from '../../../../src/app/useCases/User/CreateUser'
+import { CreateUserUseCase } from '../../../../src/app/useCases/User/implementations/CreateUser'
 
 describe('CreateUserUseCase', () => {
   let createUserUseCase: ICreateUserUseCase

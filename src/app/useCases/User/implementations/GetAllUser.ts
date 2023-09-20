@@ -1,6 +1,6 @@
+import { ResponseDTO } from '../../../dtos/Response'
+import { IUsersRepository } from '../../../repositories/User'
 import { IGetAllUserUseCase } from '../GetAllUser'
-import { IUsersRepository } from '../../../domain/repositories/User'
-import { ResponseDTO } from '../../../domain/dtos/Response'
 
 export class GetAllUserUseCase implements IGetAllUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
