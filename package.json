@@ -52,7 +52,7 @@
     "test:unit:ui": "vitest -c ./vitest.config.unit.ts --ui",
     "test:int": "./scripts/run-integration.sh",
     "test:int:ui": "./scripts/run-integration.sh --ui",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/main/express/settings/server.ts",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/presentation/express/settings/server.ts",
     "lint": "eslint  --fix --ignore-path .eslintignore --ext .js,.ts .",
     "prepare": "husky install",
     "prisma-concat": "npx ts-node src/infra/database/prisma/concat-schemas.ts && npx prisma format",
