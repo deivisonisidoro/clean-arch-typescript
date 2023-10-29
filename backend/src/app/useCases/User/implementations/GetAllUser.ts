@@ -8,7 +8,7 @@ export class GetAllUserUseCase implements IGetAllUserUseCase {
   async execute(page: number): Promise<ResponseDTO> {
     const users = await this.userRepository.findAll(page)
     if (users.total === 0) {
-      return { data: 'Users not found', success: false }
+      return { data: {detail: 'Users not found'}, success: false }
     }
     return { data: users, success: true }
   }
