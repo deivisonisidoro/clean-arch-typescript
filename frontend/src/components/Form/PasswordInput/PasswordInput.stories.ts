@@ -1,7 +1,7 @@
 import { PasswordInput } from "./index";
 
 export default{
-  title: "Components/PasswordInput",
+  title: "Components/Form/PasswordInput",
   component: PasswordInput
 }
 
