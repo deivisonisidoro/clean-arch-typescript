@@ -2,6 +2,7 @@
 import {axiosInstance} from "@/axios"
 import { useEffect, useState } from "react"
 import { AxiosResponse, AxiosError } from 'axios';
+import { TextInput } from "@/components/Form/TextInput";
 
 export default function Home() {
   const [data, setData] = useState({
@@ -29,6 +30,8 @@ export default function Home() {
     fetchData()
   },[])
 
-  return  data.body.length > 0 ? "teste" : <h1>{message}</h1>
+  return  (
+    <TextInput name="name" placeholder="Type your name." key={"name"}/>
+  )
   
 }
