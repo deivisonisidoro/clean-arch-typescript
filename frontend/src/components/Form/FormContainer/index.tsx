@@ -10,4 +10,4 @@ function FormContainer ({ children }: FormContainerPropsInterface) {
   );
 }
 
-export {FormContainer};
+export { FormContainer };
