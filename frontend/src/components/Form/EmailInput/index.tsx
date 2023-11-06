@@ -1,12 +1,12 @@
 import React from 'react';
-import { PasswordInputPropsInterface } from './PasswordInputPropsInterface';
+import { EmailInputPropsInterface } from './EmailInputPropsInterface';
 
 
-function PasswordInput({ name, placeholder= "Type here" }: PasswordInputPropsInterface) {
+function EmailInput({ name, placeholder= "Type here" }: EmailInputPropsInterface) {
   return (
       <input 
         id={name} 
-        type="password" 
+        type="email" 
         name={name} 
         placeholder={placeholder} 
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -15,4 +15,4 @@ function PasswordInput({ name, placeholder= "Type here" }: PasswordInputPropsInt
   
 }
 
-export { PasswordInput };
+export { EmailInput };
