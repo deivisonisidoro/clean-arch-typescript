@@ -18,7 +18,7 @@ The project utilizes the following tools:
 
 6. **Clean Architecture Principles**: This project adheres to the principles of clean architecture, including separation of concerns, dependency inversion, and the use of interfaces and abstractions to promote modularity and maintainability.
 
-7- **Prisma**: Prisma is an open-source database toolkit that simplifies database access in your TypeScript projects. It provides a type-safe and auto-generated query builder that makes working with databases more efficient and less error-prone.
+7. **Prisma**: Prisma is an open-source database toolkit that simplifies database access in your TypeScript projects. It provides a type-safe and auto-generated query builder that makes working with databases more efficient and less error-prone.
 
 ## Using Environment Variables
 
