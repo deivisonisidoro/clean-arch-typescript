@@ -1,39 +1,11 @@
-"use client";
-import {axiosInstance} from "@/axios"
-import { useEffect, useState } from "react"
-import { AxiosResponse, AxiosError } from 'axios';
 import { TextInput } from "@/components/Form/TextInput";
 import { FormContainer } from "@/components/Form/FormContainer";
 import { Label } from "@/components/Form/Label";
 import { PasswordInput } from "@/components/Form/PasswordInput";
 import { EmailInput } from "@/components/Form/EmailInput";
+import { Button } from "@/components/Form/Button";
 
 export default function RegisterUser() {
-  const [data, setData] = useState({
-    body: [],
-    total: 0,
-    page: 1,
-    last_page: 1
-  })
-  const [message, setMessage] = useState("")
-
-  const fetchData = async () =>{
-    try{
-      const { data }: AxiosResponse  = await axiosInstance.get("/users/?page=1")
-      setData(data)
-    }catch(error){
-      if (error instanceof AxiosError){
-        if (error.response) {
-          setMessage(error.response.data.detail);
-        }
-      }
-      
-    }
-  }
-  useEffect(()=>{
-    fetchData()
-  },[])
-
   return  (
     <div className="flex items-center justify-center h-screen">
       <FormContainer>
@@ -48,6 +20,9 @@ export default function RegisterUser() {
         <div className="mb-6">  
           <Label text="Password" nameField="password"/>
           <PasswordInput name="password" placeholder="Type your password here."/>
+        </div>
+        <div className="flex items-center justify-center">
+          <Button title="Sing Up"/>
         </div>
       </FormContainer>
     </div>
