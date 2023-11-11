@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#09090A] text-zinc-100
+  @apply bg-zinc-50 bg-[#09090A] text-zinc-300 flex items-center justify-center h-screen
 }
