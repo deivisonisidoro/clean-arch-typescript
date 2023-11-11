@@ -1,4 +1,3 @@
-export interface PasswordInputPropsInterface {
-  name: string;
-  placeholder: string;
+export interface TextInputPropsInterface {
+  [key: string]: string;
 }
