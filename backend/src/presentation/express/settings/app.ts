@@ -1,22 +1,19 @@
-import express from 'express'
+import express from 'express';
 import cors from 'cors';
+import { documentsRoutes } from '../routers/documentation';
+import { userRoutes } from '../routers/user';
 
-import { documentsRoutes } from '../routers/documentation'
-import { userRoutes } from '../routers/user'
+const app = express();
 
-const app = express()
-
-const allowedOrigins = ['http://localhost:3000'];
-
-const options: cors.CorsOptions = {
-  origin: allowedOrigins
+// Configuração para permitir todas as origens
+const corsOptions: cors.CorsOptions = {
+  origin: '*',
 };
 
-app.use(cors(options));
+app.use(cors(corsOptions));
+app.use(express.json());
 
-app.use(express.json())
+app.use('/', documentsRoutes);
+app.use('/users', userRoutes);
 
-app.use('/', documentsRoutes)
-app.use('/users', userRoutes)
-
-export { app }
+export { app };

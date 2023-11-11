@@ -4,7 +4,7 @@ import { createUserComposer } from '../../../infra/services/composers/User/creat
 import { deleteUserComposer } from '../../../infra/services/composers/User/deleteUser'
 import { getUserComposer } from '../../../infra/services/composers/User/getUser'
 import { updateUserComposer } from '../../../infra/services/composers/User/updateUser'
-import { expressAdapter } from '../../http/adapters/express'
+import { expressAdapter } from '../../adapters/express'
 
 const userRoutes = Router()
 

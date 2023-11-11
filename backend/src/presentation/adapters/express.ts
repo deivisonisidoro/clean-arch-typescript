@@ -1,9 +1,9 @@
 import { Request } from 'express'
 
-import { IController } from '../controllers/IController'
-import { IHttpRequest } from '../helpers/IHttpRequest'
-import { IHttpResponse } from '../helpers/IHttpResponse'
-import { HttpRequest } from '../helpers/implementations/HttpRequest'
+import { IController } from '../http/controllers/IController'
+import { IHttpRequest } from '../http/helpers/IHttpRequest'
+import { IHttpResponse } from '../http/helpers/IHttpResponse'
+import { HttpRequest } from '../http/helpers/implementations/HttpRequest'
 
 export async function expressAdapter(
   request: Request,
