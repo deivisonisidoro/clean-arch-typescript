@@ -1,5 +1,4 @@
-export interface FormValuesInterface {
-  name: string;
-  email: string;
-  password: string;
-}
+import { z } from "zod";
+import { registerUserFormSchema } from "./schema-validator";
+
+export type RegisterUserFormData = z.infer<typeof registerUserFormSchema> 

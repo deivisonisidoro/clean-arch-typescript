@@ -7,20 +7,23 @@ import { PasswordInput } from "@/components/Form/Inputs/Password";
 import { TextInput } from "@/components/Form/Inputs/Text";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createUser } from "../api/users";
-import { FormValuesInterface } from "./FormValuesInterface";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./schema-validator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUserFormSchema } from "./schema-validator";
+import { RegisterUserFormData } from "./FormValuesInterface";
+
+
+
 
 export default function RegisterUser() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValuesInterface>({
-    resolver: yupResolver(schema),
+  } = useForm<RegisterUserFormData>({
+    resolver: zodResolver(registerUserFormSchema),
   })
 
-  const onSubmit: SubmitHandler<FormValuesInterface> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterUserFormData> = async (data) => {
     try {
       const responseData = await createUser(data);
       console.log('User created successfully:', responseData);
