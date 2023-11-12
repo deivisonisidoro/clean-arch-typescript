@@ -1,10 +1,17 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./index";
 
-export default{
+const meta ={
   title: "Components/Form/Button",
-  component: Button
-}
+  component: Button,
+  tags: ['autodocs'],
+} satisfies Meta<typeof Button>;
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+export const Default: Story= {
+  args: {
+    title: 'Test',
+  }
 }

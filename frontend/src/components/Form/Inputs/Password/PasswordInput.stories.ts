@@ -1,10 +1,18 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { PasswordInput } from "./index";
 
-export default{
+const meta = {
   title: "Components/Form/Inputs/Password",
-  component: PasswordInput
-}
+  component: PasswordInput,
+  tags: ['autodocs'],
+} satisfies Meta<typeof PasswordInput>;
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+export const Default: Story= {
+  args: {
+    name: 'Test',
+    placeholder: "Test placeholder"
+  }
 }

@@ -1,10 +1,18 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { FormContainer } from ".";
 
-export default {
+const meta = {
   title: "Components/Form/FormContainer",
-  component: FormContainer
-}
+  component: FormContainer,
+  tags: ['autodocs'],
+} satisfies Meta<typeof FormContainer>;
 
-export const Default = {
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+export const Default: Story= {
+  args: {
+    children: 'Test',
+    onSubmit: () => {}
+  }
 }
