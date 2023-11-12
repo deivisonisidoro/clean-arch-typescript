@@ -12,7 +12,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story= {
   args: {
-    name: 'Test',
-    placeholder: "Test placeholder"
+    name: 'password',
+      placeholder: "Type the password",
+    defaultValue: "",
+  }
+}
+
+export const RequiredPassword: Story= {
+  args: {
+    name: 'email',
+    placeholder: "Type the password",
+    defaultValue: "",
+    errorMessage: "password is a required field"
   }
 }

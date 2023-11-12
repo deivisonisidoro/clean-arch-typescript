@@ -13,6 +13,24 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story= {
   args: {
     name: 'Test',
-    placeholder: "Test placeholder"
+    placeholder: "Type the E-mail",
+    defaultValue: "",
+  }
+}
+
+export const InvalidEmail: Story= {
+  args: {
+    name: 'email',
+    placeholder: "Type the E-mail",
+    defaultValue: "testingValidationError",
+    errorMessage: "email must be a valid email"
+  }
+}
+export const RequiredEmail: Story= {
+  args: {
+    name: 'email',
+    placeholder: "Type the e-mail",
+    defaultValue: "",
+    errorMessage: "email is a required field"
   }
 }
