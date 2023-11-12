@@ -12,11 +12,11 @@ const api = async (url: string, options: RequestInit = {}): Promise<any> => {
     };
 
     const response = await fetch(`${baseURL}${url}`, defaultOptions);
-
+    
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      const errorData = await response.json();
+      throw new Error(`${errorData.error}`);
     }
-
     return response.json();
   } catch (error) {
     console.error('Error while making the request:', error);
