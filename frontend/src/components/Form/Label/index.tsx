@@ -1,5 +1,5 @@
 import React from 'react';
-import { LabelPropsInterface } from './LabelPropsInterface';
+import { LabelPropsInterface } from './interfaces/LabelProps';
 
 
 function Label({ text, nameField }: LabelPropsInterface) {

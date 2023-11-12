@@ -1,30 +1,28 @@
 "use client"
 import { Button } from "@/components/Form/Button";
-import { EmailInput } from "@/components/Form/EmailInput";
 import { FormContainer } from "@/components/Form/FormContainer";
 import { Label } from "@/components/Form/Label";
-import { PasswordInput } from "@/components/Form/PasswordInput";
-import { TextInput } from "@/components/Form/TextInput";
+import { EmailInput } from "@/components/Form/Inputs/Email";
+import { PasswordInput } from "@/components/Form/Inputs/Password";
+import { TextInput } from "@/components/Form/Inputs/Text";
 import { useForm } from "react-hook-form";
 import { createUser } from "../api/users";
-
-type FormValues = {
-  name: string;
-  email: string;
-  password: string;
-};
+import { FormValuesInterface } from "./FormValuesInterface";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./schema-validator";
 
 export default function RegisterUser() {
-  const { handleSubmit, control } = useForm<FormValues>({
+  const { handleSubmit, control } = useForm<FormValuesInterface>({
     defaultValues: {
       name: "",
       email: "",
       password: ""
     },
+    resolver: yupResolver(schema),
     mode: "onChange"
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: FormValuesInterface) => {
     try {
       const responseData = await createUser(data);
       console.log('User created successfully:', responseData);

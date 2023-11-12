@@ -1,4 +1,4 @@
-import { ButtonPropsInterface } from "./ButtonPropsInterface";
+import { ButtonPropsInterface } from "./interfaces/ButtonProps";
 
 function Button({ title = "Sing In"  }: ButtonPropsInterface){
   return (

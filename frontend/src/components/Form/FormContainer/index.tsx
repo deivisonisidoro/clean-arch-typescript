@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormContainerPropsInterface } from './FormContainerPropsInterface';
+import { FormContainerPropsInterface } from './interfaces/FormContainerProps';
 
 
 function FormContainer ({ children, onSubmit }: FormContainerPropsInterface) {
