@@ -21,6 +21,7 @@ export default function RegisterUser() {
     formState: { errors },
   } = useForm<RegisterUserFormData>({
     resolver: zodResolver(registerUserFormSchema),
+    mode: "onBlur"
   })
 
   const onSubmit: SubmitHandler<RegisterUserFormData> = async (data) => {
@@ -46,6 +47,10 @@ export default function RegisterUser() {
         <div className="flex flex-col gap-1">
           <Label text="Password" nameField="password"  />
           <PasswordInput  register={{...register("password")}} name="password" defaultValue="" errorMessage={errors.password?.message}/>
+        </div>
+        <div className="flex flex-col gap-1">
+          <Label text="Confirm Password" nameField="confirmationPassword"  />
+          <PasswordInput  register={{...register("confirmPassword")}} name="confirmPassword" defaultValue="" placeholder="Type the password again" errorMessage={errors.confirmPassword?.message}/>
         </div>
         <div className="flex items-center justify-center">
           <Button title="Sign Up" />
