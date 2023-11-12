@@ -1,16 +1,16 @@
 import React from 'react';
-import { FormValuesInterface } from '../interfaces/FormValues';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { useController } from 'react-hook-form';
+import { PasswordPropsInterface } from './interfaces/PasswordProps';
 
 
-function PasswordInput(props: UseControllerProps<FormValuesInterface>) {
-  const { field, fieldState } = useController(props);
+function PasswordInput({ name, placeholder= `Type the ${name}`}: PasswordPropsInterface) {
+  const { field, fieldState } = useController({name});
   return (
       <>
         <input
           type='password'
           {...field}
-          placeholder={`Type the ${props.name}`} 
+          placeholder={placeholder} 
           className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
             !!fieldState.error ? 'border-red-500 placeholder-red-500' : ''
           }`}

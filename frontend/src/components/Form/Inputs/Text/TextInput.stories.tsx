@@ -1,7 +1,7 @@
 import { TextInput } from "./index";
 
 export default{
-  title: "Components/Form/TextInput",
+  title: "Components/Form/Inputs/Text",
   component: TextInput
 }
 

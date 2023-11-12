@@ -1,9 +1,10 @@
 import React from 'react';
-import { UseControllerProps, useController } from 'react-hook-form';
-import { FormValuesInterface } from '../interfaces/FormValues';
+import { useController } from 'react-hook-form';
+import { TextPropsInterface } from './interfaces/TextProps';
 
-function TextInput(props: UseControllerProps<FormValuesInterface>) {
-  const { field, fieldState } = useController(props);
+
+function TextInput({ name, placeholder = `Type the ${name}`}: TextPropsInterface) {
+  const { field, fieldState } = useController({name});
 
 
   return (
@@ -11,7 +12,7 @@ function TextInput(props: UseControllerProps<FormValuesInterface>) {
       <input
         type="text"
         {...field}
-        placeholder={`Type the ${props.name}`}
+        placeholder={placeholder}
         className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
           !!fieldState.error ? 'border-red-500 placeholder-red-500' : ''
         }`}

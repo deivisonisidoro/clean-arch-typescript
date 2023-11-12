@@ -1,7 +1,7 @@
 import { EmailInput } from "./index";
 
 export default{
-  title: "Components/Form/EmailInput",
+  title: "Components/Form/Inputs/Email",
   component: EmailInput
 }
 
