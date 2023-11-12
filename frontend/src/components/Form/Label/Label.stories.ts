@@ -1,10 +1,27 @@
+import { Meta, StoryObj } from "@storybook/react";
 import { Label } from "./index";
 
-export default{
+const meta = {
   title: "Components/Form/Label",
-  component: Label
+  component: Label,
+  tags: ['autodocs'],
+} satisfies Meta<typeof Label>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story= {
+  args: {
+    text: "Name",
+    nameField: "name",
+    required: false,
+  }
 }
 
-export const Default = {
-
+export const Required: Story= {
+  args: {
+    text: "Name",
+    nameField: "name",
+    required: true,
+  }
 }

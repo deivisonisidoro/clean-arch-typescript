@@ -37,19 +37,19 @@ export default function RegisterUser() {
   return (
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-1">
-          <Label text="Name" nameField="name" />
+          <Label text="Name" nameField="name" required/>
           <TextInput defaultValue="" name="name" register={{...register("name")}} errorMessage={errors.name?.message}/>
         </div>
         <div className="flex flex-col gap-1">
-          <Label text="E-mail" nameField="email" />
+          <Label text="E-mail" nameField="email" required/>
           <EmailInput  register={{...register("email")}} name="email" placeholder="Type the e-mail" defaultValue="" errorMessage={errors.email?.message}/>
         </div>
         <div className="flex flex-col gap-1">
-          <Label text="Password" nameField="password"  />
+          <Label text="Password" nameField="password" required />
           <PasswordInput  register={{...register("password")}} name="password" defaultValue="" errorMessage={errors.password?.message}/>
         </div>
         <div className="flex flex-col gap-1">
-          <Label text="Confirm Password" nameField="confirmationPassword"  />
+          <Label text="Confirm Password" nameField="confirmationPassword" required />
           <PasswordInput  register={{...register("confirmPassword")}} name="confirmPassword" defaultValue="" placeholder="Type the password again" errorMessage={errors.confirmPassword?.message}/>
         </div>
         <div className="flex items-center justify-center">
