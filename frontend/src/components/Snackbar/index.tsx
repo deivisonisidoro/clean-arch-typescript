@@ -1,50 +1,17 @@
-import { SnackbarMessageType } from "../../utils/enums/snackbarMessages";
 import { useEffect, useState } from 'react';
-import { SnackbarProps } from './interfaces/SnackbarProps';
+import { SnackbarProps } from './@types/SnackbarProps';
+import { snackbar } from "./variants";
 
 
 
-const Snackbar: React.FC<SnackbarProps> = ({ message, type }) => {
+function Snackbar ({ message, type }: SnackbarProps) {
   const [showMessage, setShowMessage] = useState(true)
 
   useEffect(() => {
-    const handleType = () => {
-      const colorMapping: Record<SnackbarMessageType, { borderColor: string; textColor: string; backgroundColor: string }> = {
-        [SnackbarMessageType.Success]: {
-          borderColor: "border-green-400",
-          textColor: "text-green-700",
-          backgroundColor: "bg-green-100",
-        },
-        [SnackbarMessageType.Info]: {
-          borderColor: "border-blue-400",
-          textColor: "text-blue-700",
-          backgroundColor: "bg-blue-100",
-        },
-        [SnackbarMessageType.Warning]: {
-          borderColor: "border-yellow-400",
-          textColor: "text-yellow-700",
-          backgroundColor: "bg-red-100",
-        },
-        [SnackbarMessageType.Error]: {
-          borderColor: "border-red-400",
-          textColor: "text-red-700",
-          backgroundColor: "bg-red-100",
-        },
-      };
-
-      const { borderColor, textColor, backgroundColor } = colorMapping[type] || colorMapping[SnackbarMessageType.Info];
-
-      return { borderColor, textColor, backgroundColor };
-    };
-
-    const { borderColor, textColor, backgroundColor } = handleType();
-
     const snackbarElement = document.getElementById('snackbar');
 
     if (snackbarElement) {
-      snackbarElement.className = `fixed bottom-0 left-0 ${backgroundColor} ${borderColor} ${textColor} border px-4 py-3 rounded transition-transform duration-300 ease-in-out transform ${
-        showMessage ? 'translate-y-0' : 'translate-y-full'
-      }`;
+      snackbarElement.className = snackbar({ type }) + ` ${showMessage ? 'translate-y-0' : 'translate-y-full'}`;
     }
   }, [type, showMessage]);
 
