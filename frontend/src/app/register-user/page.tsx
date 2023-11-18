@@ -13,11 +13,13 @@ import { RegisterUserFormData } from "./FormValuesInterface";
 import { useState } from "react";
 import Snackbar from "@/components/Snackbar";
 import { SnackbarMessageType } from "@/utils/enums/snackbarMessages";
+import Loading from "@/components/Loading";
 
 
 
 
 export default function RegisterUser() {
+  const [loading, setLoading] = useState(false);
   const [messageType, setMessageType] = useState<SnackbarMessageType>(
     SnackbarMessageType.Info
   );
@@ -35,6 +37,7 @@ export default function RegisterUser() {
   const onSubmit: SubmitHandler<RegisterUserFormData> = async (data) => {
     setShowMessage(false);
     try {
+      setLoading(true);
       await createUser(data);
       setMessageType(SnackbarMessageType.Success);
       setMessage("User registered successfully!");
@@ -47,13 +50,17 @@ export default function RegisterUser() {
         setMessage("An unknown error occurred while registering the user.");
       }
       setShowMessage(true);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
       <>
         {showMessage && <Snackbar message={message} type={messageType}/>}
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-screen flex-col">
+          {loading && <Loading size="lg" />}
+
           <FormContainer onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-1">
               <Label text="Name" nameField="name" required/>
