@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const snackbar = tv({
-  base: "fixed bottom-0 left-0 border px-4 py-3 rounded transition-transform duration-300 ease-in-out transform translate-y-full",
+  base: "fixed bottom-0 left-0 border px-4 py-3 rounded transition-transform duration-300 ease-in-out transform",
   variants: {
     type: {
       success: "bg-green-100 border-green-400 text-green-700",
