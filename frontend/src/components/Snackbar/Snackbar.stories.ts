@@ -3,7 +3,7 @@ import Snackbar  from ".";
 import { SnackbarMessageType } from "../../utils/enums/snackbarMessages";
 
 const meta ={
-  title: "Components/Form/Snackbar",
+  title: "Components/Snackbar",
   component: Snackbar,
   tags: ['autodocs'],
 } satisfies Meta<typeof Snackbar>;

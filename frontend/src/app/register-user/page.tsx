@@ -14,7 +14,7 @@ import { useState } from "react";
 import Snackbar from "@/components/Snackbar";
 import { SnackbarMessageType } from "@/utils/enums/snackbarMessages";
 import Loading from "@/components/Loading";
-
+import Logo from "@/components/Logo";
 
 
 
@@ -60,8 +60,10 @@ export default function RegisterUser() {
         {showMessage && <Snackbar message={message} type={messageType}/>}
         <div className="flex items-center justify-center h-screen flex-col">
           {loading && <Loading size="lg" />}
-
           <FormContainer onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex items-center justify-center">
+              <Logo />
+            </div>
             <div className="flex flex-col gap-1">
               <Label text="Name" nameField="name" required/>
               <TextInput defaultValue="" name="name" register={{...register("name")}} errorMessage={errors.name?.message}/>

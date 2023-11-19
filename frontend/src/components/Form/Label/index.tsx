@@ -4,7 +4,7 @@ import { LabelPropsInterface } from './interfaces/LabelProps';
 function Label({ text, nameField, required }: LabelPropsInterface) {
   return (
     <label className="block text-sm" htmlFor={nameField}>
-      {text} {required && <span>*</span>}
+      {text} {required && <span className="text-red-500" >*</span>}
     </label>
   );
 }
