@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'User Registration',
-  description: 'Sign up for an account to access exclusive features and content.',
+  title: 'Secure Authentication',
+  description: 'Ensure the security of your account with our authentication system.',
 };
 
-export default function RegisterUser({
+export default function Login({
   children,
 }: {
   children: React.ReactNode

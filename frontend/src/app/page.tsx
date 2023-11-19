@@ -1,8 +1,9 @@
-import RegisterUser from "./register-user/page";
+import Login from "./login/page";
+
 
 export default function Home() {
   return  (
-   <RegisterUser/>
+   <Login/>
   )
   
 }
