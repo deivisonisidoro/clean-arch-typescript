@@ -3,6 +3,7 @@ import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 import { IUsersRepository } from '../../../../src/app/repositories/User'
 import { IDeleteUserUseCase } from '../../../../src/app/useCases/User/DeleteUser'
 import { DeleteUserUseCase } from '../../../../src/app/useCases/User/implementations/DeleteUser'
+import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
 
 describe('DeleteUser', () => {
   let deleteUserUseCase: IDeleteUserUseCase
@@ -47,6 +48,6 @@ describe('DeleteUser', () => {
     userRepository.findById = vi.fn().mockResolvedValueOnce(null)
 
     const result = await deleteUserUseCase.execute(userId)
-    expect(result.data.error).toEqual('User does not exits!')
+    expect(result.data.error).toEqual(UserErrorType.UserDoesNotExist )
   })
 })

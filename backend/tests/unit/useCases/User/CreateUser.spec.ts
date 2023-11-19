@@ -1,9 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../../src/domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../../src/app/repositories/User'
 import { ICreateUserUseCase } from '../../../../src/app/useCases/User/CreateUser'
 import { CreateUserUseCase } from '../../../../src/app/useCases/User/implementations/CreateUser'
+import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
+import { EmailErrorType } from '../../../../src/domain/enums/email/ErrorType'
 
 describe('CreateUserUseCase', () => {
   let createUserUseCase: ICreateUserUseCase
@@ -62,7 +64,7 @@ describe('CreateUserUseCase', () => {
       .fn()
       .mockResolvedValueOnce(createUserRequestDTO)
     const result = await createUserUseCase.execute(createUserRequestDTO)
-    expect(result.data).toEqual({ error: 'User already exists!' })
+    expect(result.data).toEqual({ error: UserErrorType.UserAlreadyExists })
   })
   it('should throw an error if email is invalid', async () => {
     const createUserRequestDTO: ICreateUserRequestDTO = {
@@ -75,6 +77,6 @@ describe('CreateUserUseCase', () => {
       .fn()
       .mockResolvedValueOnce(createUserRequestDTO)
     const result = await createUserUseCase.execute(createUserRequestDTO)
-    expect(result.data).toEqual({ error: 'Invalid Email Address' })
+    expect(result.data).toEqual({ error: EmailErrorType.InvalidEmail })
   })
 })

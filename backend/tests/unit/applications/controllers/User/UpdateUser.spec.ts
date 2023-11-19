@@ -6,6 +6,7 @@ import { UpdateUserController } from '../../../../../src/presentation/http/contr
 import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
 import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
 import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
+import { UserErrorType } from '../../../../../src/domain/enums/user/ErrorType'
 
 describe('UpdateUserController', () => {
   let updateUserUseCase: IUpdateUserUseCase
@@ -110,14 +111,14 @@ describe('UpdateUserController', () => {
     }
     const httpError = new HttpErrors()
     updateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
-      data: 'User does not exits!',
+      data: UserErrorType.UserDoesNotExist,
       success: false,
     })
 
     const httpResponse = await updateUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
-    expect(httpResponse.body).toEqual('User does not exits!')
+    expect(httpResponse.body).toEqual(UserErrorType.UserDoesNotExist)
   })
   it('should return 500 response if body and path are missing', async () => {
     const httpError = new HttpErrors()

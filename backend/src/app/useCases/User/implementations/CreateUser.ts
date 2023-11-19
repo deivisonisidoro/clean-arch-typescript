@@ -3,6 +3,7 @@ import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
+import { UserErrorType } from 'src/domain/enums/user/ErrorType'
 
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
@@ -24,7 +25,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       )
 
       if (userAlreadyExists) {
-        return { data: { error: 'User already exists!' }, success: false }
+        return { data: { error: UserErrorType.UserAlreadyExists }, success: false }
       }
 
       const user = await this.userRepository.create({

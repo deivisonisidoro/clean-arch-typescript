@@ -5,6 +5,7 @@ import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut'
 import { IUsersRepository } from '../../../../src/app/repositories/User'
 import { IGetAllUserUseCase } from '../../../../src/app/useCases/User/GetAllUser'
 import { GetAllUserUseCase } from '../../../../src/app/useCases/User/implementations/GetAllUser'
+import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
 
 describe('GetAllUserUseCase', () => {
   let getAllUserUseCase: IGetAllUserUseCase
@@ -72,6 +73,6 @@ describe('GetAllUserUseCase', () => {
     const result = await getAllUserUseCase.execute(pageNumber)
 
     expect(userRepository.findAll).toHaveBeenCalledWith(pageNumber)
-    expect(result.data.error).toEqual('Users not found')
+    expect(result.data.error).toEqual(UserErrorType.UserNotFound)
   })
 })

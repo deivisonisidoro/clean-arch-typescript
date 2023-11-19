@@ -1,13 +1,14 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { PaginationDTO } from '../../../../domain/dtos/Pagination'
-import { IUserOutRequestDTO } from '../../../../domain/dtos/User/UserOut'
+import { PaginationDTO } from '../../../../../src/domain/dtos/Pagination'
+import { IUserOutRequestDTO } from '../../../../../src/domain/dtos/User/UserOut'
 import { IGetAllUserUseCase } from '../../../../../src/app/useCases/User/GetAllUser'
 import { IController } from '../../../../../src/presentation/http/controllers/IController'
 import { GetUserController } from '../../../../../src/presentation/http/controllers/User/implementations/GetUser'
 import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
 import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
 import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
+import { UserErrorType } from '../../../../../src/domain/enums/user/ErrorType'
 
 describe('GetUserController', () => {
   let getAllUserUseCase: IGetAllUserUseCase
@@ -79,14 +80,14 @@ describe('GetUserController', () => {
     }
     const httpError = new HttpErrors()
     getAllUserUseCase.execute = vi.fn().mockResolvedValueOnce({
-      data: 'Users not found',
+      data: UserErrorType.UserNotFound,
       success: false,
     })
 
     const httpResponse = await getUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_404().statusCode)
-    expect(httpResponse.body).toEqual('Users not found')
+    expect(httpResponse.body).toEqual(UserErrorType.UserNotFound)
   })
   it('should return 500 response if query is missing', async () => {
     const httpError = new HttpErrors()

@@ -1,5 +1,7 @@
+import { UserErrorType } from 'src/domain/enums/user/ErrorType'
 import { IUsersRepository } from '../../../repositories/User'
 import { IDeleteUserUseCase } from '../DeleteUser'
+import { UserSuccessType } from 'src/domain/enums/user/SuccessType'
 
 export class DeleteUserUseCase implements IDeleteUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
@@ -8,9 +10,9 @@ export class DeleteUserUseCase implements IDeleteUserUseCase {
     const userAlreadyExists = await this.userRepository.findById(userId)
 
     if (!userAlreadyExists) {
-      return { data: {error: 'User does not exits!'}, success: false }
+      return { data: {error: UserErrorType.UserDoesNotExist }, success: false }
     }
     await this.userRepository.delete(userId)
-    return { data: {error: 'User deleted with success!'}, success: true }
+    return { data: {error: UserSuccessType.UserDeleted}, success: true }
   }
 }

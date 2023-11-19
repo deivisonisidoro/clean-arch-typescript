@@ -1,9 +1,11 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
+import { IUpdateUserRequestDTO } from '../../../../src/domain/dtos/User/UpdateUser'
 import { IUsersRepository } from '../../../../src/app/repositories/User'
 import { UpdateUserUseCase } from '../../../../src/app/useCases/User/implementations/UpdateUser'
 import { IUpdateUserUseCase } from '../../../../src/app/useCases/User/UpdateUser'
+import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
+import { EmailErrorType } from '../../../../src/domain/enums/email/ErrorType'
 
 describe('UpdateUserUseCase', () => {
   let updateUserUseCase: IUpdateUserUseCase
@@ -63,7 +65,7 @@ describe('UpdateUserUseCase', () => {
     userRepository.findById = vi.fn().mockResolvedValueOnce(null)
 
     const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
-    expect(result.data).toEqual('User does not exits!')
+    expect(result.data).toEqual(UserErrorType.UserDoesNotExist)
   })
   it('should throw an error if email is invalid', async () => {
     const userId = '123'
@@ -83,6 +85,6 @@ describe('UpdateUserUseCase', () => {
     userRepository.findById = vi.fn().mockResolvedValueOnce(existingUser)
 
     const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
-    expect(result.data).toEqual({ error: 'Invalid Email Address' })
+    expect(result.data).toEqual({ error: EmailErrorType.InvalidEmail })
   })
 })

@@ -6,6 +6,8 @@ import { DeleteUserController } from '../../../../../src/presentation/http/contr
 import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
 import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
 import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
+import { UserErrorType } from '../../../../../src/domain/enums/user/ErrorType'
+import { UserSuccessType } from '../../../../../src/domain/enums/user/SuccessType'
 
 describe('DeleteUserController', () => {
   let deleteUserUseCase: IDeleteUserUseCase
@@ -28,14 +30,14 @@ describe('DeleteUserController', () => {
     }
     const httpSuccess = new HttpSuccess()
     deleteUserUseCase.execute = vi.fn().mockResolvedValueOnce({
-      data: 'User deleted with success!',
+      data: UserSuccessType.UserDeleted,
       success: true,
     })
 
     const httpResponse = await getUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
-    expect(httpResponse.body).toEqual('User deleted with success!')
+    expect(httpResponse.body).toEqual(UserSuccessType.UserDeleted)
   })
   it('should return 400 response if users not was found', async () => {
     const id = '123'
@@ -44,13 +46,13 @@ describe('DeleteUserController', () => {
     }
     const httpError = new HttpErrors()
     deleteUserUseCase.execute = vi.fn().mockResolvedValueOnce({
-      data: 'Users not found',
+      data: UserErrorType.UserDoesNotExist,
       success: false,
     })
 
     const httpResponse = await getUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
-    expect(httpResponse.body).toEqual('Users not found')
+    expect(httpResponse.body).toEqual(UserErrorType.UserDoesNotExist)
   })
 })

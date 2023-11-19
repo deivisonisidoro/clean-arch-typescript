@@ -1,12 +1,13 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
+import { ICreateUserRequestDTO } from '../../../../../src/domain/dtos/User/CreateUser'
 import { ICreateUserUseCase } from '../../../../../src/app/useCases/User/CreateUser'
 import { IController } from '../../../../../src/presentation/http/controllers/IController'
 import { CreateUserController } from '../../../../../src/presentation/http/controllers/User/implementations/CreateUser'
 import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
 import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
 import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
+import { UserErrorType } from '../../../../../src/domain/enums/user/ErrorType'
 
 describe('CreateUserController', () => {
   let createUserUseCase: ICreateUserUseCase
@@ -72,14 +73,14 @@ describe('CreateUserController', () => {
     }
     const httpError = new HttpErrors()
     createUserUseCase.execute = vi.fn().mockResolvedValueOnce({
-      data: 'User already exists!',
+      data: UserErrorType.UserAlreadyExists,
       success: false,
     })
 
     const httpResponse = await createUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
-    expect(httpResponse.body).toEqual('User already exists!')
+    expect(httpResponse.body).toEqual(UserErrorType.UserAlreadyExists)
   })
   it('should return 500 response if body is missing', async () => {
     const httpError = new HttpErrors()
