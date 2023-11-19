@@ -38,7 +38,7 @@ describe('DeleteUser', () => {
     const result = await deleteUserUseCase.execute(userId)
 
     expect(userRepository.delete).toHaveBeenCalledWith(userId)
-    expect(result.data).toEqual(`User deleted with success!`)
+    expect(result.data.error).toEqual(`User deleted with success!`)
   })
 
   it('should throw an error if user does not exists', async () => {
@@ -47,6 +47,6 @@ describe('DeleteUser', () => {
     userRepository.findById = vi.fn().mockResolvedValueOnce(null)
 
     const result = await deleteUserUseCase.execute(userId)
-    expect(result.data).toEqual('User does not exits!')
+    expect(result.data.error).toEqual('User does not exits!')
   })
 })

@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUpdateUserRequestDTO } from '../../../../src/app/dtos/User/UpdateUser'
+import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
 import { IUsersRepository } from '../../../../src/app/repositories/User'
 import { UpdateUserUseCase } from '../../../../src/app/useCases/User/implementations/UpdateUser'
 import { IUpdateUserUseCase } from '../../../../src/app/useCases/User/UpdateUser'

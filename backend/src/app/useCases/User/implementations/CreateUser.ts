@@ -1,6 +1,6 @@
 import { User } from '../../../../domain/entities/User'
-import { ResponseDTO } from '../../../dtos/Response'
-import { ICreateUserRequestDTO } from '../../../dtos/User/CreateUser'
+import { ResponseDTO } from '../../../../domain/dtos/Response'
+import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
 

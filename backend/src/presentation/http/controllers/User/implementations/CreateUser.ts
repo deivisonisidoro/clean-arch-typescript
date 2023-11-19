@@ -1,4 +1,4 @@
-import { ResponseDTO } from '../../../../../app/dtos/Response'
+import { ResponseDTO } from '../../../../../domain/dtos/Response'
 import { ICreateUserUseCase } from '../../../../../app/useCases/User/CreateUser'
 import { IHttpErrors } from '../../../helpers/IHttpErrors'
 import { IHttpRequest } from '../../../helpers/IHttpRequest'

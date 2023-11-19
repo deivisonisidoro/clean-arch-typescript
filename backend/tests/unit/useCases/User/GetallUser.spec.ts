@@ -1,7 +1,7 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { PaginationDTO } from '../../../../src/app/dtos/Pagination'
-import { IUserOutRequestDTO } from '../../../../src/app/dtos/User/UserOut'
+import { PaginationDTO } from '../../../domain/dtos/Pagination'
+import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut'
 import { IUsersRepository } from '../../../../src/app/repositories/User'
 import { IGetAllUserUseCase } from '../../../../src/app/useCases/User/GetAllUser'
 import { GetAllUserUseCase } from '../../../../src/app/useCases/User/implementations/GetAllUser'
@@ -72,6 +72,6 @@ describe('GetAllUserUseCase', () => {
     const result = await getAllUserUseCase.execute(pageNumber)
 
     expect(userRepository.findAll).toHaveBeenCalledWith(pageNumber)
-    expect(result.data).toEqual('Users not found')
+    expect(result.data.error).toEqual('Users not found')
   })
 })
