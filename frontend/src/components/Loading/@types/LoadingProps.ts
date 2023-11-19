@@ -1,6 +1,6 @@
 import { VariantProps } from "tailwind-variants";
-import { loading } from "../variants";
+import { loadingVariants } from "../loadingVariants";
 
-export type LoadingProps = VariantProps<typeof loading> & {
-  size?: keyof typeof loading.variants.size | undefined;
+export type LoadingProps = VariantProps<typeof loadingVariants> & {
+  size?: keyof typeof loadingVariants.variants.size | undefined;
 };
