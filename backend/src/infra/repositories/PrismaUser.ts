@@ -9,6 +9,7 @@ import { IUsersRepository } from '../../app/repositories/User'
 
 export class PrismaUserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) {}
+
   async create({
     email,
     name,

@@ -10,8 +10,8 @@ export interface IUsersRepository {
   findById(id: string): Promise<IUserOutRequestDTO | null>
   findAll(pageNumber: number): Promise<PaginationDTO>
   update(
-    user: IUpdateUserRequestDTO,
+    user: IUserOutRequestDTO,
     data: IUpdateUserRequestDTO,
-  ): Promise<IUserInRequestDTO>
+  ): Promise<IUserOutRequestDTO>
   delete(id: string): Promise<void>
 }
