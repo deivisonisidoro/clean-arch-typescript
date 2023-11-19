@@ -60,10 +60,10 @@ export default function RegisterUser() {
         {showMessage && <Snackbar message={message} type={messageType}/>}
         <div className="flex items-center justify-center h-screen flex-col">
           {loading && <Loading size="lg" />}
+          <div className="flex items-center justify-center mb-6 mt-2">
+            <Logo />
+          </div>
           <FormContainer onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex items-center justify-center">
-              <Logo />
-            </div>
             <div className="flex flex-col gap-1">
               <Label text="Name" nameField="name" required/>
               <TextInput defaultValue="" name="name" register={{...register("name")}} errorMessage={errors.name?.message}/>
