@@ -3,7 +3,7 @@ import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IUpdateUserRequestDTO } from '../../../../domain/dtos/User/UpdateUser'
 import { IUsersRepository } from '../../../repositories/User'
 import { IUpdateUserUseCase } from '../UpdateUser'
-import { UserErrorType } from 'src/domain/enums/user/ErrorType'
+import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
 
 export class UpdateUserUseCase implements IUpdateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}

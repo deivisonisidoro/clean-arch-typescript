@@ -1,4 +1,4 @@
-import { UserErrorType } from 'src/domain/enums/user/ErrorType'
+import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
 import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IUsersRepository } from '../../../repositories/User'
 import { IGetAllUserUseCase } from '../GetAllUser'

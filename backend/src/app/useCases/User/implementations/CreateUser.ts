@@ -3,7 +3,7 @@ import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
-import { UserErrorType } from 'src/domain/enums/user/ErrorType'
+import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
 
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private userRepository: IUsersRepository) {}

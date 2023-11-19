@@ -1,7 +1,7 @@
-import { UserErrorType } from 'src/domain/enums/user/ErrorType'
+import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
 import { IUsersRepository } from '../../../repositories/User'
 import { IDeleteUserUseCase } from '../DeleteUser'
-import { UserSuccessType } from 'src/domain/enums/user/SuccessType'
+import { UserSuccessType } from '../../../../domain/enums/user/SuccessType'
 
 export class DeleteUserUseCase implements IDeleteUserUseCase {
   constructor(private userRepository: IUsersRepository) {}
