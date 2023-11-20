@@ -1,14 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 
-import { PaginationDTO } from '../../domain/dtos/Pagination'
-import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
-import { IUpdateUserRequestDTO } from '../../domain/dtos/User/UpdateUser'
-import { IUserOutRequestDTO } from '../../domain/dtos/User/UserOut'
-import { IUsersRepository } from '../../app/repositories/User'
-import { IUserInRequestDTO } from '../../domain/dtos/User/UserIn'
+import { PaginationDTO } from '../../../domain/dtos/Pagination'
+import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
+import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
+import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut'
+import { IUsersRepository } from '../../../app/repositories/User'
+import { IUserInRequestDTO } from '../../../domain/dtos/User/UserIn'
 import { hash } from 'bcryptjs'
 
-export class PrismaUserRepository implements IUsersRepository {
+export class UserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) {}
 
   async create({

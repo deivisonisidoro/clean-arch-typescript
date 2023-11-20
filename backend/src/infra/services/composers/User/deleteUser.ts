@@ -4,10 +4,10 @@ import { DeleteUserUseCase } from '../../../../app/useCases/User/implementations
 import { IController } from '../../../../presentation/http/controllers/IController'
 import { DeleteUserController } from '../../../../presentation/http/controllers/User/implementations/DeleteUser'
 import { prismaClient } from '../../../databases/prisma/connection'
-import { PrismaUserRepository } from '../../../repositories/PrismaUser'
+import { UserRepository } from '../../../repositories/prisma/User'
 
 export function deleteUserComposer() {
-  const repository: IUsersRepository = new PrismaUserRepository(prismaClient)
+  const repository: IUsersRepository = new UserRepository(prismaClient)
   const useCase: IDeleteUserUseCase = new DeleteUserUseCase(repository)
   const controller: IController = new DeleteUserController(useCase)
   return controller

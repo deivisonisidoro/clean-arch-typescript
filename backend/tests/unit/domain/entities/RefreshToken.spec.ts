@@ -14,7 +14,7 @@ describe('RefreshToken', () => {
   const refreshTokenProps = {
     expires_in: 3600,
     user_id: 'user123',
-    created_at: new Date(),
+    createdAt: new Date(),
     user: user,
   };
 
@@ -32,7 +32,7 @@ describe('RefreshToken', () => {
     expect(refreshToken.user).toBe(user);
   });
 
-  it('should have correct created_at', () => {
-    expect(refreshToken.created_at).toBe(refreshTokenProps.created_at);
+  it('should have correct createdAt', () => {
+    expect(refreshToken.createdAt).toBe(refreshTokenProps.createdAt);
   });
 });

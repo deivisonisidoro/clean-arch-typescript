@@ -1,10 +1,10 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 
-import { IUsersRepository } from '../../../../src/app/repositories/User'
-import { PrismaUserRepository } from '../../../../src/infra/repositories/PrismaUser'
-import { prisma } from '../../../helpers/prisma'
+import { IUsersRepository } from '../../../../../src/app/repositories/User'
+import { UserRepository } from '../../../../../src/infra/repositories/prisma/User'
+import { prisma } from '../../../../helpers/prisma'
 
-describe('PrismaUserRepository', () => {
+describe('UserPrismaRepository', () => {
   let userRepository: IUsersRepository
   const userData = {
     email: 'test@example.com',
@@ -12,7 +12,7 @@ describe('PrismaUserRepository', () => {
     password: 'password',
   }
   beforeAll(async () => {
-    userRepository = new PrismaUserRepository(prisma)
+    userRepository = new UserRepository(prisma)
   })
 
   it('create method should create a user', async () => {
