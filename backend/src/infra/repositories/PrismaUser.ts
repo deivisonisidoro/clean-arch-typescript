@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-import { hash } from 'bcryptjs'
 
 import { PaginationDTO } from '../../domain/dtos/Pagination'
 import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
@@ -7,6 +6,7 @@ import { IUpdateUserRequestDTO } from '../../domain/dtos/User/UpdateUser'
 import { IUserOutRequestDTO } from '../../domain/dtos/User/UserOut'
 import { IUsersRepository } from '../../app/repositories/User'
 import { IUserInRequestDTO } from '../../domain/dtos/User/UserIn'
+import { hash } from 'bcryptjs'
 
 export class PrismaUserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) {}
@@ -16,7 +16,6 @@ export class PrismaUserRepository implements IUsersRepository {
     name,
     password,
   }: ICreateUserRequestDTO): Promise<IUserOutRequestDTO> {
-    password = await hash(password, 8)
     const user = this.prisma.user.create({
       data: {
         email,

@@ -6,10 +6,12 @@ import { ICreateUserUseCase } from '../../../../src/app/useCases/User/CreateUser
 import { CreateUserUseCase } from '../../../../src/app/useCases/User/implementations/CreateUser'
 import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
 import { EmailErrorType } from '../../../../src/domain/enums/email/ErrorType'
+import { IPasswordHasher } from "../../../../src/app/providers/PasswordHasher";
 
 describe('CreateUserUseCase', () => {
   let createUserUseCase: ICreateUserUseCase
   let userRepository: IUsersRepository
+  let passwordHasher: IPasswordHasher
 
   beforeEach(() => {
     userRepository = {
@@ -20,7 +22,11 @@ describe('CreateUserUseCase', () => {
       findAll: vi.fn(),
       delete: vi.fn(),
     }
-    createUserUseCase = new CreateUserUseCase(userRepository)
+    passwordHasher = {
+      hashPassword: vi.fn(),
+      comparePasswords: vi.fn()
+    }
+    createUserUseCase = new CreateUserUseCase(userRepository, passwordHasher)
   })
   afterEach(() => {
     vi.clearAllMocks()
@@ -37,7 +43,7 @@ describe('CreateUserUseCase', () => {
       id: '123',
       ...createUserRequestDTO,
     })
-
+    passwordHasher.hashPassword = vi.fn().mockResolvedValueOnce(createUserRequestDTO.password)
     const result = await createUserUseCase.execute(createUserRequestDTO)
 
     expect(userRepository.findByEmail).toHaveBeenCalledWith(

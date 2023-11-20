@@ -4,9 +4,13 @@ import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
 import { IUsersRepository } from '../../../repositories/User'
 import { ICreateUserUseCase } from '../CreateUser'
 import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
+import { IPasswordHasher } from '../../../providers/PasswordHasher'
 
 export class CreateUserUseCase implements ICreateUserUseCase {
-  constructor(private userRepository: IUsersRepository) {}
+  constructor(
+    private userRepository: IUsersRepository,
+    private passwordHasher : IPasswordHasher,
+  ) {}
 
   async execute({
     email,
@@ -27,11 +31,11 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       if (userAlreadyExists) {
         return { data: { error: UserErrorType.UserAlreadyExists }, success: false }
       }
-
+      const passwordHashed = await this.passwordHasher.hashPassword(password)
       const user = await this.userRepository.create({
         email: userEntity.email.address,
         name: userEntity.name,
-        password: userEntity.password,
+        password: passwordHashed,
       })
 
       return { data: user, success: true }
