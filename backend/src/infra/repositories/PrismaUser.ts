@@ -6,6 +6,7 @@ import { ICreateUserRequestDTO } from '../../domain/dtos/User/CreateUser'
 import { IUpdateUserRequestDTO } from '../../domain/dtos/User/UpdateUser'
 import { IUserOutRequestDTO } from '../../domain/dtos/User/UserOut'
 import { IUsersRepository } from '../../app/repositories/User'
+import { IUserInRequestDTO } from '../../domain/dtos/User/UserIn'
 
 export class PrismaUserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) {}
@@ -32,26 +33,28 @@ export class PrismaUserRepository implements IUsersRepository {
     return user
   }
 
-  async findByEmail(email: string): Promise<IUserOutRequestDTO | null> {
+  async findByEmail(email: string): Promise<IUserInRequestDTO | unknown> {
     const user = await this.prisma.user.findUnique({
       where: { email },
       select: {
         id: true,
         email: true,
         name: true,
+        password: true,
         createdAt: true,
       },
     })
     return user
   }
 
-  async findById(id: string): Promise<IUserOutRequestDTO | null> {
+  async findById(id: string): Promise<IUserInRequestDTO | null> {
     const user = await this.prisma.user.findUnique({
       where: { id },
       select: {
         id: true,
         email: true,
         name: true,
+        password: true,
         createdAt: true,
       },
     })
