@@ -2,18 +2,20 @@ import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest';
 
 import { IAuthenticateUserDTO } from "../../../../src/domain/dtos/User/Authenticate";
 import { IUsersRepository } from "../../../../src/app/repositories/User";
-import { IRefreshTokenProvider } from "../../../../src/app/providers/RefreshTokenProvider";
+import { IGenerateRefreshTokenProvider } from "../../../../src/app/providers/GenerateRefreshToken";
 import { AuthenticateUserUseCase } from "../../../../src/app/useCases/Authenticate/implementations/AuthenticateUser"
 import { IPasswordHasher } from "../../../../src/app/providers/PasswordHasher";
 import { AuthenticateUserErrorType } from '../../../../src/domain/enums/Authticate/AuthenticateUser/ErrorType';
+import { IRefreshTokenRepository } from '../../../../src/app/repositories/RefreshToken';
 
 
 
 describe("Authenticate user", ()=>{
   let userRepository: IUsersRepository;
   let authenticateUserUseCase: AuthenticateUserUseCase;
-  let generateRefreshTokenProvider: IRefreshTokenProvider;
+  let generateRefreshTokenProvider: IGenerateRefreshTokenProvider;
   let passwordHasher: IPasswordHasher;
+  let refreshTokenRepository: IRefreshTokenRepository
 
   beforeEach(() => {
     userRepository = {
@@ -28,14 +30,20 @@ describe("Authenticate user", ()=>{
       hashPassword: vi.fn(),
       comparePasswords: vi.fn()
     }
-    generateRefreshTokenProvider = {
+    refreshTokenRepository ={
       create: vi.fn(),
       findId: vi.fn(),
       delete: vi.fn(),
-      save: vi.fn(),
+    }
+    generateRefreshTokenProvider = {
       generateToken: vi.fn()
     }
-    authenticateUserUseCase = new AuthenticateUserUseCase(userRepository, passwordHasher, generateRefreshTokenProvider )
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      userRepository,
+      passwordHasher,
+      generateRefreshTokenProvider,
+      refreshTokenRepository
+    )
   })
   afterEach(() => {
     vi.clearAllMocks()
@@ -51,7 +59,7 @@ describe("Authenticate user", ()=>{
 
     userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData);
     passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true);
-    generateRefreshTokenProvider.delete = vi.fn().mockResolvedValueOnce(null)
+    refreshTokenRepository.delete = vi.fn().mockResolvedValueOnce(null)
     const userAuthenticated = await authenticateUserUseCase.execute(userData);
 
     expect(userAuthenticated.data).toHaveProperty("token");

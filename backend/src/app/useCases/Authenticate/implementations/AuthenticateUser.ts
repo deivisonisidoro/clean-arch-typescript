@@ -1,7 +1,8 @@
 import { IUsersRepository } from "../../../repositories/User";
+import { IRefreshTokenRepository } from "../../../repositories/RefreshToken"
 import { IAuthenticateUserDTO } from "../../../../domain/dtos/User/Authenticate";
 import { IPasswordHasher } from "../../../providers/PasswordHasher";
-import { IRefreshTokenProvider } from "../../../providers/RefreshTokenProvider";
+import { IGenerateRefreshTokenProvider } from "../../../providers/GenerateRefreshToken";
 import { IUserInRequestDTO } from "../../../../domain/dtos/User/UserIn";
 import { IAuthenticateUserUserUseCase } from "../AuthenticateUser";
 import { AuthenticateUserErrorType } from "../../../../domain/enums/Authticate/AuthenticateUser/ErrorType";
@@ -12,7 +13,8 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUserUseCase{
   constructor(
     private userRepository: IUsersRepository,
     private passwordHasher : IPasswordHasher,
-    private generateRefreshTokenProvider: IRefreshTokenProvider,
+    private generateRefreshTokenProvider: IGenerateRefreshTokenProvider,
+    private refreshTokenRepository: IRefreshTokenRepository
   ){}
   async execute({email, password}: IAuthenticateUserDTO){
     const userAlreadyExists = await this.userRepository.findByEmail(email) as IUserInRequestDTO | null;
@@ -26,12 +28,10 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUserUseCase{
     if(!passwordMatch){
       return { data: { error: AuthenticateUserErrorType.EmailOrPasswordWrong }, success: false }
     }
-    await this.generateRefreshTokenProvider.delete(userAlreadyExists.id)
+    await this.refreshTokenRepository.delete(userAlreadyExists.id)
     const token = await this.generateRefreshTokenProvider.generateToken(userAlreadyExists.id);
 
-    const refreshToken = await this.generateRefreshTokenProvider.create(userAlreadyExists.id)
-
-    await this.generateRefreshTokenProvider.save(refreshToken);
+    const refreshToken = await this.refreshTokenRepository.create(userAlreadyExists.id)
 
     return  { data: {token, refreshToken}, success: true }
   }
