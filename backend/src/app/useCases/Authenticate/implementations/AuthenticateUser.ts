@@ -28,7 +28,7 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUserUseCase{
     if(!passwordMatch){
       return { data: { error: AuthenticateUserErrorType.EmailOrPasswordWrong }, success: false }
     }
-    await this.refreshTokenRepository.delete(userAlreadyExists.id)
+
     const token = await this.generateRefreshTokenProvider.generateToken(userAlreadyExists.id);
 
     const refreshToken = await this.refreshTokenRepository.create(userAlreadyExists.id)
