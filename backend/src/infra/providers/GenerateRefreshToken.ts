@@ -1,5 +1,3 @@
-// GenerateRefreshTokenProvider.ts
-
 import { config } from 'dotenv';
 config();
 

@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 
 import { IUsersRepository } from '../../../../../src/app/repositories/User'
 import { UserRepository } from '../../../../../src/infra/repositories/prisma/User'
-import { prisma } from '../../../../helpers/prisma'
+import { prisma } from '../../../../helpers/db/prisma'
 
 describe('UserPrismaRepository', () => {
   let userRepository: IUsersRepository

@@ -1,22 +1,31 @@
 import request from 'supertest'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 import { ICreateUserRequestDTO } from '../../../../../domain/dtos/User/CreateUser'
 import { app } from '../../../../../../src/presentation/express/settings/app'
 import { HttpErrors } from '../../../../../../src/presentation/http/helpers/implementations/HttpErrors'
-import { prisma } from '../../../../../helpers/prisma'
+import { prisma } from '../../../../../helpers//db/prisma'
+import { login } from '../../../../../helpers/auth/login'
 
-describe('Update User Controller', () => {
+describe('UpdateUserRouter', () => {
   const userData: ICreateUserRequestDTO = {
     password: '123456',
     email: 'testUpdate@test.com.br',
     name: 'Test Integration Exist User',
   }
   const httpError = new HttpErrors()
-  it('Should be able to update password of an existing user', async () => {
-    const user = await prisma.user.create({ data: userData })
+  let userId: string
+  let authToken: string
 
-    const response = await request(app).patch(`/users/${user.id}`).send({
+  beforeEach(async ()=>{
+    const responseUser = await request(app).post('/users').send(userData)
+    userId = responseUser.body.id
+    authToken = await login(userData)
+  })
+  it('Should be able to update password of an existing user', async () => {
+    const response = await request(app).patch(`/users/${userId}`)
+    .set('Authorization', `Bearer ${authToken}`)
+    .send({
       password: '123',
     })
 
@@ -25,9 +34,9 @@ describe('Update User Controller', () => {
   })
 
   it('Should be able to update email of an existing user', async () => {
-    const user = await prisma.user.create({ data: userData })
-
-    const response = await request(app).patch(`/users/${user.id}`).send({
+    const response = await request(app).patch(`/users/${userId}`)
+    .set('Authorization', `Bearer ${authToken}`)
+    .send({
       email: 'testUpdated@test.com.br',
     })
 
@@ -36,9 +45,9 @@ describe('Update User Controller', () => {
   })
 
   it('Should be able to update name of an existing user', async () => {
-    const user = await prisma.user.create({ data: userData })
-
-    const response = await request(app).patch(`/users/${user.id}`).send({
+    const response = await request(app).patch(`/users/${userId}`)
+    .set('Authorization', `Bearer ${authToken}`)
+    .send({
       name: 'Test Integration',
     })
 
@@ -47,7 +56,9 @@ describe('Update User Controller', () => {
   })
 
   it('Should not be able to update an not existing user', async () => {
-    const response = await request(app).patch('/users/:id').send({
+    const response = await request(app).patch('/users/:id')
+    .set('Authorization', `Bearer ${authToken}`)
+    .send({
       email: 'testUpdatedExisting@test.com.br',
     })
 
@@ -55,9 +66,9 @@ describe('Update User Controller', () => {
   })
 
   it('Should not be able to update an existing user with invalid email', async () => {
-    const user = await prisma.user.create({ data: userData })
-
-    const response = await request(app).patch(`/users/${user.id}`).send({
+    const response = await request(app).patch(`/users/${userId}`)
+    .set('Authorization', `Bearer ${authToken}`)
+    .send({
       email: 'invalid email',
     })
     expect(response.status).toBe(httpError.error_400().statusCode)
@@ -66,13 +77,14 @@ describe('Update User Controller', () => {
   it('should return 422 response if body parameters are invalid', async () => {
     const response = await request(app)
       .patch('/users/:id')
+      .set('Authorization', `Bearer ${authToken}`)
       .send({ test: 'Test' })
 
     expect(response.status).toBe(httpError.error_422().statusCode)
   })
   it('should return 500 response if an internal server error occurs', async () => {
     const response = await request(app).patch('/users/:id')
-
+    .set('Authorization', `Bearer ${authToken}`)
     expect(response.status).toBe(httpError.error_500().statusCode)
   })
 })

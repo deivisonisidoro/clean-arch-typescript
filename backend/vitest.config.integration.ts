@@ -4,6 +4,6 @@ export default defineConfig({
   test: {
     include: ['tests/integration/**/*.spec.ts', '!tests'],
     threads: false,
-    setupFiles: ['tests/helpers/setup.ts'],
+    setupFiles: ['tests/helpers/db/setup.ts'],
   },
 })

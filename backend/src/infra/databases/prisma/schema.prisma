@@ -22,7 +22,7 @@ model  RefreshToken{
   id        String      @id @default(uuid())
   expires_in Int
   user_id    String     @unique
-  user       User       @relation(fields: [user_id], references: [id])
+  user       User       @relation(fields: [user_id], references: [id], onDelete: Cascade)
   createdAt DateTime    @default(now())
   @@map("refresh_token")
 }

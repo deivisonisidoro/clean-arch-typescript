@@ -7,7 +7,7 @@ import { AuthenticateUserController } from '../../../../../src/presentation/http
 import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
 import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
 import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
-import { AuthenticateUserErrorType } from '../../../../../src/domain/enums/Authticate/AuthenticateUser/ErrorType'
+import { AuthenticateUserErrorType } from '../../../../domain/enums/Authenticate/AuthenticateUser/ErrorType'
 
 describe('AuthenticateUserController', () => {
   let authenticateUserUseCase: IAuthenticateUserUserUseCase

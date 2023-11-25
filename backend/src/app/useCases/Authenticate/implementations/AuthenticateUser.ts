@@ -5,7 +5,7 @@ import { IPasswordHasher } from "../../../providers/PasswordHasher";
 import { IGenerateRefreshTokenProvider } from "../../../providers/GenerateRefreshToken";
 import { IUserInRequestDTO } from "../../../../domain/dtos/User/UserIn";
 import { IAuthenticateUserUserUseCase } from "../AuthenticateUser";
-import { AuthenticateUserErrorType } from "../../../../domain/enums/Authticate/AuthenticateUser/ErrorType";
+import { AuthenticateUserErrorType } from "../../../../domain/enums/Authenticate/AuthenticateUser/ErrorType";
 
 
 

@@ -4,7 +4,7 @@ import { IRefreshTokenRepository } from '../../../../../src/app/repositories/Ref
 import { IUsersRepository } from '../../../../../src/app/repositories/User'
 import { UserRepository } from '../../../../../src/infra/repositories/prisma/User'
 import { RefreshTokenPrismaRepository } from '../../../../../src/infra/repositories/prisma/RefreshToken'
-import { prisma } from '../../../../helpers/prisma'
+import { prisma } from '../../../../helpers/db/prisma'
 
 describe('RefreshTokenPrismaRepository', () => {
   let refreshTokenPrismaRepository: IRefreshTokenRepository

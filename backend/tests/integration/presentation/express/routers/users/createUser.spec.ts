@@ -16,13 +16,15 @@ describe('CreateUserRouter', () => {
   })
 
   it('should not be able to create an existing user', async () => {
-    await request(app).post('/users').send({
+    await request(app).post('/users')
+    .send({
       password: '123456',
       email: 'testIntegrationExisting@test.com.br',
       name: 'Test Integration Exist User',
     })
 
-    const response = await request(app).post('/users').send({
+    const response = await request(app).post('/users')
+    .send({
       password: '123456',
       email: 'testIntegrationExisting@test.com.br',
       name: 'Test Integration Exist User',
@@ -31,7 +33,8 @@ describe('CreateUserRouter', () => {
     expect(response.status).toBe(400)
   })
   it('should not be able to create an user with an invalid email', async () => {
-    const response = await request(app).post('/users').send({
+    const response = await request(app).post('/users')
+    .send({
       password: '123456',
       email: 'Invalid email',
       name: 'Test Integration Exist User',
@@ -41,7 +44,8 @@ describe('CreateUserRouter', () => {
   })
 
   it('should return 422 response if body parameters are invalid', async () => {
-    const response = await request(app).post('/users').send({
+    const response = await request(app).post('/users')
+    .send({
       invalidKey: 'invalidValue',
     })
 
