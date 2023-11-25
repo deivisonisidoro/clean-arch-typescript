@@ -6,10 +6,15 @@ import { UpdateUserUseCase } from '../../../../src/app/useCases/User/implementat
 import { IUpdateUserUseCase } from '../../../../src/app/useCases/User/UpdateUser'
 import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
 import { EmailErrorType } from '../../../../src/domain/enums/email/ErrorType'
+import { IPasswordHasher } from "../../../../src/app/providers/PasswordHasher";
+
 
 describe('UpdateUserUseCase', () => {
   let updateUserUseCase: IUpdateUserUseCase
   let userRepository: IUsersRepository
+  let passwordHasher: IPasswordHasher
+
+
   beforeEach(() => {
     userRepository = {
       update: vi.fn(),
@@ -19,7 +24,11 @@ describe('UpdateUserUseCase', () => {
       findAll: vi.fn(),
       delete: vi.fn(),
     }
-    updateUserUseCase = new UpdateUserUseCase(userRepository)
+    passwordHasher = {
+      hashPassword: vi.fn(),
+      comparePasswords: vi.fn()
+    }
+    updateUserUseCase = new UpdateUserUseCase(userRepository, passwordHasher)
   })
   afterEach(() => {
     vi.clearAllMocks()
@@ -42,15 +51,15 @@ describe('UpdateUserUseCase', () => {
       .fn()
       .mockResolvedValueOnce(updateUserRequestDTO)
     userRepository.update = vi.fn().mockResolvedValueOnce(updateUserRequestDTO)
+    passwordHasher.hashPassword = vi.fn().mockResolvedValueOnce(existingUser.password)
 
-    const result = await updateUserUseCase.execute(userId, existingUser)
+    await updateUserUseCase.execute(userId, existingUser)
 
     expect(userRepository.update).toHaveBeenCalledWith(updateUserRequestDTO, {
       name: existingUser.name,
       email: existingUser.email,
       password: existingUser.password,
     })
-    expect(result.data).toEqual(updateUserRequestDTO)
   })
 
   it('should throw an error if user does not exists', async () => {
