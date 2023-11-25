@@ -1,3 +1,5 @@
+import { IPasswordHasher } from '../../../../app/providers/PasswordHasher'
+import { PasswordHasher } from '../../../../infra/providers/PasswordHasher'
 import { IUsersRepository } from '../../../../app/repositories/User'
 import { UpdateUserUseCase } from '../../../../app/useCases/User/implementations/UpdateUser'
 import { IUpdateUserUseCase } from '../../../../app/useCases/User/UpdateUser'
@@ -8,7 +10,8 @@ import { UserRepository } from '../../../repositories/prisma/User'
 
 export function updateUserComposer() {
   const repository: IUsersRepository = new UserRepository(prismaClient)
-  const useCase: IUpdateUserUseCase = new UpdateUserUseCase(repository)
+  const passwordHasher: IPasswordHasher = new PasswordHasher()
+  const useCase: IUpdateUserUseCase = new UpdateUserUseCase(repository, passwordHasher)
   const controller: IController = new UpdateUserController(useCase)
   return controller
 }
