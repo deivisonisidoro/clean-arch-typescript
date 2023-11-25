@@ -5,7 +5,7 @@ import { IUsersRepository } from "../../../../src/app/repositories/User";
 import { IGenerateRefreshTokenProvider } from "../../../../src/app/providers/GenerateRefreshToken";
 import { AuthenticateUserUseCase } from "../../../../src/app/useCases/Authenticate/implementations/AuthenticateUser"
 import { IPasswordHasher } from "../../../../src/app/providers/PasswordHasher";
-import { AuthenticateUserErrorType } from '../../../domain/enums/Authenticate/AuthenticateUser/ErrorType';
+import { AuthenticateUserErrorType } from '../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType';
 import { IRefreshTokenRepository } from '../../../../src/app/repositories/RefreshToken';
 
 
@@ -32,7 +32,8 @@ describe("Authenticate user", ()=>{
     }
     refreshTokenRepository ={
       create: vi.fn(),
-      findId: vi.fn(),
+      findById: vi.fn(),
+      findByUserId: vi.fn(),
       delete: vi.fn(),
     }
     generateRefreshTokenProvider = {
