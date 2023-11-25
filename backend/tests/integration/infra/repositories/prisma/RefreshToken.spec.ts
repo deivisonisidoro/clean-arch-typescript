@@ -30,17 +30,25 @@ describe('RefreshTokenPrismaRepository', () => {
     const userCreated = await userRepository.create(userData)
     const refreshToken = await refreshTokenPrismaRepository.create(userCreated.id)
 
-    const result = await refreshTokenPrismaRepository.findId(refreshToken.id);
+    const result = await refreshTokenPrismaRepository.findById(refreshToken.id);
 
     expect(result).toBeDefined();
   });
-
   it('returns null if the refresh token is not found', async () => {
 
     const refreshTokenId = 'nonExistentRefreshTokenId';
-    const result = await refreshTokenPrismaRepository.findId(refreshTokenId);
+    const result = await refreshTokenPrismaRepository.findById(refreshTokenId);
 
     expect(result).toBeNull();
+  });
+
+  it('finds a refresh token by user id', async () => {
+    const userCreated = await userRepository.create(userData)
+    await refreshTokenPrismaRepository.create(userCreated.id)
+
+    const result = await refreshTokenPrismaRepository.findByUserId(userCreated.id);
+
+    expect(result).toBeDefined();
   });
 
   it('deletes a refresh token by user ID', async () => {
@@ -50,7 +58,7 @@ describe('RefreshTokenPrismaRepository', () => {
 
     await refreshTokenPrismaRepository.delete(userCreated.id);
 
-    const result = await refreshTokenPrismaRepository.findId(refreshToken.id);
+    const result = await refreshTokenPrismaRepository.findById(refreshToken.id);
     expect(result).toBeDefined();
   });
 })
