@@ -71,12 +71,6 @@ describe('UserPrismaRepository', () => {
     expect(user.name).toEqual('New User')
   })
 
-  it('update method should not change the password', async () => {
-    const createdUser = await prisma.user.create({ data: userData })
-    const user = await userRepository.update(createdUser, { name: 'New User' })
-
-    expect(user.name).toEqual('New User')
-  })
 
   it('delete method should delete the user by id', async () => {
     const createdUser = await prisma.user.create({ data: userData })

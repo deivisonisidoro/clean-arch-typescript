@@ -6,7 +6,7 @@ import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
 import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut'
 import { IUsersRepository } from '../../../app/repositories/User'
 import { IUserInRequestDTO } from '../../../domain/dtos/User/UserIn'
-import { hash } from 'bcryptjs'
+
 
 export class UserRepository implements IUsersRepository {
   constructor(private prisma: PrismaClient) {}
@@ -88,9 +88,6 @@ export class UserRepository implements IUsersRepository {
     user: IUserOutRequestDTO,
     { email, name, password }: IUpdateUserRequestDTO,
   ): Promise<IUserOutRequestDTO> {
-    if (password) {
-      password = await hash(password, 8)
-    }
     const userUpdated = await this.prisma.user.update({
       where: {
         id: user.id,
