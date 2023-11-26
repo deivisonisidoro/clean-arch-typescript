@@ -1,5 +1,5 @@
 import { IGenerateRefreshTokenProvider } from "../../../providers/GenerateRefreshToken";
-import { IRefreshTokenUserUseCase } from "../RefresToken";
+import { IRefreshTokenUserUseCase } from "../RefreshTokenUser";
 import { IRefreshTokenRepository } from "../../../repositories/RefreshToken"
 import { RefreshTokenDTO } from "../../../../domain/dtos/Authenticate/RefreshToken";
 import { ResponseDTO } from "../../../../domain/dtos/Response";

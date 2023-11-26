@@ -11,12 +11,12 @@ import { AuthenticateUserErrorType } from '../../../../../src/domain/enums/Authe
 
 describe('AuthenticateUserController', () => {
   let authenticateUserUseCase: IAuthenticateUserUserUseCase
-  let createUserController: IController
+  let authenticateUserController: IController
   beforeEach(() => {
     authenticateUserUseCase = {
       execute: vi.fn(),
     }
-    createUserController = new AuthenticateUserController(authenticateUserUseCase)
+    authenticateUserController = new AuthenticateUserController(authenticateUserUseCase)
   })
   afterEach(() => {
     vi.clearAllMocks()
@@ -38,7 +38,7 @@ describe('AuthenticateUserController', () => {
       success: true,
     })
 
-    const httpResponse = await createUserController.handle(httpRequest)
+    const httpResponse = await authenticateUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
   })
@@ -50,7 +50,7 @@ describe('AuthenticateUserController', () => {
       body: authenticateUserRequestDTO,
     }
     const httpError = new HttpErrors()
-    const httpResponse = await createUserController.handle(httpRequest)
+    const httpResponse = await authenticateUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_422().statusCode)
     expect(httpResponse.body).toEqual(httpError.error_422().body)
@@ -70,14 +70,14 @@ describe('AuthenticateUserController', () => {
       success: false,
     })
 
-    const httpResponse = await createUserController.handle(httpRequest)
+    const httpResponse = await authenticateUserController.handle(httpRequest)
 
     expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
     expect(httpResponse.body).toEqual(AuthenticateUserErrorType.EmailOrPasswordWrong)
   })
   it('should return 500 response if body is missing', async () => {
     const httpError = new HttpErrors()
-    const httpResponse = await createUserController.handle({})
+    const httpResponse = await authenticateUserController.handle({})
 
     expect(httpResponse.statusCode).toBe(httpError.error_500().statusCode)
     expect(httpResponse.body).toEqual(httpError.error_500().body)
