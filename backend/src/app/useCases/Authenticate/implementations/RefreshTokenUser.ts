@@ -27,7 +27,7 @@ export class RefreshTokenUserUseCase implements IRefreshTokenUserUseCase{
     if (refreshTokenExpired) {
       await this.refreshTokenRepository.delete(refreshToken.user_id)
       const newRefreshToken = await this.generateRefreshTokenProvider.generateToken(refreshToken.user_id);
-      return { data: {refresh_token: newRefreshToken, token}, success: true }
+      return { data: {refreshToken: newRefreshToken, token}, success: true }
     }
     return  { data: {token}, success: true }
   }
