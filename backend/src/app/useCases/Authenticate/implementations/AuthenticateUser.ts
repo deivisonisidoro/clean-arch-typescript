@@ -1,11 +1,11 @@
 import { IUsersRepository } from "../../../repositories/User";
 import { IRefreshTokenRepository } from "../../../repositories/RefreshToken"
-import { IAuthenticateUserDTO } from "../../../../domain/dtos/User/Authenticate";
 import { IPasswordHasher } from "../../../providers/PasswordHasher";
 import { IGenerateRefreshTokenProvider } from "../../../providers/GenerateRefreshToken";
 import { IUserInRequestDTO } from "../../../../domain/dtos/User/UserIn";
 import { IAuthenticateUserUserUseCase } from "../AuthenticateUser";
 import { AuthenticateUserErrorType } from "../../../../domain/enums/Authenticate/AuthenticateUser/ErrorType";
+import { IAuthenticateUserDTO } from "../../../../domain/dtos/Authenticate/AuthenticateUser";
 
 
 

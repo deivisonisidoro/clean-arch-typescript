@@ -2,7 +2,7 @@
 import dayjs from 'dayjs'
 import { PrismaClient } from '@prisma/client'
 import { IRefreshTokenRepository } from "../../../app/repositories/RefreshToken";
-import { RefreshTokenDTO } from "../../../domain/dtos/RefreshToken";
+import { RefreshTokenDTO } from "../../../domain/dtos/Authenticate/RefreshToken";
 
 
 

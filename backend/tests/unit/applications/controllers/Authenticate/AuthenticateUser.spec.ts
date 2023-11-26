@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IAuthenticateUserDTO } from '../../../../../src/domain/dtos/User/Authenticate'
+import { IAuthenticateUserDTO } from '../../../../../src/domain/dtos/Authenticate/AuthenticateUser'
 import { IAuthenticateUserUserUseCase } from '../../../../../src/app/useCases/Authenticate/AuthenticateUser'
 import { IController } from '../../../../../src/presentation/http/controllers/IController'
 import { AuthenticateUserController } from '../../../../../src/presentation/http/controllers/Authenticate/AuthenticateUser'

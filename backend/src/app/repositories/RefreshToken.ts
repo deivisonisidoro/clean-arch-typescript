@@ -1,4 +1,4 @@
-import { RefreshTokenDTO } from "../../domain/dtos/RefreshToken";
+import { RefreshTokenDTO } from "../../domain/dtos/Authenticate/RefreshToken";
 
 export interface IRefreshTokenRepository{
   create(user_id: string): Promise<RefreshTokenDTO>;
