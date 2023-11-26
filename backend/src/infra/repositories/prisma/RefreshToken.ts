@@ -22,11 +22,11 @@ export class RefreshTokenPrismaRepository implements IRefreshTokenRepository{
     return generateRefreshToken;
   }
 
-  async findById(refresh_token: string): Promise<RefreshTokenDTO | unknown> {
-    const token = await this.prisma.refreshToken.findUnique(
+  async findById(refreshToken: string): Promise<RefreshTokenDTO | unknown> {
+    const token = await this.prisma.refreshToken.findFirst(
       {
         where: {
-          id: refresh_token
+          id: refreshToken
         }
       }
     )
@@ -34,7 +34,7 @@ export class RefreshTokenPrismaRepository implements IRefreshTokenRepository{
   }
 
   async findByUserId(user_id: string): Promise<RefreshTokenDTO | unknown> {
-    const token = await this.prisma.refreshToken.findUnique(
+    const token = await this.prisma.refreshToken.findFirst(
       {
         where: {
           user_id

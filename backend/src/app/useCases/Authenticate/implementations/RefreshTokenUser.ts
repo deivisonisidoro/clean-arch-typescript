@@ -4,6 +4,7 @@ import { IRefreshTokenRepository } from "../../../repositories/RefreshToken"
 import { RefreshTokenDTO } from "../../../../domain/dtos/Authenticate/RefreshToken";
 import { ResponseDTO } from "../../../../domain/dtos/Response";
 import { ITokenManagerProvider } from "../../../providers/TokenManager";
+import { IRefreshTokenUserDTO } from "src/domain/dtos/Authenticate/RefreshTokenUser";
 
 
 export class RefreshTokenUserUseCase implements IRefreshTokenUserUseCase{
@@ -13,7 +14,7 @@ export class RefreshTokenUserUseCase implements IRefreshTokenUserUseCase{
     private tokenManager: ITokenManagerProvider
   ){}
 
-  async execute(refreshTokenId: string): Promise<ResponseDTO>{
+  async execute({ refreshTokenId }: IRefreshTokenUserDTO): Promise<ResponseDTO>{
     const refreshToken = await this.refreshTokenRepository.findById(refreshTokenId) as RefreshTokenDTO | null;
 
     if (!refreshToken) {

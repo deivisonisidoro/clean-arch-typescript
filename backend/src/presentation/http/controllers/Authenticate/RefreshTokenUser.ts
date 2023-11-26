@@ -8,6 +8,7 @@ import { HttpErrors } from '../../helpers/implementations/HttpErrors'
 import { HttpResponse } from '../../helpers/implementations/HttpResponse'
 import { HttpSuccess } from '../../helpers/implementations/HttpSuccess'
 import { IController } from '../IController'
+import { IRefreshTokenUserDTO } from '../../../../domain/dtos/Authenticate/RefreshTokenUser'
 
 export class RefreshTokenUserController implements IController {
   constructor(
@@ -25,7 +26,8 @@ export class RefreshTokenUserController implements IController {
       if (
         bodyParams.includes('refreshTokenId')
       ) {
-        const refreshTokenId = httpRequest.body as string;
+        const refreshTokenId = httpRequest.body as IRefreshTokenUserDTO;
+
         response = await this.refreshTokenUserUserCase.execute(refreshTokenId)
       } else {
         error = this.httpErrors.error_422()
