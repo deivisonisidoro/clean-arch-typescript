@@ -15,7 +15,6 @@ describe('AuthenticateUserRouter', () => {
       password: '123456',
       email: 'AuthenticateUserRouter@test.com.br',
     })
-    console.log(response.body.refreshToken.id);
 
     refreshTokenId  = response.body.refreshToken.id
   })

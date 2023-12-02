@@ -13,9 +13,10 @@ async function createUser(userData: UserData): Promise<any> {
       body: userData,
       cache: "no-store"
     });
+    
     return response.data;
   } catch (error) {
-    console.log('Error creating user:', error);
+    console.error('Error creating user:', error);
     throw error;
   }
 }

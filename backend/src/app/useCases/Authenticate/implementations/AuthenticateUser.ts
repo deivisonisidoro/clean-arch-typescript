@@ -17,22 +17,25 @@ export class AuthenticateUserUseCase implements IAuthenticateUserUserUseCase{
     private refreshTokenRepository: IRefreshTokenRepository
   ){}
   async execute({email, password}: IAuthenticateUserDTO){
-    const userAlreadyExists = await this.userRepository.findByEmail(email) as IUserInRequestDTO | null;
+    const user = await this.userRepository.findByEmail(email) as IUserInRequestDTO | null;
 
-    if(!userAlreadyExists){
+    if(!user){
       return { data: { error: AuthenticateUserErrorType.EmailOrPasswordWrong }, success: false }
     }
 
-    const passwordMatch = await this.passwordHasher.comparePasswords(password, userAlreadyExists.password);
+    const passwordMatch = await this.passwordHasher.comparePasswords(password, user.password);
 
     if(!passwordMatch){
       return { data: { error: AuthenticateUserErrorType.EmailOrPasswordWrong }, success: false }
     }
 
-    const token = await this.generateRefreshTokenProvider.generateToken(userAlreadyExists.id);
+    const token = await this.generateRefreshTokenProvider.generateToken(user.id);
+    const refreshTokenFounded = await this.refreshTokenRepository.findByUserId(user.id);
+    if(refreshTokenFounded){
+      await this.refreshTokenRepository.delete(user.id)
+    }
+    const refreshToken = await this.refreshTokenRepository.create(user.id)
 
-    const refreshToken = await this.refreshTokenRepository.create(userAlreadyExists.id)
-
-    return  { data: {token, refreshToken}, success: true }
+    return  { data: {token, refreshToken, user}, success: true }
   }
 }

@@ -12,7 +12,7 @@ describe('RefreshTokenUserUseCase', () => {
   let generateRefreshTokenProvider: IGenerateRefreshTokenProvider;
   let refreshTokenRepository: IRefreshTokenRepository
   let tokenManager: ITokenManagerProvider
-  const mockRefreshTokenId = 'mockRefreshTokenId';
+  const mockRefreshTokenId = {refreshTokenId: 'mockRefreshTokenId'};
   const mockRefreshToken = {
     user_id: 'mockUserId',
     expires_in: 'mockExpiresIn',
@@ -49,7 +49,7 @@ describe('RefreshTokenUserUseCase', () => {
       const result = await refreshTokenUserUseCase.execute(mockRefreshTokenId);
 
       expect(result).toEqual({ data: { error: 'Refresh token is invalid.' }, success: false });
-      expect(refreshTokenRepository.findById).toHaveBeenCalledWith(mockRefreshTokenId);
+      expect(refreshTokenRepository.findById).toHaveBeenCalledWith(mockRefreshTokenId.refreshTokenId);
     });
 
     it('should return a new refresh token and token when the refresh token has expired', async () => {

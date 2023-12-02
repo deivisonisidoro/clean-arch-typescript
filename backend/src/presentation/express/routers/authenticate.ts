@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { expressAdapter } from "../../adapters/express";
 import { refreshTokenUserComposer } from "../../../infra/services/composers/Authenticate/refreshTokenUser";
-import { authenticateUserComposer } from "src/infra/services/composers/Authenticate/authenticateUser";
+import { authenticateUserComposer } from "../../../infra/services/composers/Authenticate/authenticateUser";
 
 const authenticateRoutes = Router();
 

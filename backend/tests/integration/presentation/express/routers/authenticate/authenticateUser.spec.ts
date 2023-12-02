@@ -20,6 +20,19 @@ describe('AuthenticateUserRouter', () => {
     expect(response.body).toHaveProperty('token')
   })
 
+  it('should be able to authenticate a new user that already did authenticated', async () => {
+    await request(app).post('/authenticate/login').send({
+      password: '123456',
+      email: 'testIntegrationExisting@test.com.br',
+    })
+    const response = await request(app).post('/authenticate/login').send({
+      password: '123456',
+      email: 'testIntegrationExisting@test.com.br',
+    })
+    expect(response.status).toBe(200)
+    expect(response.body).toHaveProperty('token')
+  })
+
   it('should not be able to authenticate an user with wrong password', async () => {
 
     const response = await request(app).post('/authenticate/login').send({

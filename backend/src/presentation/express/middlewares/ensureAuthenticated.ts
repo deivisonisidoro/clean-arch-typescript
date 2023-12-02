@@ -1,6 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
-import { validateToken } from '../../../infra/utils/validateToken';
 import { AuthMessages } from '../../../domain/enums/Authenticate/AuthMessages';
+import { TokenManagerProvider } from '../../../infra/providers/TokenManager';
 
 
 export const ensureAuthenticated: RequestHandler = (request: Request, response: Response, next: NextFunction) => {
@@ -14,8 +14,8 @@ export const ensureAuthenticated: RequestHandler = (request: Request, response: 
 
   const [, token] = authToken.split(" ");
 
-
-  if (!validateToken(token)) {
+  const tokenManager = new TokenManagerProvider()
+  if (!tokenManager.validateToken(token)) {
     return response.status(401).json({
       message: AuthMessages.TokenInvalidOrExpired,
     });

@@ -33,7 +33,7 @@ export class UserRepository implements IUsersRepository {
   }
 
   async findByEmail(email: string): Promise<IUserInRequestDTO | unknown> {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst({
       where: { email },
       select: {
         id: true,
@@ -47,7 +47,7 @@ export class UserRepository implements IUsersRepository {
   }
 
   async findById(id: string): Promise<IUserInRequestDTO | null> {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst({
       where: { id },
       select: {
         id: true,

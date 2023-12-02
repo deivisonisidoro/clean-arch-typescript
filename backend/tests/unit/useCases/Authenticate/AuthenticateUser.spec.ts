@@ -60,6 +60,21 @@ describe("Authenticate user", ()=>{
 
     userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData);
     passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true);
+    const userAuthenticated = await authenticateUserUseCase.execute(userData);
+
+    expect(userAuthenticated.data).toHaveProperty("token");
+    expect(userAuthenticated.data).toHaveProperty("refreshToken");
+  });
+
+  it("should be able delete token", async ()=>{
+    const userData : IAuthenticateUserDTO = {
+      email: "test@test.com.br",
+      password: "123456"
+    };
+
+    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData);
+    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true);
+    refreshTokenRepository.findByUserId = vi.fn().mockResolvedValueOnce("token")
     refreshTokenRepository.delete = vi.fn().mockResolvedValueOnce(null)
     const userAuthenticated = await authenticateUserUseCase.execute(userData);
 

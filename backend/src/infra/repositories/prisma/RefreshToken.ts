@@ -11,7 +11,7 @@ export class RefreshTokenPrismaRepository implements IRefreshTokenRepository{
   constructor(private prisma: PrismaClient) {}
 
   async create(user_id: string): Promise<RefreshTokenDTO> {
-    const expiresIn = dayjs().add(150, "second").unix();
+    const expiresIn = dayjs().add(1, "hour").unix();
 
     const generateRefreshToken =  await this.prisma.refreshToken.create({
       data: {

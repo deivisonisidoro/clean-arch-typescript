@@ -1,8 +1,9 @@
 import { config } from 'dotenv';
-config();
+import { sign } from "jsonwebtoken";
 
 import { IGenerateRefreshTokenProvider } from "../../app/providers/GenerateRefreshToken";
-import { sign } from "jsonwebtoken";
+
+config();
 
 export class GenerateRefreshTokenProvider implements IGenerateRefreshTokenProvider {
   async generateToken(token: string): Promise<string> {
@@ -14,7 +15,7 @@ export class GenerateRefreshTokenProvider implements IGenerateRefreshTokenProvid
 
     const generatedToken = sign({}, secretKey, {
       subject: token,
-      expiresIn: "10h"
+      expiresIn: "1h"
     });
     return generatedToken;
   }
