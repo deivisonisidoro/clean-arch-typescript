@@ -21,12 +21,12 @@ export class RecoverUserInformationUserController implements IController {
     let error
     let response: ResponseDTO
 
-    if (httpRequest.body && Object.keys(httpRequest.body).length > 0) {
-      const bodyParams = Object.keys(httpRequest.body)
+    if (httpRequest.query && Object.keys(httpRequest.query).length > 0) {
+      const queryParams = Object.keys(httpRequest.query)
       if (
-        bodyParams.includes('refreshTokenId')
+        queryParams.includes('refreshTokenId')
       ) {
-        const refreshTokenId = httpRequest.body as IRefreshTokenUserDTO;
+        const refreshTokenId = httpRequest.query as IRefreshTokenUserDTO;
 
         response = await this.recoverUserInformationUserUserCase.execute(refreshTokenId)
       } else {

@@ -35,7 +35,7 @@ describe('RecoverUserInformationUserController', () => {
 
   it('should return 400 response if token is invalid or expired', async () => {
     const httpRequest: IHttpRequest = {
-      body: {refreshTokenId: "token"},
+      query: {refreshTokenId: "token"},
     }
     const httpError = new HttpErrors()
     recoverUserInformationUseCase.execute = vi.fn().mockResolvedValueOnce({
@@ -51,7 +51,7 @@ describe('RecoverUserInformationUserController', () => {
   it('should return 422 response if body parameters are missing', async () => {
 
     const httpRequest: IHttpRequest = {
-      body: {token: "token"},
+      query: {token: "token"},
     }
     const httpError = new HttpErrors()
     const httpResponse = await recoverUserInformationController.handle(httpRequest)
@@ -62,7 +62,7 @@ describe('RecoverUserInformationUserController', () => {
   it('should return 200 response on successful', async () => {
 
     const httpRequest: IHttpRequest = {
-      body: {refreshTokenId: "token"},
+      query: {refreshTokenId: "token"},
     }
     const httpSuccess = new HttpSuccess()
     recoverUserInformationUseCase.execute = vi.fn().mockResolvedValueOnce({
