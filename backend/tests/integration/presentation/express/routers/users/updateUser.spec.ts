@@ -4,7 +4,6 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { ICreateUserRequestDTO } from '../../../../../domain/dtos/User/CreateUser'
 import { app } from '../../../../../../src/presentation/express/settings/app'
 import { HttpErrors } from '../../../../../../src/presentation/http/helpers/implementations/HttpErrors'
-import { prisma } from '../../../../../helpers//db/prisma'
 import { login } from '../../../../../helpers/auth/login'
 
 describe('UpdateUserRouter', () => {
@@ -15,7 +14,7 @@ describe('UpdateUserRouter', () => {
   }
   const httpError = new HttpErrors()
   let userId: string
-  let authToken: string
+  let authToken: any
 
   beforeEach(async ()=>{
     const responseUser = await request(app).post('/users').send(userData)
@@ -24,7 +23,7 @@ describe('UpdateUserRouter', () => {
   })
   it('Should be able to update password of an existing user', async () => {
     const response = await request(app).patch(`/users/${userId}`)
-    .set('Authorization', `Bearer ${authToken}`)
+    .set('Authorization', `Bearer ${authToken.token}`)
     .send({
       password: '123',
     })
@@ -35,7 +34,7 @@ describe('UpdateUserRouter', () => {
 
   it('Should be able to update email of an existing user', async () => {
     const response = await request(app).patch(`/users/${userId}`)
-    .set('Authorization', `Bearer ${authToken}`)
+    .set('Authorization', `Bearer ${authToken.token}`)
     .send({
       email: 'testUpdated@test.com.br',
     })
@@ -46,7 +45,7 @@ describe('UpdateUserRouter', () => {
 
   it('Should be able to update name of an existing user', async () => {
     const response = await request(app).patch(`/users/${userId}`)
-    .set('Authorization', `Bearer ${authToken}`)
+    .set('Authorization', `Bearer ${authToken.token}`)
     .send({
       name: 'Test Integration',
     })
@@ -57,7 +56,7 @@ describe('UpdateUserRouter', () => {
 
   it('Should not be able to update an not existing user', async () => {
     const response = await request(app).patch('/users/:id')
-    .set('Authorization', `Bearer ${authToken}`)
+    .set('Authorization', `Bearer ${authToken.token}`)
     .send({
       email: 'testUpdatedExisting@test.com.br',
     })
@@ -67,7 +66,7 @@ describe('UpdateUserRouter', () => {
 
   it('Should not be able to update an existing user with invalid email', async () => {
     const response = await request(app).patch(`/users/${userId}`)
-    .set('Authorization', `Bearer ${authToken}`)
+    .set('Authorization', `Bearer ${authToken.token}`)
     .send({
       email: 'invalid email',
     })
@@ -77,14 +76,14 @@ describe('UpdateUserRouter', () => {
   it('should return 422 response if body parameters are invalid', async () => {
     const response = await request(app)
       .patch('/users/:id')
-      .set('Authorization', `Bearer ${authToken}`)
+      .set('Authorization', `Bearer ${authToken.token}`)
       .send({ test: 'Test' })
 
     expect(response.status).toBe(httpError.error_422().statusCode)
   })
   it('should return 500 response if an internal server error occurs', async () => {
     const response = await request(app).patch('/users/:id')
-    .set('Authorization', `Bearer ${authToken}`)
+    .set('Authorization', `Bearer ${authToken.token}`)
     expect(response.status).toBe(httpError.error_500().statusCode)
   })
 })

@@ -13,7 +13,7 @@ describe('DeleteUserRouter', () => {
     name: 'Test Integration Exist User',
   }
   let userId: string
-  let authToken: string
+  let authToken: any
 
   beforeEach(async ()=>{
     const responseUser = await request(app).post('/users').send(userData)
@@ -21,18 +21,18 @@ describe('DeleteUserRouter', () => {
     authToken = await login(userData)
   })
   it('Should be able to delete an existing user', async () => {
-    const response = await request(app).delete(`/users/${userId}`).set('Authorization', `Bearer ${authToken}`)
+    const response = await request(app).delete(`/users/${userId}`).set('Authorization', `Bearer ${authToken.token}`)
 
     expect(response.status).toBe(200)
   })
 
   it('Should not be able to delete an existing user when userId is wrong', async () => {
-    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer ${authToken}`)
+    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer ${authToken.token}`)
 
     expect(response.status).toBe(400)
   })
   it('Should not be able to delete an existing user when user is not authenticated', async () => {
-    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer test`)
+    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer invalidToken`)
 
     expect(response.status).toBe(401)
   })

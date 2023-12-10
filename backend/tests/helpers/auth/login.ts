@@ -8,5 +8,5 @@ export async function login(userData: ICreateUserRequestDTO){
     email: userData.email,
   })
 
-  return response.body.token
+  return response.body
 }
