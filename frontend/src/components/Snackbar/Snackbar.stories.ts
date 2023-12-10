@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Snackbar  from ".";
-import { SnackbarMessageType } from "../../utils/enums/snackbarMessages";
+import { SnackbarMessageType } from "../../enums/snackbarMessages";
 
 const meta ={
   title: "Components/Snackbar",

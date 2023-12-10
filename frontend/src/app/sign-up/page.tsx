@@ -12,7 +12,7 @@ import { registerUserFormSchema } from "./schema-validator";
 import { RegisterUserFormData } from "./FormValuesInterface";
 import { useState } from "react";
 import Snackbar from "@/components/Snackbar";
-import { SnackbarMessageType } from "@/utils/enums/snackbarMessages";
+import { SnackbarMessageType } from "@/enums/snackbarMessages";
 import Loading from "@/components/Loading";
 import Logo from "@/components/Logo";
 import LinkComponent from "@/components/Link";
@@ -48,7 +48,6 @@ export default function RegisterUser() {
       
       
       if (error instanceof Error) {
-        console.log(error.message);
         setMessage(`Error: ${error.message}`);
       } else {
         setMessage("An unknown error occurred while registering the user.");

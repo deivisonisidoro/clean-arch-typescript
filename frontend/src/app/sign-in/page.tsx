@@ -11,7 +11,7 @@ import { loginFormSchema } from './schema-validator';
 import { LoginFormData } from './FormValuesInterface';
 import { Button } from '@/components/Form/Button';
 import { AuthContext } from '@/contexts/AuthContext';
-import { SnackbarMessageType } from '@/utils/enums/snackbarMessages';
+import { SnackbarMessageType } from '@/enums/snackbarMessages';
 import Loading from '@/components/Loading';
 import Snackbar from '@/components/Snackbar';
 import LinkComponent from '@/components/Link';
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
   const router = useRouter()
   const { signIn } = useContext(AuthContext)
 
-  const onSubmit: SubmitHandler<LoginFormData>   = async (data ) =>{
+  const onSubmit: SubmitHandler<LoginFormData> = async (data ) =>{
     setShowMessage(false);
     try {
       setLoading(true);
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
       setMessageType(SnackbarMessageType.Success);
       setMessage("User signed in successfully");
       setShowMessage(true);
-      router.push('/sign-up')
+      router.push('/home')
     } catch (error) {
       setMessageType(SnackbarMessageType.Error);
       if (error instanceof Error) {

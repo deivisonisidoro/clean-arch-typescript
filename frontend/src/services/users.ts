@@ -1,4 +1,4 @@
-import { api } from "@/utils/api";
+import { api } from "@/services/api";
 
 interface UserData {
   name: string;
@@ -10,7 +10,7 @@ async function createUser(userData: UserData): Promise<any> {
   try {
     const response = await api('/users/', {
       method: 'POST',
-      body: userData,
+      body: JSON.stringify(userData),
       cache: "no-store"
     });
     
