@@ -1,4 +1,14 @@
+/**
+ * Interface representing an HTTP response.
+ */
 export interface IHttpResponse {
-  statusCode: number
-  body: Record<string, string>
+  /**
+   * The status code of the HTTP response.
+   */
+  statusCode: number;
+
+  /**
+   * The body of the HTTP response.
+   */
+  body: Record<string, string>;
 }
