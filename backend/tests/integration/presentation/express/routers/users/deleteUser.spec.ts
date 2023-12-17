@@ -1,39 +1,72 @@
-import request from 'supertest'
-import { beforeEach, describe, expect, it } from 'vitest'
+/**
+ * Integration tests for DeleteUserRouter using Vitest and Supertest.
+ * @module DeleteUserRouterTests
+ */
 
-import { ICreateUserRequestDTO } from '../../../../../domain/dtos/User/CreateUser'
-import { app } from '../../../../../../src/presentation/express/settings/app'
-import { login } from '../../../../../helpers/auth/login'
+import request from 'supertest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
+import { ICreateUserRequestDTO } from '../../../../../domain/dtos/User/CreateUser';
+import { app } from '../../../../../../src/presentation/express/settings/app';
+import { login } from '../../../../../helpers/auth/login';
 
+/**
+ * Test suite for DeleteUserRouter.
+ * @function
+ * @name DeleteUserRouterTests
+ */
 describe('DeleteUserRouter', () => {
-  const userData: ICreateUserRequestDTO = {
-    password: '123456',
-    email: 'testDelete@test.com.br',
-    name: 'Test Integration Exist User',
-  }
-  let userId: string
-  let authToken: any
+  let userData: ICreateUserRequestDTO;
+  let userId: string;
+  let authToken: any;
 
-  beforeEach(async ()=>{
-    const responseUser = await request(app).post('/users').send(userData)
-    userId = responseUser.body.id
-    authToken = await login(userData)
-  })
+  /**
+   * Setup before each test.
+   * @function
+   * @name beforeEach
+   */
+  beforeEach(async () => {
+    userData = {
+      password: '123456',
+      email: 'testDelete@test.com.br',
+      name: 'Test Integration Exist User',
+    };
+
+    const responseUser = await request(app).post('/users').send(userData);
+    userId = responseUser.body.id;
+    authToken = await login(userData);
+  });
+
+  /**
+   * Test case to verify the ability to delete an existing user.
+   * @function
+   * @name shouldDeleteExistingUser
+   */
   it('Should be able to delete an existing user', async () => {
-    const response = await request(app).delete(`/users/${userId}`).set('Authorization', `Bearer ${authToken.token}`)
+    const response = await request(app).delete(`/users/${userId}`).set('Authorization', `Bearer ${authToken.token}`);
 
-    expect(response.status).toBe(200)
-  })
+    expect(response.status).toBe(200);
+  });
 
-  it('Should not be able to delete an existing user when userId is wrong', async () => {
-    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer ${authToken.token}`)
+  /**
+   * Test case to verify that it's not possible to delete an existing user when userId is wrong.
+   * @function
+   * @name shouldNotDeleteUserWithWrongUserId
+   */
+  it("Should not be able to delete an existing user when userId is wrong", async () => {
+    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer ${authToken.token}`);
 
-    expect(response.status).toBe(400)
-  })
-  it('Should not be able to delete an existing user when user is not authenticated', async () => {
-    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer invalidToken`)
+    expect(response.status).toBe(400);
+  });
 
-    expect(response.status).toBe(401)
-  })
-})
+  /**
+   * Test case to verify that it's not possible to delete an existing user when the user is not authenticated.
+   * @function
+   * @name shouldNotDeleteUserWithoutAuthentication
+   */
+  it("Should not be able to delete an existing user when user is not authenticated", async () => {
+    const response = await request(app).delete('/users/testID').set('Authorization', `Bearer invalidToken`);
+
+    expect(response.status).toBe(401);
+  });
+});
