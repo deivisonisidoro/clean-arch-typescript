@@ -1,7 +1,31 @@
+/**
+ * Data Transfer Object (DTO) representing the input user data.
+ *
+ * @interface
+ */
 export interface IUserInRequestDTO {
-  id: string
-  name: string
-  email: string
-  createdAt: Date
-  password: string
+  /**
+   * The ID of the user.
+   */
+  id: string;
+
+  /**
+   * The name of the user.
+   */
+  name: string;
+
+  /**
+   * The email address of the user.
+   */
+  email: string;
+
+  /**
+   * The creation date of the user account.
+   */
+  createdAt: Date;
+
+  /**
+   * The hashed password of the user.
+   */
+  password: string;
 }

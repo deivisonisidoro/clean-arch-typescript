@@ -1,3 +1,11 @@
+/**
+ * Enum representing error types related to email validation.
+ *
+ * @enum
+ */
 export enum EmailErrorType {
-  InvalidEmail = 'Invalid Email Address'
+  /**
+   * Error type indicating that the provided email address is invalid.
+   */
+  InvalidEmail = 'Invalid Email Address',
 }
