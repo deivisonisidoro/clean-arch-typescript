@@ -37,11 +37,10 @@ const Login: React.FC = () => {
   const router = useRouter()
   const { signIn } = useContext(AuthContext)
 
-  const onSubmit: SubmitHandler<LoginFormData> = async (data ) =>{
-    setShowMessage(false);
+  const onSubmit: SubmitHandler<LoginFormData> = (data ) =>{
     try {
       setLoading(true);
-      await signIn(data)
+      signIn(data)
       setMessageType(SnackbarMessageType.Success);
       setMessage("User signed in successfully");
       setShowMessage(true);
