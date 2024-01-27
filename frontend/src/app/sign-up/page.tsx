@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "@/components/Form/Button";
+import { Button } from "@/components/Button";
 import { FormContainer } from "@/components/Form/FormContainer";
 import { Label } from "@/components/Form/Label";
 import { EmailInput } from "@/components/Form/Inputs/Email";

@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const loadingVariants = tv({
-  base: "inline text-gray-200 animate-spin dark:text-gray-600 fill-blue-600",
+  base: "inline text-gray-200 animate-spin dark:text-gray-600 fill-[#645188]",
   variants: {
     size: {
       xs: "w-4 h-4",

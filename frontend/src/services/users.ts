@@ -21,4 +21,17 @@ async function createUser(userData: UserData): Promise<any> {
   }
 }
 
-export { createUser };
+async function getAllUsers(page: number = 1): Promise<any> {
+  try {
+    const response = await api(`/users/?page=${page}`, {
+      method: 'GET',
+      cache: "no-store"
+    });
+    return response;
+  } catch (error) {
+    console.error('Error get all users:', error);
+    throw error;
+  }
+}
+
+export { createUser, getAllUsers };

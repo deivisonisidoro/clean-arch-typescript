@@ -9,7 +9,7 @@ import React, { useContext, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { loginFormSchema } from './schema-validator';
 import { LoginFormData } from './FormValuesInterface';
-import { Button } from '@/components/Form/Button';
+import { Button } from '@/components/Button';
 import { AuthContext } from '@/contexts/AuthContext';
 import { SnackbarMessageType } from '@/enums/snackbarMessages';
 import Loading from '@/components/Loading';
