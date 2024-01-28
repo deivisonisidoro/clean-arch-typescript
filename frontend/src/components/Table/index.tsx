@@ -2,6 +2,7 @@ import React from 'react';
 import { TableProps } from './@types/TableProps';
 import { Button } from '../Button';
 import Loading from '../Loading';
+import Pagination from '../Pagination';
 
 
 const Table: React.FC<TableProps> = ({
@@ -28,7 +29,7 @@ const Table: React.FC<TableProps> = ({
           {isLoading ? (
             <tr>
               <td colSpan={columns.length} className="text-center text-gray-600 py-4 bg-white">
-                <Loading size='md' />
+                <Loading size='lg' />
               </td>
             </tr>
           ) : (
@@ -46,17 +47,7 @@ const Table: React.FC<TableProps> = ({
       </table>
 
       <div className="bg-gray-200 flex items-center justify-end p-2 rounded-b">
-        <Button
-          title="Previous"
-          disabled={currentPage === 1}
-          onClick={() => onPageChange(currentPage - 1)}
-        />
-        <span className="text-gray-800 mx-2">{`Page ${currentPage} of ${totalPages}`}</span>
-        <Button
-          title='Next'
-          disabled={currentPage === totalPages}
-          onClick={() => onPageChange(currentPage + 1)}
-        />
+          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} /> 
       </div>
     </div>
   );

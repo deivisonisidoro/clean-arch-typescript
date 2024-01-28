@@ -35,9 +35,12 @@ export const Default: Story = {
   },
 };
 
-export const Paginated: Story = {
+export const Loading: Story = {
   args: {
-    data: [], // Provide paginated data from the backend
+    data: [
+      { id: 1, name: 'John Doe', age: 25 },
+      { id: 2, name: 'Jane Smith', age: 30 },
+    ],
     columns: [
       { field: 'id', name: 'ID' },
       { field: 'name', name: 'Full Name' },
