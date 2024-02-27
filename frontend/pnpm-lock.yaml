@@ -11,6 +11,9 @@ dependencies:
   axios:
     specifier: ^1.6.0
     version: 1.6.0
+  date-fns:
+    specifier: ^3.3.1
+    version: 3.3.1
   jest-environment-jsdom:
     specifier: ^29.7.0
     version: 29.7.0
@@ -6177,6 +6180,10 @@ packages:
       abab: 2.0.6
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
+    dev: false
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: false
 
   /debug@2.6.9:

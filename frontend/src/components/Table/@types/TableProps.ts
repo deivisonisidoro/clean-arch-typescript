@@ -7,4 +7,5 @@ export type TableProps = {
   currentPage: number;
   onPageChange: (page: number) => void;
   isLoading: boolean;
+  title?: string;
 }

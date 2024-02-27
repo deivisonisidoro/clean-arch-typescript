@@ -1,9 +1,9 @@
 import React from 'react';
 import { TableProps } from './@types/TableProps';
-import { Button } from '../Button';
+import { TableColumn } from './@types/TableColumn';
 import Loading from '../Loading';
 import Pagination from '../Pagination';
-
+import { format } from 'date-fns';
 
 const Table: React.FC<TableProps> = ({
   data,
@@ -12,14 +12,22 @@ const Table: React.FC<TableProps> = ({
   totalPages,
   onPageChange,
   isLoading,
+  title,
 }) => {
   return (
     <div>
       <table className="border-collapse w-full text-black">
-        <thead>
-          <tr className="bg-gray-200 rounded-t">
+        <thead className=' rounded-t'>
+          {title && (
+            <tr className="bg-gray-800 text-white text-left">
+              <th colSpan={columns.length} className="border p-2 py-4">
+                {title}
+              </th>
+            </tr>
+          )}
+          <tr className="bg-gray-600 ">
             {columns.map((column, index) => (
-              <th key={index} className="border p-2 rounded-t">
+              <th key={index} className="border p-2 text-white">
                 {column.name}
               </th>
             ))}
@@ -28,16 +36,16 @@ const Table: React.FC<TableProps> = ({
         <tbody>
           {isLoading ? (
             <tr>
-              <td colSpan={columns.length} className="text-center text-gray-600 py-4 bg-white">
+              <td colSpan={columns.length} className="text-center py-4 bg-white">
                 <Loading size='lg' />
               </td>
             </tr>
           ) : (
             data.map((row, rowIndex) => (
-              <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
+              <tr key={rowIndex} className={`${rowIndex % 2 === 0 ? 'bg-gray-300' : 'bg-white'} text-center`}>
                 {columns.map((column, colIndex) => (
-                  <td key={colIndex} className="border p-2 rounded-md">
-                    {row[column.field]}
+                  <td key={colIndex} className="border p-4 rounded-md">
+                    {renderCellContent(row, column)}
                   </td>
                 ))}
               </tr>
@@ -46,11 +54,33 @@ const Table: React.FC<TableProps> = ({
         </tbody>
       </table>
 
-      <div className="bg-gray-200 flex items-center justify-end p-2 rounded-b">
-          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} /> 
+      <div className="bg-gray-800 flex items-center justify-end p-2 rounded-b">
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
       </div>
     </div>
   );
 };
 
 export default Table;
+
+function renderCellContent(row: Record<string, any>, column: TableColumn): React.ReactNode {
+  if (column.dateFormat) {
+    return formatDate(row[column.field], column.dateFormat);
+  }
+
+  if (column.currencyFormat) {
+    return formatCurrency(row[column.field], column.currencyFormat);
+  }
+
+  return row[column.field];
+}
+
+function formatDate(dateString: string, dateFormat: string): string {
+  const date = new Date(dateString);
+  return format(date, dateFormat);
+}
+
+function formatCurrency(amount: number, currencyFormat: string): string {
+  const options = { style: 'currency', currency: currencyFormat };
+  return new Intl.NumberFormat(undefined, options).format(amount);
+}

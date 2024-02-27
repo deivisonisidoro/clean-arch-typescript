@@ -4,7 +4,7 @@ import { AuthContext } from '@/contexts/AuthContext';
 
 import Table from '@/components/Table';
 import { getAllUsers } from '@/services/users';
-import { usersColumns } from './usersColumns';
+import { usersColumns } from './columns/usersColumns';
 import Loading from '@/components/Loading';
 
 const Home: React.FC = () => {
@@ -51,6 +51,7 @@ const Home: React.FC = () => {
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
+            title='All Users'
           />
         </>
       )}
