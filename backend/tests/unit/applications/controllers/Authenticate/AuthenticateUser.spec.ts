@@ -3,16 +3,16 @@
  * @module AuthenticateUserControllerTests
  */
 
-import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest';
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IAuthenticateUserDTO } from '../../../../../src/domain/dtos/Authenticate/AuthenticateUser';
-import { IAuthenticateUserUserUseCase } from '../../../../../src/app/useCases/Authenticate/AuthenticateUser';
-import { IController } from '../../../../../src/presentation/http/controllers/IController';
-import { AuthenticateUserController } from '../../../../../src/presentation/http/controllers/Authenticate/AuthenticateUser';
-import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest';
-import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors';
-import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess';
-import { AuthenticateUserErrorType } from '../../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType';
+import { IAuthenticateUserUserUseCase } from '../../../../../src/app/useCases/Authenticate/AuthenticateUser'
+import { IAuthenticateUserDTO } from '../../../../../src/domain/dtos/Authenticate/AuthenticateUser'
+import { AuthenticateUserErrorType } from '../../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType'
+import { AuthenticateUserController } from '../../../../../src/presentation/http/controllers/Authenticate/AuthenticateUser'
+import { IController } from '../../../../../src/presentation/http/controllers/IController'
+import { IHttpRequest } from '../../../../../src/presentation/http/helpers/IHttpRequest'
+import { HttpErrors } from '../../../../../src/presentation/http/helpers/implementations/HttpErrors'
+import { HttpSuccess } from '../../../../../src/presentation/http/helpers/implementations/HttpSuccess'
 
 /**
  * Test suite for AuthenticateUserController.
@@ -20,8 +20,8 @@ import { AuthenticateUserErrorType } from '../../../../../src/domain/enums/Authe
  * @name AuthenticateUserControllerTests
  */
 describe('AuthenticateUserController', () => {
-  let authenticateUserUseCase: IAuthenticateUserUserUseCase;
-  let authenticateUserController: IController;
+  let authenticateUserUseCase: IAuthenticateUserUserUseCase
+  let authenticateUserController: IController
 
   /**
    * Setup before each test.
@@ -31,9 +31,11 @@ describe('AuthenticateUserController', () => {
   beforeEach(() => {
     authenticateUserUseCase = {
       execute: vi.fn(),
-    };
-    authenticateUserController = new AuthenticateUserController(authenticateUserUseCase);
-  });
+    }
+    authenticateUserController = new AuthenticateUserController(
+      authenticateUserUseCase,
+    )
+  })
 
   /**
    * Cleanup after each test.
@@ -41,8 +43,8 @@ describe('AuthenticateUserController', () => {
    * @name afterEach
    */
   afterEach(() => {
-    vi.clearAllMocks();
-  });
+    vi.clearAllMocks()
+  })
 
   /**
    * Test case to verify that it returns a 200 response on successful user authentication.
@@ -53,23 +55,23 @@ describe('AuthenticateUserController', () => {
     const authenticateUserRequestDTO: IAuthenticateUserDTO = {
       email: 'test@example.com',
       password: 'password',
-    };
+    }
     const httpRequest: IHttpRequest = {
       body: authenticateUserRequestDTO,
-    };
-    const httpSuccess = new HttpSuccess();
+    }
+    const httpSuccess = new HttpSuccess()
     authenticateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: {
         token: 'token',
         refreshToken: 'refreshToken',
       },
       success: true,
-    });
+    })
 
-    const httpResponse = await authenticateUserController.handle(httpRequest);
+    const httpResponse = await authenticateUserController.handle(httpRequest)
 
-    expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode);
-  });
+    expect(httpResponse.statusCode).toBe(httpSuccess.success_200().statusCode)
+  })
 
   /**
    * Test case to verify that it returns a 422 response if body parameters are missing.
@@ -79,16 +81,16 @@ describe('AuthenticateUserController', () => {
   it('should return 422 response if body parameters are missing', async () => {
     const authenticateUserRequestDTO = {
       password: 'password',
-    };
+    }
     const httpRequest: IHttpRequest = {
       body: authenticateUserRequestDTO,
-    };
-    const httpError = new HttpErrors();
-    const httpResponse = await authenticateUserController.handle(httpRequest);
+    }
+    const httpError = new HttpErrors()
+    const httpResponse = await authenticateUserController.handle(httpRequest)
 
-    expect(httpResponse.statusCode).toBe(httpError.error_422().statusCode);
-    expect(httpResponse.body).toEqual(httpError.error_422().body);
-  });
+    expect(httpResponse.statusCode).toBe(httpError.error_422().statusCode)
+    expect(httpResponse.body).toEqual(httpError.error_422().body)
+  })
 
   /**
    * Test case to verify that it returns a 400 response if email or password is wrong.
@@ -99,21 +101,23 @@ describe('AuthenticateUserController', () => {
     const authenticateUserRequestDTO: IAuthenticateUserDTO = {
       email: 'test@example.com',
       password: 'password',
-    };
+    }
     const httpRequest: IHttpRequest = {
       body: authenticateUserRequestDTO,
-    };
-    const httpError = new HttpErrors();
+    }
+    const httpError = new HttpErrors()
     authenticateUserUseCase.execute = vi.fn().mockResolvedValueOnce({
       data: AuthenticateUserErrorType.EmailOrPasswordWrong,
       success: false,
-    });
+    })
 
-    const httpResponse = await authenticateUserController.handle(httpRequest);
+    const httpResponse = await authenticateUserController.handle(httpRequest)
 
-    expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode);
-    expect(httpResponse.body).toEqual(AuthenticateUserErrorType.EmailOrPasswordWrong);
-  });
+    expect(httpResponse.statusCode).toBe(httpError.error_400().statusCode)
+    expect(httpResponse.body).toEqual(
+      AuthenticateUserErrorType.EmailOrPasswordWrong,
+    )
+  })
 
   /**
    * Test case to verify that it returns a 500 response if the body is missing.
@@ -121,10 +125,10 @@ describe('AuthenticateUserController', () => {
    * @name shouldReturn500ForMissingBody
    */
   it('should return 500 response if body is missing', async () => {
-    const httpError = new HttpErrors();
-    const httpResponse = await authenticateUserController.handle({});
+    const httpError = new HttpErrors()
+    const httpResponse = await authenticateUserController.handle({})
 
-    expect(httpResponse.statusCode).toBe(httpError.error_500().statusCode);
-    expect(httpResponse.body).toEqual(httpError.error_500().body);
-  });
-});
+    expect(httpResponse.statusCode).toBe(httpError.error_500().statusCode)
+    expect(httpResponse.body).toEqual(httpError.error_500().body)
+  })
+})

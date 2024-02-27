@@ -1,7 +1,7 @@
-import { IUsersRepository } from '../../../repositories/User';
-import { IDeleteUserUseCase } from '../DeleteUser';
-import { UserErrorType } from '../../../../domain/enums/user/ErrorType';
-import { UserSuccessType } from '../../../../domain/enums/user/SuccessType';
+import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
+import { UserSuccessType } from '../../../../domain/enums/user/SuccessType'
+import { IUsersRepository } from '../../../repositories/User'
+import { IDeleteUserUseCase } from '../DeleteUser'
 
 /**
  * Use case for deleting a user.
@@ -25,18 +25,24 @@ export class DeleteUserUseCase implements IDeleteUserUseCase {
    * @param {string} userId - The ID of the user to be deleted.
    * @returns {Promise<{ data: { error?: UserErrorType | UserSuccessType }, success: boolean }>} The response data.
    */
-  async execute(userId: string): Promise<{ data: { error?: UserErrorType | UserSuccessType }, success: boolean }> {
+  async execute(userId: string): Promise<{
+    data: { error?: UserErrorType | UserSuccessType }
+    success: boolean
+  }> {
     try {
-      const userAlreadyExists = await this.userRepository.findById(userId);
+      const userAlreadyExists = await this.userRepository.findById(userId)
 
       if (!userAlreadyExists) {
-        return { data: { error: UserErrorType.UserDoesNotExist }, success: false };
+        return {
+          data: { error: UserErrorType.UserDoesNotExist },
+          success: false,
+        }
       }
 
-      await this.userRepository.delete(userId);
-      return { data: { error: UserSuccessType.UserDeleted }, success: true };
+      await this.userRepository.delete(userId)
+      return { data: { error: UserSuccessType.UserDeleted }, success: true }
     } catch (error: any) {
-      return { data: { error: error.message }, success: false };
+      return { data: { error: error.message }, success: false }
     }
   }
 }

@@ -3,15 +3,15 @@
  * @module AuthenticateUserUseCaseTests
  */
 
-import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest';
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IAuthenticateUserDTO } from '../../../../src/domain/dtos/Authenticate/AuthenticateUser';
-import { IUsersRepository } from '../../../../src/app/repositories/User';
-import { IGenerateRefreshTokenProvider } from '../../../../src/app/providers/GenerateRefreshToken';
-import { IPasswordHasher } from '../../../../src/app/providers/PasswordHasher';
-import { IRefreshTokenRepository } from '../../../../src/app/repositories/RefreshToken';
-import { AuthenticateUserUseCase } from '../../../../src/app/useCases/Authenticate/implementations/AuthenticateUser';
-import { AuthenticateUserErrorType } from '../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType';
+import { IGenerateRefreshTokenProvider } from '../../../../src/app/providers/GenerateRefreshToken'
+import { IPasswordHasher } from '../../../../src/app/providers/PasswordHasher'
+import { IRefreshTokenRepository } from '../../../../src/app/repositories/RefreshToken'
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { AuthenticateUserUseCase } from '../../../../src/app/useCases/Authenticate/implementations/AuthenticateUser'
+import { IAuthenticateUserDTO } from '../../../../src/domain/dtos/Authenticate/AuthenticateUser'
+import { AuthenticateUserErrorType } from '../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType'
 
 /**
  * Test suite for the AuthenticateUserUseCase class.
@@ -19,11 +19,11 @@ import { AuthenticateUserErrorType } from '../../../../src/domain/enums/Authenti
  * @name AuthenticateUserUseCaseTests
  */
 describe('Authenticate user', () => {
-  let userRepository: IUsersRepository;
-  let authenticateUserUseCase: AuthenticateUserUseCase;
-  let generateRefreshTokenProvider: IGenerateRefreshTokenProvider;
-  let passwordHasher: IPasswordHasher;
-  let refreshTokenRepository: IRefreshTokenRepository;
+  let userRepository: IUsersRepository
+  let authenticateUserUseCase: AuthenticateUserUseCase
+  let generateRefreshTokenProvider: IGenerateRefreshTokenProvider
+  let passwordHasher: IPasswordHasher
+  let refreshTokenRepository: IRefreshTokenRepository
 
   /**
    * Set up before each test case.
@@ -38,27 +38,27 @@ describe('Authenticate user', () => {
       findById: vi.fn(),
       findAll: vi.fn(),
       delete: vi.fn(),
-    };
+    }
     passwordHasher = {
       hashPassword: vi.fn(),
       comparePasswords: vi.fn(),
-    };
+    }
     refreshTokenRepository = {
       create: vi.fn(),
       findById: vi.fn(),
       findByUserId: vi.fn(),
       delete: vi.fn(),
-    };
+    }
     generateRefreshTokenProvider = {
       generateToken: vi.fn(),
-    };
+    }
     authenticateUserUseCase = new AuthenticateUserUseCase(
       userRepository,
       passwordHasher,
       generateRefreshTokenProvider,
-      refreshTokenRepository
-    );
-  });
+      refreshTokenRepository,
+    )
+  })
 
   /**
    * Clean up after each test case.
@@ -66,8 +66,8 @@ describe('Authenticate user', () => {
    * @name afterEach
    */
   afterEach(() => {
-    vi.clearAllMocks();
-  });
+    vi.clearAllMocks()
+  })
 
   /**
    * Test case to verify successful authentication of an existing user.
@@ -78,15 +78,15 @@ describe('Authenticate user', () => {
     const userData: IAuthenticateUserDTO = {
       email: 'test@test.com.br',
       password: '123456',
-    };
+    }
 
-    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData);
-    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true);
-    const userAuthenticated = await authenticateUserUseCase.execute(userData);
+    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData)
+    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true)
+    const userAuthenticated = await authenticateUserUseCase.execute(userData)
 
-    expect(userAuthenticated.data).toHaveProperty('token');
-    expect(userAuthenticated.data).toHaveProperty('refreshToken');
-  });
+    expect(userAuthenticated.data).toHaveProperty('token')
+    expect(userAuthenticated.data).toHaveProperty('refreshToken')
+  })
 
   /**
    * Test case to verify deletion of the refresh token after successful authentication.
@@ -97,17 +97,17 @@ describe('Authenticate user', () => {
     const userData: IAuthenticateUserDTO = {
       email: 'test@test.com.br',
       password: '123456',
-    };
+    }
 
-    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData);
-    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true);
-    refreshTokenRepository.findByUserId = vi.fn().mockResolvedValueOnce('token');
-    refreshTokenRepository.delete = vi.fn().mockResolvedValueOnce(null);
-    const userAuthenticated = await authenticateUserUseCase.execute(userData);
+    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData)
+    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(true)
+    refreshTokenRepository.findByUserId = vi.fn().mockResolvedValueOnce('token')
+    refreshTokenRepository.delete = vi.fn().mockResolvedValueOnce(null)
+    const userAuthenticated = await authenticateUserUseCase.execute(userData)
 
-    expect(userAuthenticated.data).toHaveProperty('token');
-    expect(userAuthenticated.data).toHaveProperty('refreshToken');
-  });
+    expect(userAuthenticated.data).toHaveProperty('token')
+    expect(userAuthenticated.data).toHaveProperty('refreshToken')
+  })
 
   /**
    * Test case to verify that it cannot authenticate an existing user with the wrong email.
@@ -118,12 +118,14 @@ describe('Authenticate user', () => {
     const userData: IAuthenticateUserDTO = {
       email: 'testexisting@test.com.br',
       password: 'testexisting',
-    };
-    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(null);
+    }
+    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(null)
 
-    const result = await authenticateUserUseCase.execute(userData);
-    expect(result.data).toEqual({ error: AuthenticateUserErrorType.EmailOrPasswordWrong });
-  });
+    const result = await authenticateUserUseCase.execute(userData)
+    expect(result.data).toEqual({
+      error: AuthenticateUserErrorType.EmailOrPasswordWrong,
+    })
+  })
 
   /**
    * Test case to verify that it cannot authenticate an existing user with the wrong password.
@@ -134,11 +136,13 @@ describe('Authenticate user', () => {
     const userData: IAuthenticateUserDTO = {
       email: 'testexisting@test.com.br',
       password: 'testexisting',
-    };
-    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData);
-    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(false);
+    }
+    userRepository.findByEmail = vi.fn().mockResolvedValueOnce(userData)
+    passwordHasher.comparePasswords = vi.fn().mockResolvedValueOnce(false)
 
-    const result = await authenticateUserUseCase.execute(userData);
-    expect(result.data).toEqual({ error: AuthenticateUserErrorType.EmailOrPasswordWrong });
-  });
-});
+    const result = await authenticateUserUseCase.execute(userData)
+    expect(result.data).toEqual({
+      error: AuthenticateUserErrorType.EmailOrPasswordWrong,
+    })
+  })
+})

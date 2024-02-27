@@ -1,4 +1,4 @@
-import { ResponseDTO } from '../../../domain/dtos/Response';
+import { ResponseDTO } from '../../../domain/dtos/Response'
 
 /**
  * Interface for the use case of retrieving all users.
@@ -13,5 +13,5 @@ export interface IGetAllUserUseCase {
    * @param {number} page - The page number for pagination.
    * @returns {Promise<ResponseDTO>} The response data.
    */
-  execute(page: number): Promise<ResponseDTO>;
+  execute(page: number): Promise<ResponseDTO>
 }

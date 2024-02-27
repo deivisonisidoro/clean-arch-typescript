@@ -10,7 +10,7 @@ export interface ITokenManagerProvider {
    * @param {number} expires_in - The expiration time of the token in seconds.
    * @returns {boolean} A boolean indicating whether the token is still valid based on its age.
    */
-  validateTokenAge(expires_in: number): boolean;
+  validateTokenAge(expires_in: number): boolean
 
   /**
    * Validates the integrity and format of a token.
@@ -18,5 +18,5 @@ export interface ITokenManagerProvider {
    * @param {string} token - The token to be validated.
    * @returns {boolean} A boolean indicating whether the token is valid.
    */
-  validateToken(token: string): boolean;
+  validateToken(token: string): boolean
 }

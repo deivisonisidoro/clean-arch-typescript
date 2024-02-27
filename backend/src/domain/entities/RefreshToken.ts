@@ -1,4 +1,4 @@
-import { User } from "./User";
+import { User } from './User'
 
 /**
  * Interface representing the structure of a refresh token.
@@ -6,10 +6,10 @@ import { User } from "./User";
  * @interface
  */
 export interface IRefreshToken {
-  expires_in: number;
-  user_id: string;
-  user: User;
-  createdAt: Date;
+  expires_in: number
+  user_id: string
+  user: User
+  createdAt: Date
 }
 
 /**
@@ -18,10 +18,10 @@ export interface IRefreshToken {
  * @class
  */
 export class RefreshToken {
-  private _expires_in: number;
-  private _user_id: string;
-  private _user: User;
-  private _createdAt: Date;
+  private _expires_in: number
+  private _user_id: string
+  private _user: User
+  private _createdAt: Date
 
   /**
    * Gets the expiration time of the refresh token.
@@ -29,7 +29,7 @@ export class RefreshToken {
    * @readonly
    */
   get expires_in(): number {
-    return this._expires_in;
+    return this._expires_in
   }
 
   /**
@@ -38,7 +38,7 @@ export class RefreshToken {
    * @readonly
    */
   get user_id(): string {
-    return this._user_id;
+    return this._user_id
   }
 
   /**
@@ -47,7 +47,7 @@ export class RefreshToken {
    * @readonly
    */
   get user(): User {
-    return this._user;
+    return this._user
   }
 
   /**
@@ -56,7 +56,7 @@ export class RefreshToken {
    * @readonly
    */
   get createdAt(): Date {
-    return this._createdAt;
+    return this._createdAt
   }
 
   /**
@@ -66,9 +66,9 @@ export class RefreshToken {
    * @param {IRefreshToken} props - The properties of the refresh token.
    */
   constructor(props: IRefreshToken) {
-    this._expires_in = props.expires_in;
-    this._user_id = props.user_id;
-    this._createdAt = props.createdAt;
-    this._user = props.user;
+    this._expires_in = props.expires_in
+    this._user_id = props.user_id
+    this._createdAt = props.createdAt
+    this._user = props.user
   }
 }

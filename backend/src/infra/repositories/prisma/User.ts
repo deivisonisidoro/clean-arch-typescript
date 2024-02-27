@@ -1,10 +1,11 @@
-import { PrismaClient } from '@prisma/client';
-import { PaginationDTO } from '../../../domain/dtos/Pagination';
-import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser';
-import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser';
-import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut';
-import { IUsersRepository } from '../../../app/repositories/User';
-import { IUserInRequestDTO } from '../../../domain/dtos/User/UserIn';
+import { PrismaClient } from '@prisma/client'
+
+import { IUsersRepository } from '../../../app/repositories/User'
+import { PaginationDTO } from '../../../domain/dtos/Pagination'
+import { ICreateUserRequestDTO } from '../../../domain/dtos/User/CreateUser'
+import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
+import { IUserInRequestDTO } from '../../../domain/dtos/User/UserIn'
+import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut'
 
 /**
  * Prisma implementation of the user repository.
@@ -45,9 +46,9 @@ export class UserRepository implements IUsersRepository {
         name: true,
         createdAt: true,
       },
-    });
+    })
 
-    return user;
+    return user
   }
 
   /**
@@ -67,9 +68,9 @@ export class UserRepository implements IUsersRepository {
         password: true,
         createdAt: true,
       },
-    });
+    })
 
-    return user;
+    return user
   }
 
   /**
@@ -89,9 +90,9 @@ export class UserRepository implements IUsersRepository {
         password: true,
         createdAt: true,
       },
-    });
+    })
 
-    return user;
+    return user
   }
 
   /**
@@ -102,7 +103,7 @@ export class UserRepository implements IUsersRepository {
    * @returns {Promise<PaginationDTO>} The paginated list of users.
    */
   async findAll(pageNumber: number): Promise<PaginationDTO> {
-    const perPage = 4;
+    const perPage = 4
     const users: IUserOutRequestDTO[] = await this.prisma.user.findMany({
       take: perPage,
       skip: Math.ceil((pageNumber - 1) * perPage),
@@ -115,16 +116,16 @@ export class UserRepository implements IUsersRepository {
         name: true,
         createdAt: true,
       },
-    });
+    })
 
-    const total = await this.prisma.user.count();
+    const total = await this.prisma.user.count()
 
     return {
       body: users,
       total,
       page: pageNumber,
       last_page: Math.ceil(total / perPage),
-    };
+    }
   }
 
   /**
@@ -148,9 +149,9 @@ export class UserRepository implements IUsersRepository {
         name,
         password,
       },
-    });
+    })
 
-    return userUpdated;
+    return userUpdated
   }
 
   /**
@@ -165,6 +166,6 @@ export class UserRepository implements IUsersRepository {
       where: {
         id,
       },
-    });
+    })
   }
 }

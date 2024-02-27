@@ -1,9 +1,10 @@
-import dayjs from 'dayjs';
-import { verify } from 'jsonwebtoken';
-import dotenv from 'dotenv';
-import { ITokenManagerProvider } from '../../app/providers/TokenManager';
+import dayjs from 'dayjs'
+import dotenv from 'dotenv'
+import { verify } from 'jsonwebtoken'
 
-dotenv.config();
+import { ITokenManagerProvider } from '../../app/providers/TokenManager'
+
+dotenv.config()
 
 /**
  * Provider for managing and validating authentication tokens.
@@ -11,15 +12,15 @@ dotenv.config();
  * @class
  * @implements {ITokenManagerProvider}
  */
-export class TokenManagerProvider implements ITokenManagerProvider{
+export class TokenManagerProvider implements ITokenManagerProvider {
   /**
    * Validates whether a token has expired based on the provided expiration timestamp.
    *
-   * @param {number} expires_in - The expiration timestamp of the token.
+   * @param {number} expiresIn - The expiration timestamp of the token.
    * @returns {boolean} True if the token is expired, false otherwise.
    */
-  validateTokenAge(expires_in: number): boolean {
-    return dayjs().isAfter(dayjs.unix(expires_in));
+  validateTokenAge(expiresIn: number): boolean {
+    return dayjs().isAfter(dayjs.unix(expiresIn))
   }
 
   /**
@@ -30,10 +31,10 @@ export class TokenManagerProvider implements ITokenManagerProvider{
    */
   validateToken(token: string): boolean {
     try {
-      verify(token, process.env.API_SECRET || '');
-      return true;
+      verify(token, process.env.API_SECRET || '')
+      return true
     } catch (error) {
-      return false;
+      return false
     }
   }
 }

@@ -7,5 +7,5 @@ export interface IRefreshTokenUserDTO {
   /**
    * The identifier of the refresh token used for authentication token refresh.
    */
-  refreshTokenId: string;
+  refreshTokenId: string
 }

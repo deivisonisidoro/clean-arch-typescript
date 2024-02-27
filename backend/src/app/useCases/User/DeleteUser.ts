@@ -1,4 +1,4 @@
-import { ResponseDTO } from '../../../domain/dtos/Response';
+import { ResponseDTO } from '../../../domain/dtos/Response'
 
 /**
  * Interface for the use case of deleting a user.
@@ -13,5 +13,5 @@ export interface IDeleteUserUseCase {
    * @param {string} userId - The ID of the user to be deleted.
    * @returns {Promise<ResponseDTO>} The response data.
    */
-  execute(userId: string): Promise<ResponseDTO>;
+  execute(userId: string): Promise<ResponseDTO>
 }

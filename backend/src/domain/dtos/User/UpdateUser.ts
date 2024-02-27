@@ -7,20 +7,20 @@ export interface IUpdateUserRequestDTO {
   /**
    * The ID of the user to be updated.
    */
-  id?: string;
+  id?: string
 
   /**
    * The updated name of the user.
    */
-  name?: string;
+  name?: string
 
   /**
    * The updated email address of the user.
    */
-  email?: string;
+  email?: string
 
   /**
    * The updated password of the user.
    */
-  password?: string;
+  password?: string
 }

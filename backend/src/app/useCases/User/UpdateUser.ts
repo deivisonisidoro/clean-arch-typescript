@@ -1,5 +1,5 @@
-import { ResponseDTO } from '../../../domain/dtos/Response';
-import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser';
+import { ResponseDTO } from '../../../domain/dtos/Response'
+import { IUpdateUserRequestDTO } from '../../../domain/dtos/User/UpdateUser'
 
 /**
  * Interface for the use case of updating user information.
@@ -15,5 +15,5 @@ export interface IUpdateUserUseCase {
    * @param {IUpdateUserRequestDTO} data - The updated user information.
    * @returns {Promise<ResponseDTO>} The response data.
    */
-  execute(userId: string, data: IUpdateUserRequestDTO): Promise<ResponseDTO>;
+  execute(userId: string, data: IUpdateUserRequestDTO): Promise<ResponseDTO>
 }

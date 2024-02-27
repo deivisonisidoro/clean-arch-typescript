@@ -7,10 +7,10 @@ export interface IAuthenticateUserDTO {
   /**
    * The email address of the user for authentication.
    */
-  email: string;
+  email: string
 
   /**
    * The password of the user for authentication.
    */
-  password: string;
+  password: string
 }

@@ -1,7 +1,8 @@
-import dayjs from 'dayjs';
-import { PrismaClient } from '@prisma/client';
-import { IRefreshTokenRepository } from "../../../app/repositories/RefreshToken";
-import { RefreshTokenDTO } from "../../../domain/dtos/Authenticate/RefreshToken";
+import { PrismaClient } from '@prisma/client'
+import dayjs from 'dayjs'
+
+import { IRefreshTokenRepository } from '../../../app/repositories/RefreshToken'
+import { RefreshTokenDTO } from '../../../domain/dtos/Authenticate/RefreshToken'
 
 /**
  * Prisma implementation of the refresh token repository.
@@ -22,20 +23,20 @@ export class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
    * Creates a new refresh token for the specified user.
    *
    * @async
-   * @param {string} user_id - The ID of the user for whom the refresh token is created.
+   * @param {string} userId - The ID of the user for whom the refresh token is created.
    * @returns {Promise<RefreshTokenDTO>} The generated refresh token.
    */
-  async create(user_id: string): Promise<RefreshTokenDTO> {
-    const expiresIn = dayjs().add(2, "hour").unix();
+  async create(userId: string): Promise<RefreshTokenDTO> {
+    const expiresIn = dayjs().add(2, 'hour').unix()
 
     const generateRefreshToken = await this.prisma.refreshToken.create({
       data: {
-        user_id,
+        user_id: userId,
         expires_in: expiresIn,
       },
-    });
+    })
 
-    return generateRefreshToken;
+    return generateRefreshToken
   }
 
   /**
@@ -50,40 +51,40 @@ export class RefreshTokenPrismaRepository implements IRefreshTokenRepository {
       where: {
         id: refreshToken,
       },
-    });
+    })
 
-    return token;
+    return token
   }
 
   /**
    * Finds a refresh token by user ID.
    *
    * @async
-   * @param {string} user_id - The ID of the user for whom to find the refresh token.
+   * @param {string} userId - The ID of the user for whom to find the refresh token.
    * @returns {Promise<RefreshTokenDTO | unknown>} The found refresh token or undefined.
    */
-  async findByUserId(user_id: string): Promise<RefreshTokenDTO | unknown> {
+  async findByUserId(userId: string): Promise<RefreshTokenDTO | unknown> {
     const token = await this.prisma.refreshToken.findFirst({
       where: {
-        user_id,
+        user_id: userId,
       },
-    });
+    })
 
-    return token;
+    return token
   }
 
   /**
    * Deletes a refresh token associated with the specified user ID.
    *
    * @async
-   * @param {string} user_id - The ID of the user for whom to delete the refresh token.
+   * @param {string} userId - The ID of the user for whom to delete the refresh token.
    * @returns {Promise<void>} A Promise that resolves once the refresh token is deleted.
    */
-  async delete(user_id: string): Promise<void> {
+  async delete(userId: string): Promise<void> {
     await this.prisma.refreshToken.delete({
       where: {
-        user_id,
+        user_id: userId,
       },
-    });
+    })
   }
 }

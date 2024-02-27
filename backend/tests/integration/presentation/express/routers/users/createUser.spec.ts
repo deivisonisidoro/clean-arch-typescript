@@ -3,10 +3,10 @@
  * @module CreateUserRouterTests
  */
 
-import request from 'supertest';
-import { describe, expect, it } from 'vitest';
+import request from 'supertest'
+import { describe, expect, it } from 'vitest'
 
-import { app } from '../../../../../../src/presentation/express/settings/app';
+import { app } from '../../../../../../src/presentation/express/settings/app'
 
 /**
  * Test suite for CreateUserRouter.
@@ -24,11 +24,11 @@ describe('CreateUserRouter', () => {
       password: '123456',
       email: 'testIntegration@test.com.br',
       name: 'Test Integration',
-    });
+    })
 
-    expect(response.status).toBe(201);
-    expect(response.body).toHaveProperty('id');
-  });
+    expect(response.status).toBe(201)
+    expect(response.body).toHaveProperty('id')
+  })
 
   /**
    * Test case to verify that it's not possible to create an existing user.
@@ -40,16 +40,16 @@ describe('CreateUserRouter', () => {
       password: '123456',
       email: 'testIntegrationExisting@test.com.br',
       name: 'Test Integration Exist User',
-    });
+    })
 
     const response = await request(app).post('/users').send({
       password: '123456',
       email: 'testIntegrationExisting@test.com.br',
       name: 'Test Integration Exist User',
-    });
+    })
 
-    expect(response.status).toBe(400);
-  });
+    expect(response.status).toBe(400)
+  })
 
   /**
    * Test case to verify that it's not possible to create a user with an invalid email.
@@ -61,10 +61,10 @@ describe('CreateUserRouter', () => {
       password: '123456',
       email: 'Invalid email',
       name: 'Test Integration Exist User',
-    });
+    })
 
-    expect(response.status).toBe(400);
-  });
+    expect(response.status).toBe(400)
+  })
 
   /**
    * Test case to verify 422 response if body parameters are invalid.
@@ -74,10 +74,10 @@ describe('CreateUserRouter', () => {
   it('should return 422 response if body parameters are invalid', async () => {
     const response = await request(app).post('/users').send({
       invalidKey: 'invalidValue',
-    });
+    })
 
-    expect(response.status).toBe(422);
-  });
+    expect(response.status).toBe(422)
+  })
 
   /**
    * Test case to verify 500 response if an internal server error occurs.
@@ -85,8 +85,8 @@ describe('CreateUserRouter', () => {
    * @name shouldReturn500ForInternalServerError
    */
   it('should return 500 response if an internal server error occurs', async () => {
-    const response = await request(app).post('/users');
+    const response = await request(app).post('/users')
 
-    expect(response.status).toBe(500);
-  });
-});
+    expect(response.status).toBe(500)
+  })
+})

@@ -1,5 +1,5 @@
-import { ResponseDTO } from '../../../domain/dtos/Response';
-import { IAuthenticateUserDTO } from '../../../domain/dtos/Authenticate/AuthenticateUser';
+import { IAuthenticateUserDTO } from '../../../domain/dtos/Authenticate/AuthenticateUser'
+import { ResponseDTO } from '../../../domain/dtos/Response'
 
 /**
  * Interface for the use case of authenticating a user.
@@ -21,5 +21,5 @@ export interface IAuthenticateUserUserUseCase {
    * This method is responsible for handling the logic of authenticating a user
    * based on the provided credentials (email and password).
    */
-  execute({ email, password }: IAuthenticateUserDTO): Promise<ResponseDTO>;
+  execute({ email, password }: IAuthenticateUserDTO): Promise<ResponseDTO>
 }

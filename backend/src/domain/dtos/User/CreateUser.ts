@@ -7,15 +7,15 @@ export interface ICreateUserRequestDTO {
   /**
    * The name of the user.
    */
-  name: string;
+  name: string
 
   /**
    * The email address of the user.
    */
-  email: string;
+  email: string
 
   /**
    * The password of the user.
    */
-  password: string;
+  password: string
 }

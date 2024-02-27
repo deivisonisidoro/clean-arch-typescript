@@ -1,7 +1,7 @@
-import { verify } from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
+import { verify } from 'jsonwebtoken'
 
-dotenv.config();
+dotenv.config()
 
 /**
  * Validates the integrity and format of a JSON Web Token (JWT).
@@ -11,9 +11,9 @@ dotenv.config();
  */
 export function validateToken(token: string): boolean {
   try {
-    verify(token, process.env.API_SECRET || '');
-    return true;
+    verify(token, process.env.API_SECRET || '')
+    return true
   } catch (error) {
-    return false;
+    return false
   }
 }

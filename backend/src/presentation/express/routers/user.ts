@@ -23,25 +23,37 @@ userRoutes.post('/', async (request: Request, response: Response) => {
 /**
  * Endpoint to get user information (requires authentication).
  */
-userRoutes.get('/', ensureAuthenticated, async (request: Request, response: Response) => {
-  const adapter = await expressAdapter(request, getUserComposer())
-  return response.status(adapter.statusCode).json(adapter.body)
-})
+userRoutes.get(
+  '/',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const adapter = await expressAdapter(request, getUserComposer())
+    return response.status(adapter.statusCode).json(adapter.body)
+  },
+)
 
 /**
  * Endpoint to update user information (requires authentication).
  */
-userRoutes.patch('/:id', ensureAuthenticated, async (request: Request, response: Response) => {
-  const adapter = await expressAdapter(request, updateUserComposer())
-  return response.status(adapter.statusCode).json(adapter.body)
-})
+userRoutes.patch(
+  '/:id',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const adapter = await expressAdapter(request, updateUserComposer())
+    return response.status(adapter.statusCode).json(adapter.body)
+  },
+)
 
 /**
  * Endpoint to delete a user (requires authentication).
  */
-userRoutes.delete('/:id', ensureAuthenticated, async (request: Request, response: Response) => {
-  const adapter = await expressAdapter(request, deleteUserComposer())
-  return response.status(adapter.statusCode).json(adapter.body)
-})
+userRoutes.delete(
+  '/:id',
+  ensureAuthenticated,
+  async (request: Request, response: Response) => {
+    const adapter = await expressAdapter(request, deleteUserComposer())
+    return response.status(adapter.statusCode).json(adapter.body)
+  },
+)
 
 export { userRoutes }

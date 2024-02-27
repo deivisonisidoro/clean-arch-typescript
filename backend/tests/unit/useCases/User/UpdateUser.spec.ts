@@ -3,15 +3,15 @@
  * @module UpdateUserUseCaseTests
  */
 
-import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest';
+import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUpdateUserRequestDTO } from '../../../../src/domain/dtos/User/UpdateUser';
-import { IUsersRepository } from '../../../../src/app/repositories/User';
-import { UpdateUserUseCase } from '../../../../src/app/useCases/User/implementations/UpdateUser';
-import { IUpdateUserUseCase } from '../../../../src/app/useCases/User/UpdateUser';
-import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType';
-import { EmailErrorType } from '../../../../src/domain/enums/email/ErrorType';
-import { IPasswordHasher } from "../../../../src/app/providers/PasswordHasher";
+import { IPasswordHasher } from '../../../../src/app/providers/PasswordHasher'
+import { IUsersRepository } from '../../../../src/app/repositories/User'
+import { UpdateUserUseCase } from '../../../../src/app/useCases/User/implementations/UpdateUser'
+import { IUpdateUserUseCase } from '../../../../src/app/useCases/User/UpdateUser'
+import { IUpdateUserRequestDTO } from '../../../../src/domain/dtos/User/UpdateUser'
+import { EmailErrorType } from '../../../../src/domain/enums/email/ErrorType'
+import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
 
 /**
  * Test suite for the UpdateUserUseCase class.
@@ -19,9 +19,9 @@ import { IPasswordHasher } from "../../../../src/app/providers/PasswordHasher";
  * @name UpdateUserUseCaseTests
  */
 describe('UpdateUserUseCase', () => {
-  let updateUserUseCase: IUpdateUserUseCase;
-  let userRepository: IUsersRepository;
-  let passwordHasher: IPasswordHasher;
+  let updateUserUseCase: IUpdateUserUseCase
+  let userRepository: IUsersRepository
+  let passwordHasher: IPasswordHasher
 
   /**
    * Set up before each test case.
@@ -36,13 +36,13 @@ describe('UpdateUserUseCase', () => {
       findById: vi.fn(),
       findAll: vi.fn(),
       delete: vi.fn(),
-    };
+    }
     passwordHasher = {
       hashPassword: vi.fn(),
       comparePasswords: vi.fn(),
-    };
-    updateUserUseCase = new UpdateUserUseCase(userRepository, passwordHasher);
-  });
+    }
+    updateUserUseCase = new UpdateUserUseCase(userRepository, passwordHasher)
+  })
 
   /**
    * Clean up after each test case.
@@ -50,8 +50,8 @@ describe('UpdateUserUseCase', () => {
    * @name afterEach
    */
   afterEach(() => {
-    vi.clearAllMocks();
-  });
+    vi.clearAllMocks()
+  })
 
   /**
    * Test case to verify updating a new user.
@@ -59,33 +59,35 @@ describe('UpdateUserUseCase', () => {
    * @name shouldUpdateNewUser
    */
   it('should update a new user', async () => {
-    const userId = '123';
+    const userId = '123'
     const existingUser = {
       id: '123',
       email: 'existing@example.com',
       name: 'Existing User',
       password: 'existingpassword',
-    };
+    }
 
     const updateUserRequestDTO: IUpdateUserRequestDTO = {
       email: 'newuser@example.com',
       name: 'New User',
       password: 'newpassword',
-    };
+    }
     userRepository.findById = vi
       .fn()
-      .mockResolvedValueOnce(updateUserRequestDTO);
-    userRepository.update = vi.fn().mockResolvedValueOnce(updateUserRequestDTO);
-    passwordHasher.hashPassword = vi.fn().mockResolvedValueOnce(existingUser.password);
+      .mockResolvedValueOnce(updateUserRequestDTO)
+    userRepository.update = vi.fn().mockResolvedValueOnce(updateUserRequestDTO)
+    passwordHasher.hashPassword = vi
+      .fn()
+      .mockResolvedValueOnce(existingUser.password)
 
-    await updateUserUseCase.execute(userId, existingUser);
+    await updateUserUseCase.execute(userId, existingUser)
 
     expect(userRepository.update).toHaveBeenCalledWith(updateUserRequestDTO, {
       name: existingUser.name,
       email: existingUser.email,
       password: existingUser.password,
-    });
-  });
+    })
+  })
 
   /**
    * Test case to verify throwing an error if user does not exist.
@@ -93,19 +95,19 @@ describe('UpdateUserUseCase', () => {
    * @name shouldThrowErrorIfUserDoesNotExist
    */
   it('should throw an error if user does not exist', async () => {
-    const userId = '123';
+    const userId = '123'
     const updateUserRequestDTO: IUpdateUserRequestDTO = {
       id: '123',
       email: 'test@example.com',
       name: 'Test User',
       password: 'password',
-    };
+    }
 
-    userRepository.findById = vi.fn().mockResolvedValueOnce(null);
+    userRepository.findById = vi.fn().mockResolvedValueOnce(null)
 
-    const result = await updateUserUseCase.execute(userId, updateUserRequestDTO);
-    expect(result.data.error).toEqual(UserErrorType.UserDoesNotExist);
-  });
+    const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
+    expect(result.data.error).toEqual(UserErrorType.UserDoesNotExist)
+  })
 
   /**
    * Test case to verify throwing an error if email is invalid.
@@ -113,23 +115,23 @@ describe('UpdateUserUseCase', () => {
    * @name shouldThrowErrorIfEmailIsInvalid
    */
   it('should throw an error if email is invalid', async () => {
-    const userId = '123';
+    const userId = '123'
     const existingUser = {
       id: '123',
       email: 'existing@example.com',
       name: 'Existing User',
       password: 'existingpassword',
-    };
+    }
     const updateUserRequestDTO: IUpdateUserRequestDTO = {
       id: '123',
       email: 'invalid email',
       name: 'Test User',
       password: 'password',
-    };
+    }
 
-    userRepository.findById = vi.fn().mockResolvedValueOnce(existingUser);
+    userRepository.findById = vi.fn().mockResolvedValueOnce(existingUser)
 
-    const result = await updateUserUseCase.execute(userId, updateUserRequestDTO);
-    expect(result.data).toEqual({ error: EmailErrorType.InvalidEmail });
-  });
-});
+    const result = await updateUserUseCase.execute(userId, updateUserRequestDTO)
+    expect(result.data).toEqual({ error: EmailErrorType.InvalidEmail })
+  })
+})

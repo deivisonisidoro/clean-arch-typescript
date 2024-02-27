@@ -3,15 +3,15 @@
  * @module UpdateUserRouterTests
  */
 
-import request from 'supertest';
-import { beforeEach, describe, expect, it } from 'vitest';
+import request from 'supertest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
-import { ICreateUserRequestDTO } from '../../../../../domain/dtos/User/CreateUser';
-import { app } from '../../../../../../src/presentation/express/settings/app';
-import { HttpErrors } from '../../../../../../src/presentation/http/helpers/implementations/HttpErrors';
-import { login } from '../../../../../helpers/auth/login';
+import { app } from '../../../../../../src/presentation/express/settings/app'
+import { HttpErrors } from '../../../../../../src/presentation/http/helpers/implementations/HttpErrors'
+import { ICreateUserRequestDTO } from '../../../../../domain/dtos/User/CreateUser'
+import { login } from '../../../../../helpers/auth/login'
 
-const httpError = new HttpErrors();
+const httpError = new HttpErrors()
 
 /**
  * Test suite for UpdateUserRouter.
@@ -19,9 +19,9 @@ const httpError = new HttpErrors();
  * @name UpdateUserRouterTests
  */
 describe('UpdateUserRouter', () => {
-  let userData: ICreateUserRequestDTO;
-  let userId: string;
-  let authToken: any;
+  let userData: ICreateUserRequestDTO
+  let userId: string
+  let authToken: any
 
   /**
    * Setup before each test.
@@ -33,12 +33,12 @@ describe('UpdateUserRouter', () => {
       password: '123456',
       email: 'testUpdate@test.com.br',
       name: 'Test Integration Exist User',
-    };
+    }
 
-    const responseUser = await request(app).post('/users').send(userData);
-    userId = responseUser.body.id;
-    authToken = await login(userData);
-  });
+    const responseUser = await request(app).post('/users').send(userData)
+    userId = responseUser.body.id
+    authToken = await login(userData)
+  })
 
   /**
    * Test case to verify the ability to update the password of an existing user.
@@ -51,11 +51,11 @@ describe('UpdateUserRouter', () => {
       .set('Authorization', `Bearer ${authToken.token}`)
       .send({
         password: '123',
-      });
+      })
 
-    expect(response.status).toBe(200);
-    expect(response.body.password).not.toBe(userData.password);
-  });
+    expect(response.status).toBe(200)
+    expect(response.body.password).not.toBe(userData.password)
+  })
 
   /**
    * Test case to verify the ability to update the email of an existing user.
@@ -68,11 +68,11 @@ describe('UpdateUserRouter', () => {
       .set('Authorization', `Bearer ${authToken.token}`)
       .send({
         email: 'testUpdated@test.com.br',
-      });
+      })
 
-    expect(response.status).toBe(200);
-    expect(response.body.email).toBe('testUpdated@test.com.br');
-  });
+    expect(response.status).toBe(200)
+    expect(response.body.email).toBe('testUpdated@test.com.br')
+  })
 
   /**
    * Test case to verify the ability to update the name of an existing user.
@@ -85,11 +85,11 @@ describe('UpdateUserRouter', () => {
       .set('Authorization', `Bearer ${authToken.token}`)
       .send({
         name: 'Test Integration',
-      });
+      })
 
-    expect(response.status).toBe(200);
-    expect(response.body.name).toBe('Test Integration');
-  });
+    expect(response.status).toBe(200)
+    expect(response.body.name).toBe('Test Integration')
+  })
 
   /**
    * Test case to verify that it's not possible to update a non-existing user.
@@ -102,10 +102,10 @@ describe('UpdateUserRouter', () => {
       .set('Authorization', `Bearer ${authToken.token}`)
       .send({
         email: 'testUpdatedExisting@test.com.br',
-      });
+      })
 
-    expect(response.status).toBe(httpError.error_400().statusCode);
-  });
+    expect(response.status).toBe(httpError.error_400().statusCode)
+  })
 
   /**
    * Test case to verify that it's not possible to update an existing user with an invalid email.
@@ -118,10 +118,10 @@ describe('UpdateUserRouter', () => {
       .set('Authorization', `Bearer ${authToken.token}`)
       .send({
         email: 'invalid email',
-      });
+      })
 
-    expect(response.status).toBe(httpError.error_400().statusCode);
-  });
+    expect(response.status).toBe(httpError.error_400().statusCode)
+  })
 
   /**
    * Test case to verify that it returns a 422 response if body parameters are invalid.
@@ -132,10 +132,10 @@ describe('UpdateUserRouter', () => {
     const response = await request(app)
       .patch('/users/:id')
       .set('Authorization', `Bearer ${authToken.token}`)
-      .send({ test: 'Test' });
+      .send({ test: 'Test' })
 
-    expect(response.status).toBe(httpError.error_422().statusCode);
-  });
+    expect(response.status).toBe(httpError.error_422().statusCode)
+  })
 
   /**
    * Test case to verify that it returns a 500 response if an internal server error occurs.
@@ -143,7 +143,9 @@ describe('UpdateUserRouter', () => {
    * @name shouldReturn500ForInternalServerError
    */
   it('should return 500 response if an internal server error occurs', async () => {
-    const response = await request(app).patch('/users/:id').set('Authorization', `Bearer ${authToken.token}`);
-    expect(response.status).toBe(httpError.error_500().statusCode);
-  });
-});
+    const response = await request(app)
+      .patch('/users/:id')
+      .set('Authorization', `Bearer ${authToken.token}`)
+    expect(response.status).toBe(httpError.error_500().statusCode)
+  })
+})

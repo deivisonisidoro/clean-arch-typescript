@@ -11,3 +11,22 @@ services:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
       POSTGRES_DB: tests
+    networks:
+      - app-network
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - '3333:3333'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  db-data:

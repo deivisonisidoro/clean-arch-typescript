@@ -3,11 +3,11 @@
  * @module UserPrismaRepositoryTests
  */
 
-import { beforeAll, describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest'
 
-import { IUsersRepository } from '../../../../../src/app/repositories/User';
-import { UserRepository } from '../../../../../src/infra/repositories/prisma/User';
-import { prisma } from '../../../../helpers/db/prisma';
+import { IUsersRepository } from '../../../../../src/app/repositories/User'
+import { UserRepository } from '../../../../../src/infra/repositories/prisma/User'
+import { prisma } from '../../../../helpers/db/prisma'
 
 /**
  * Test suite for the UserPrismaRepository class.
@@ -15,12 +15,12 @@ import { prisma } from '../../../../helpers/db/prisma';
  * @name UserPrismaRepositoryTests
  */
 describe('UserPrismaRepository', () => {
-  let userRepository: IUsersRepository;
+  let userRepository: IUsersRepository
   const userData = {
     email: 'test@example.com',
     name: 'Test User',
     password: 'password',
-  };
+  }
 
   /**
    * Function to perform setup operations before running tests.
@@ -29,8 +29,8 @@ describe('UserPrismaRepository', () => {
    * @description This function initializes an instance of UserPrismaRepository before running tests.
    */
   beforeAll(async () => {
-    userRepository = new UserRepository(prisma);
-  });
+    userRepository = new UserRepository(prisma)
+  })
 
   /**
    * Test case to verify that the create method creates a user.
@@ -38,10 +38,10 @@ describe('UserPrismaRepository', () => {
    * @name shouldCreateUser
    */
   it('create method should create a user', async () => {
-    const createdUser = await userRepository.create(userData);
-    expect(createdUser.email).toEqual(userData.email);
-    expect(createdUser.name).toEqual(userData.name);
-  });
+    const createdUser = await userRepository.create(userData)
+    expect(createdUser.email).toEqual(userData.email)
+    expect(createdUser.name).toEqual(userData.name)
+  })
 
   /**
    * Test case to verify that the findByEmail method finds a user by email.
@@ -49,10 +49,10 @@ describe('UserPrismaRepository', () => {
    * @name shouldFindUserByEmail
    */
   it('findByEmail method should find a user by email', async () => {
-    const createdUser = await prisma.user.create({ data: userData });
-    const user = await userRepository.findByEmail(createdUser.email);
-    expect(user).not.toBeNull();
-  });
+    const createdUser = await prisma.user.create({ data: userData })
+    const user = await userRepository.findByEmail(createdUser.email)
+    expect(user).not.toBeNull()
+  })
 
   /**
    * Test case to verify that the findByEmail method does not find a user by email.
@@ -60,9 +60,9 @@ describe('UserPrismaRepository', () => {
    * @name shouldNotFindUserByEmail
    */
   it('findByEmail method should not find a user by email', async () => {
-    const user = await userRepository.findByEmail('test@example.com');
-    expect(user).toBeNull();
-  });
+    const user = await userRepository.findByEmail('test@example.com')
+    expect(user).toBeNull()
+  })
 
   /**
    * Test case to verify that the findById method finds a user by ID.
@@ -70,10 +70,10 @@ describe('UserPrismaRepository', () => {
    * @name shouldFindUserById
    */
   it('findById method should find a user by id', async () => {
-    const createdUser = await prisma.user.create({ data: userData });
-    const user = await userRepository.findById(createdUser.id);
-    expect(user).not.toBeNull();
-  });
+    const createdUser = await prisma.user.create({ data: userData })
+    const user = await userRepository.findById(createdUser.id)
+    expect(user).not.toBeNull()
+  })
 
   /**
    * Test case to verify that the findById method does not find a user by ID.
@@ -81,9 +81,9 @@ describe('UserPrismaRepository', () => {
    * @name shouldNotFindUserById
    */
   it('findById method should not find a user by id', async () => {
-    const user = await userRepository.findById('test');
-    expect(user).toBeNull();
-  });
+    const user = await userRepository.findById('test')
+    expect(user).toBeNull()
+  })
 
   /**
    * Test case to verify that the findAll method finds all users.
@@ -99,14 +99,14 @@ describe('UserPrismaRepository', () => {
         name: true,
         createdAt: true,
       },
-    });
-    const paginatedData = await userRepository.findAll(1);
+    })
+    const paginatedData = await userRepository.findAll(1)
 
-    expect(paginatedData.last_page).toEqual(1);
-    expect(paginatedData.page).toEqual(1);
-    expect(paginatedData.total).toEqual(1);
-    expect(paginatedData.body).toEqual([createdUser]);
-  });
+    expect(paginatedData.last_page).toEqual(1)
+    expect(paginatedData.page).toEqual(1)
+    expect(paginatedData.total).toEqual(1)
+    expect(paginatedData.body).toEqual([createdUser])
+  })
 
   /**
    * Test case to verify that the update method updates a user by ID.
@@ -114,14 +114,14 @@ describe('UserPrismaRepository', () => {
    * @name shouldUpdateUserById
    */
   it('update method should update a user by id', async () => {
-    const createdUser = await prisma.user.create({ data: userData });
+    const createdUser = await prisma.user.create({ data: userData })
     const user = await userRepository.update(createdUser, {
       name: 'New User',
       password: '123',
-    });
+    })
 
-    expect(user.name).toEqual('New User');
-  });
+    expect(user.name).toEqual('New User')
+  })
 
   /**
    * Test case to verify that the delete method deletes the user by ID.
@@ -129,9 +129,9 @@ describe('UserPrismaRepository', () => {
    * @name shouldDeleteUserById
    */
   it('delete method should delete the user by id', async () => {
-    const createdUser = await prisma.user.create({ data: userData });
-    const user = await userRepository.delete(createdUser.id);
+    const createdUser = await prisma.user.create({ data: userData })
+    const user = await userRepository.delete(createdUser.id)
 
-    expect(user).toBeUndefined();
-  });
-});
+    expect(user).toBeUndefined()
+  })
+})

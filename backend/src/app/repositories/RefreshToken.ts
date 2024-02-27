@@ -1,4 +1,4 @@
-import { RefreshTokenDTO } from "../../domain/dtos/Authenticate/RefreshToken";
+import { RefreshTokenDTO } from '../../domain/dtos/Authenticate/RefreshToken'
 
 /**
  * Interface for the repository handling refresh tokens.
@@ -13,7 +13,7 @@ export interface IRefreshTokenRepository {
    * @param {string} user_id - The ID of the user.
    * @returns {Promise<RefreshTokenDTO>} The created refresh token.
    */
-  create(user_id: string): Promise<RefreshTokenDTO>;
+  create(user_id: string): Promise<RefreshTokenDTO>
 
   /**
    * Finds a refresh token by its identifier.
@@ -22,7 +22,7 @@ export interface IRefreshTokenRepository {
    * @param {string} refreshToken - The refresh token identifier.
    * @returns {Promise<RefreshTokenDTO | unknown>} The found refresh token, or undefined if not found.
    */
-  findById(refreshToken: string): Promise<RefreshTokenDTO | unknown>;
+  findById(refreshToken: string): Promise<RefreshTokenDTO | unknown>
 
   /**
    * Finds a refresh token by the user's ID.
@@ -31,7 +31,7 @@ export interface IRefreshTokenRepository {
    * @param {string} user_id - The ID of the user.
    * @returns {Promise<RefreshTokenDTO | unknown>} The found refresh token, or undefined if not found.
    */
-  findByUserId(user_id: string): Promise<RefreshTokenDTO | unknown>;
+  findByUserId(user_id: string): Promise<RefreshTokenDTO | unknown>
 
   /**
    * Deletes a refresh token associated with the specified user.
@@ -40,5 +40,5 @@ export interface IRefreshTokenRepository {
    * @param {string} user_id - The ID of the user.
    * @returns {Promise<void>} A promise that resolves when the refresh token is deleted.
    */
-  delete(user_id: string): Promise<void>;
+  delete(user_id: string): Promise<void>
 }

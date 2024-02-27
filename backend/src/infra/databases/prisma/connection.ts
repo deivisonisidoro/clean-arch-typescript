@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
 
 /**
  * Prisma client instance for interacting with the database.
@@ -6,6 +6,6 @@ import { PrismaClient } from '@prisma/client';
  * @constant
  * @type {PrismaClient}
  */
-const prismaClient: PrismaClient = new PrismaClient();
+const prismaClient: PrismaClient = new PrismaClient()
 
-export { prismaClient };
+export { prismaClient }

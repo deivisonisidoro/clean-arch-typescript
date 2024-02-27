@@ -3,11 +3,11 @@
  * @module databaseTests
  */
 
-import { afterAll, afterEach, beforeEach, beforeAll } from 'vitest';
+import { afterAll, afterEach, beforeEach, beforeAll } from 'vitest'
 
-import connectDb from './connectDb';
-import disconnectDb from './disconnectDb';
-import resetDb from './resetDb';
+import connectDb from './connectDb'
+import disconnectDb from './disconnectDb'
+import resetDb from './resetDb'
 
 /**
  * Function to perform setup operations before all tests.
@@ -15,9 +15,9 @@ import resetDb from './resetDb';
  * @name beforeAllTests
  * @description This function resets the database before all tests are executed.
  */
-beforeAll(async () =>{
-  await resetDb();
-});
+beforeAll(async () => {
+  await resetDb()
+})
 
 /**
  * Function to perform setup operations before each test.
@@ -26,8 +26,8 @@ beforeAll(async () =>{
  * @description This function connects to the database before each test is executed.
  */
 beforeEach(async () => {
-  await connectDb();
-});
+  await connectDb()
+})
 
 /**
  * Function to perform cleanup operations after each test.
@@ -36,8 +36,8 @@ beforeEach(async () => {
  * @description This function resets the database after each test is executed.
  */
 afterEach(async () => {
-  await resetDb();
-});
+  await resetDb()
+})
 
 /**
  * Function to perform cleanup operations after all tests.
@@ -46,5 +46,5 @@ afterEach(async () => {
  * @description This function disconnects from the database after all tests are executed.
  */
 afterAll(async () => {
-  await disconnectDb();
-});
+  await disconnectDb()
+})
