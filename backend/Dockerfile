@@ -5,10 +5,10 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
-RUN yarn install --production
+RUN pnpm install --production
 
 COPY . .
 
 EXPOSE 3333
 
-CMD ["yarn", "dev"]
+CMD ["pnpm", "dev"]

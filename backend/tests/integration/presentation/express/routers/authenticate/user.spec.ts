@@ -21,7 +21,6 @@ describe('UserRouter', () => {
     email: 'testDelete@test.com.br',
     name: 'Test Integration Exist User',
   }
-  let userId: string
   let authToken: any
 
   /**
@@ -30,8 +29,7 @@ describe('UserRouter', () => {
    * @name beforeEachCreateUserAndLogin
    */
   beforeEach(async () => {
-    const responseUser = await request(app).post('/users').send(userData)
-    userId = responseUser.body.id
+    await request(app).post('/users').send(userData)
     authToken = await login(userData)
   })
 
