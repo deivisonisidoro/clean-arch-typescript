@@ -21,7 +21,7 @@ describe('UserRouter', () => {
     email: 'testDelete@test.com.br',
     name: 'Test Integration Exist User',
   }
-
+  let userId: string
   let authToken: any
 
   /**
