@@ -1,6 +1,6 @@
 import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { ICreateUserRequestDTO } from '../../../../domain/dtos/User/CreateUser'
-import { User } from '../../../../domain/entities/User'
+import { UserEntity } from '../../../../domain/entities/User'
 import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
 import { IPasswordHasher } from '../../../providers/PasswordHasher'
 import { IUsersRepository } from '../../../repositories/User'
@@ -38,7 +38,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     password,
   }: ICreateUserRequestDTO): Promise<ResponseDTO> {
     try {
-      const userEntity = User.create({
+      const userEntity = UserEntity.create({
         email,
         name,
         password,

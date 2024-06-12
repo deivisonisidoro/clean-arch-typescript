@@ -1,7 +1,7 @@
 import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IUpdateUserRequestDTO } from '../../../../domain/dtos/User/UpdateUser'
 import { IUserInRequestDTO } from '../../../../domain/dtos/User/UserIn'
-import { User } from '../../../../domain/entities/User'
+import { UserEntity } from '../../../../domain/entities/User'
 import { UserErrorType } from '../../../../domain/enums/user/ErrorType'
 import { IPasswordHasher } from '../../../providers/PasswordHasher'
 import { IUsersRepository } from '../../../repositories/User'
@@ -54,7 +54,7 @@ export class UpdateUserUseCase implements IUpdateUserUseCase {
         password = await this.passwordHasher.hashPassword(password)
       }
 
-      const userEntity = User.update({ name, email, password })
+      const userEntity = UserEntity.update({ name, email, password })
       const userUpdated = await this.userRepository.update(userAlreadyExists, {
         name: userEntity.name,
         email: userEntity.email,

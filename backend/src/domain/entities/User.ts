@@ -18,7 +18,7 @@ export interface UserInterface {
  *
  * @class
  */
-export class User {
+export class UserEntity {
   private _name: string
   private _email: Email
   private _password: string
@@ -28,11 +28,11 @@ export class User {
    *
    * @static
    * @param {ICreateUserRequestDTO} data - The data to create a user.
-   * @returns {User} The created user instance.
+   * @returns {UserEntity} The created user instance.
    */
-  static create({ email, name, password }: ICreateUserRequestDTO): User {
+  static create({ email, name, password }: ICreateUserRequestDTO): UserEntity {
     const newEmail = new Email({ address: email })
-    return new User({ name, email: newEmail, password })
+    return new UserEntity({ name, email: newEmail, password })
   }
 
   /**
@@ -77,7 +77,7 @@ export class User {
   }
 
   /**
-   * Creates an instance of User.
+   * Creates an instance of UserEntity.
    *
    * @constructor
    * @param {UserInterface} props - The properties of the user.

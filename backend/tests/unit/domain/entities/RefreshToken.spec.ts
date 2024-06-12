@@ -5,18 +5,18 @@
 
 import { it, describe, expect } from 'vitest'
 
-import { RefreshToken } from '../../../../src/domain/entities/RefreshToken'
-import { User } from '../../../../src/domain/entities/User'
+import { RefreshTokenEntity } from '../../../../src/domain/entities/RefreshToken'
+import { UserEntity } from '../../../../src/domain/entities/User'
 import { Email } from '../../../../src/domain/valueObjects/Email'
 
 /**
- * Test suite for the RefreshToken entity.
+ * Test suite for the RefreshTokenEntity entity.
  * @function
  * @name RefreshTokenEntityTests
  */
 describe('RefreshToken', () => {
   // Create a user instance for testing
-  const user = new User({
+  const user = new UserEntity({
     name: 'John Doe',
     email: new Email({ address: 'john@example.com' }),
     password: 'password123',
@@ -30,8 +30,8 @@ describe('RefreshToken', () => {
     user,
   }
 
-  // Create a RefreshToken instance for testing
-  const refreshToken = new RefreshToken(refreshTokenProps)
+  // Create a RefreshTokenEntity instance for testing
+  const refreshToken = new RefreshTokenEntity(refreshTokenProps)
 
   /**
    * Test case to verify that it has the correct expires_in property.

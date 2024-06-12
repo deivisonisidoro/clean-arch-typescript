@@ -1,14 +1,14 @@
-import { User } from './User'
+import { UserEntity } from './User'
 
 /**
  * Interface representing the structure of a refresh token.
  *
  * @interface
  */
-export interface IRefreshToken {
+export interface IRefreshTokenEntity {
   expires_in: number
   user_id: string
-  user: User
+  user: UserEntity
   createdAt: Date
 }
 
@@ -17,10 +17,10 @@ export interface IRefreshToken {
  *
  * @class
  */
-export class RefreshToken {
+export class RefreshTokenEntity {
   private _expires_in: number
   private _user_id: string
-  private _user: User
+  private _user: UserEntity
   private _createdAt: Date
 
   /**
@@ -46,7 +46,7 @@ export class RefreshToken {
    *
    * @readonly
    */
-  get user(): User {
+  get user(): UserEntity {
     return this._user
   }
 
@@ -63,9 +63,9 @@ export class RefreshToken {
    * Creates an instance of RefreshToken.
    *
    * @constructor
-   * @param {IRefreshToken} props - The properties of the refresh token.
+   * @param {IRefreshTokenEntity} props - The properties of the refresh token.
    */
-  constructor(props: IRefreshToken) {
+  constructor(props: IRefreshTokenEntity) {
     this._expires_in = props.expires_in
     this._user_id = props.user_id
     this._createdAt = props.createdAt

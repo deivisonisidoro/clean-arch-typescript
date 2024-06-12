@@ -1,4 +1,4 @@
-import { IRefreshTokenUserDTO } from 'src/domain/dtos/Authenticate/RefreshTokenUser'
+import { IRefreshTokenUserDTO } from '../../../../domain/dtos/Authenticate/RefreshTokenUser'
 
 import { RefreshTokenDTO } from '../../../../domain/dtos/Authenticate/RefreshToken'
 import { ResponseDTO } from '../../../../domain/dtos/Response'

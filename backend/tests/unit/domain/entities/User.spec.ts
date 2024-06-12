@@ -5,22 +5,22 @@
 
 import { it, describe, expect } from 'vitest'
 
-import { User } from '../../../../src/domain/entities/User'
+import { UserEntity } from '../../../../src/domain/entities/User'
 import { Email } from '../../../../src/domain/valueObjects/Email'
 
 /**
  * Test suite for the User class.
  * @function
- * @name UserClassTests
+ * @name UserEntityClassTests
  */
-describe('User Class', () => {
+describe('User Entity Class', () => {
   /**
    * Test case to verify that it creates a user instance with provided data.
    * @function
    * @name shouldCreateUserInstance
    */
   it('should create a user instance with provided data', () => {
-    const user = new User({
+    const user = new UserEntity({
       name: 'John Doe',
       email: new Email({ address: 'john@example.com' }),
       password: 'password123',
@@ -36,7 +36,7 @@ describe('User Class', () => {
    * @name shouldCreateNewUserWithCreateMethod
    */
   it('should create a new user with the create method', () => {
-    const user = User.create({
+    const user = UserEntity.create({
       name: 'Jane Doe',
       email: 'jane.doe@example.com',
       password: '654321',
