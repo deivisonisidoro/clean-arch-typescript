@@ -1,6 +1,5 @@
-import { IRefreshTokenUserDTO } from '../../../../domain/dtos/Authenticate/RefreshTokenUser'
-
 import { RefreshTokenDTO } from '../../../../domain/dtos/Authenticate/RefreshToken'
+import { IRefreshTokenUserDTO } from '../../../../domain/dtos/Authenticate/RefreshTokenUser'
 import { ResponseDTO } from '../../../../domain/dtos/Response'
 import { IGenerateRefreshTokenProvider } from '../../../providers/GenerateRefreshToken'
 import { ITokenManagerProvider } from '../../../providers/TokenManager'
