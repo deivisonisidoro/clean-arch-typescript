@@ -5,10 +5,10 @@
 
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUsersRepository } from '../../../../src/app/repositories/User'
-import { IDeleteUserUseCase } from '../../../../src/app/useCases/User/DeleteUser'
-import { DeleteUserUseCase } from '../../../../src/app/useCases/User/implementations/DeleteUser'
-import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
+import { IUsersRepository } from '../../../../../src/app/repositories/User'
+import { IDeleteUserUseCase } from '../../../../../src/app/useCases/User/DeleteUser'
+import { DeleteUserUseCase } from '../../../../../src/app/useCases/User/implementations/DeleteUser'
+import { UserErrorType } from '../../../../../src/domain/enums/user/ErrorType'
 
 /**
  * Test suite for the DeleteUserUseCase class.

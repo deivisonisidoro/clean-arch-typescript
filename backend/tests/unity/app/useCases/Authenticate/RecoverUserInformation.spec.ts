@@ -5,11 +5,11 @@
 
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ITokenManagerProvider } from '../../../../src/app/providers/TokenManager'
-import { IRefreshTokenRepository } from '../../../../src/app/repositories/RefreshToken'
-import { IUsersRepository } from '../../../../src/app/repositories/User'
-import { RecoverUserInformationUserUseCase } from '../../../../src/app/useCases/Authenticate/implementations/RecoverUserInformation'
-import { AuthMessages } from '../../../../src/domain/enums/Authenticate/AuthMessages'
+import { ITokenManagerProvider } from '../../../../../src/app/providers/TokenManager'
+import { IRefreshTokenRepository } from '../../../../../src/app/repositories/RefreshToken'
+import { IUsersRepository } from '../../../../../src/app/repositories/User'
+import { RecoverUserInformationUserUseCase } from '../../../../../src/app/useCases/Authenticate/implementations/RecoverUserInformation'
+import { AuthMessages } from '../../../../../src/domain/enums/Authenticate/AuthMessages'
 
 /**
  * Test suite for the RecoverUserInformationUserUseCase class.

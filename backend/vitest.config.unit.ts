@@ -2,6 +2,6 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    include: ['tests/unit/**/*.spec.ts', '!tests'],
+    include: ['tests/unity/**/*.spec.ts', '!tests'],
   },
 })

@@ -5,13 +5,13 @@
 
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IGenerateRefreshTokenProvider } from '../../../../src/app/providers/GenerateRefreshToken'
-import { IPasswordHasher } from '../../../../src/app/providers/PasswordHasher'
-import { IRefreshTokenRepository } from '../../../../src/app/repositories/RefreshToken'
-import { IUsersRepository } from '../../../../src/app/repositories/User'
-import { AuthenticateUserUseCase } from '../../../../src/app/useCases/Authenticate/implementations/AuthenticateUser'
-import { IAuthenticateUserDTO } from '../../../../src/domain/dtos/Authenticate/AuthenticateUser'
-import { AuthenticateUserErrorType } from '../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType'
+import { IGenerateRefreshTokenProvider } from '../../../../../src/app/providers/GenerateRefreshToken'
+import { IPasswordHasher } from '../../../../../src/app/providers/PasswordHasher'
+import { IRefreshTokenRepository } from '../../../../../src/app/repositories/RefreshToken'
+import { IUsersRepository } from '../../../../../src/app/repositories/User'
+import { AuthenticateUserUseCase } from '../../../../../src/app/useCases/Authenticate/implementations/AuthenticateUser'
+import { IAuthenticateUserDTO } from '../../../../../src/domain/dtos/Authenticate/AuthenticateUser'
+import { AuthenticateUserErrorType } from '../../../../../src/domain/enums/Authenticate/AuthenticateUser/ErrorType'
 
 /**
  * Test suite for the AuthenticateUserUseCase class.

@@ -5,12 +5,12 @@
 
 import { it, describe, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { IUsersRepository } from '../../../../src/app/repositories/User'
-import { IGetAllUserUseCase } from '../../../../src/app/useCases/User/GetAllUser'
-import { GetAllUserUseCase } from '../../../../src/app/useCases/User/implementations/GetAllUser'
-import { UserErrorType } from '../../../../src/domain/enums/user/ErrorType'
-import { PaginationDTO } from '../../../domain/dtos/Pagination'
-import { IUserOutRequestDTO } from '../../../domain/dtos/User/UserOut'
+import { IUsersRepository } from '../../../../../src/app/repositories/User'
+import { IGetAllUserUseCase } from '../../../../../src/app/useCases/User/GetAllUser'
+import { GetAllUserUseCase } from '../../../../../src/app/useCases/User/implementations/GetAllUser'
+import { PaginationDTO } from '../../../../../src/domain/dtos/Pagination'
+import { IUserOutRequestDTO } from '../../../../../src/domain/dtos/User/UserOut'
+import { UserErrorType } from '../../../../../src/domain/enums/user/ErrorType'
 
 /**
  * Test suite for the GetAllUserUseCase class.
