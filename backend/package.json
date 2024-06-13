@@ -58,6 +58,8 @@
     "test:unit:ui": "vitest -c ./vitest.config.unit.ts --ui",
     "test:int": "./scripts/run-integration.sh",
     "test:int:ui": "./scripts/run-integration.sh --ui",
+    "test:e2e": "./scripts/run-e2e.sh",
+    "test:e2e:ui": "./scripts/run-e2e.sh --ui",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/presentation/express/settings/server.ts",
     "lint": "eslint  --fix --ignore-path .eslintignore --ext .js,.ts .",
     "prepare": "husky install",
